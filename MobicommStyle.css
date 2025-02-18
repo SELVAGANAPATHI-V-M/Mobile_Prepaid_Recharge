@@ -1,0 +1,866 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+.page1 {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.page1 .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    width: 99%;
+    height: 40px;
+}
+
+.page1 .navbar .logo img {
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.page1 .navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.page1 .navbar ul li {
+    margin: 0 15px;
+}
+
+.page1 .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.page1 .navbar ul li a:hover {
+  color: black;
+}
+
+.page1 .main-container {
+    display: flex;
+    align-items: center;
+    padding-left: 190px;
+    height: 600px;
+    background-image: url(Images/bg.png);
+    background-repeat: no-repeat;
+}
+
+.page1 .recharge-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 350px;
+    height: 260px;
+}
+
+.page1 .recharge-box h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+.page1 .recharge-box p{
+  margin-bottom: 20px;
+}
+
+.page1 .button-group {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.page1 .button-group button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.page1 .resend-btn {
+    background-color: #008080;
+    border: none;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.page1 .button-group .active {
+    background: #027373;
+}
+
+.page1 .recharge-box input {
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.page1 .fixed-text {
+    background-color: #e0e0e0;
+    padding: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.page1 .continue-btn {
+    background: #008080;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.page1 .mobile-input {
+    font-size: 15px;
+}
+
+.page1 .otpp input {
+    height: 20px;
+    text-align: center;
+    font-size: larger;
+}
+
+.page1 .otp-button {
+    background: #008080;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 40%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.page1 .otp-button:hover {
+    background: #005f5f;
+}
+
+.page1 .continue-btn:hover {
+    background: #005f5f;
+}
+
+.page1 .footer {
+    background: #006666;
+    color: white;
+    padding: 30px 20px;
+}
+
+.page1 #resendBtn {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.page1 .footer-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.page1 .column {
+    width: 23%;
+}
+
+.page1 .column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.page1 .column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page1 .column ul li {
+    margin: 8px 0;
+}
+
+.page1 .column ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.page1 .column ul li a:hover {
+    text-decoration: underline;
+}
+
+.page1 .social-icons a {
+    color: white;
+    font-size: 22px;
+    margin: 0 10px;
+}
+
+.page1 .social-icons a:hover {
+    color: #ffcc00;
+}
+
+.page1 .copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+
+.page2 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .page2 body {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .page2 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  
+  .page2 .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .page2 .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .page2 .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .page2 .header-nav li {
+    margin: 0 1rem;
+  }
+  
+  .page2 .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .page2 .header-nav a:hover {
+    color: black;
+  }
+  
+  .page2 .main-container {
+    display: flex;
+    margin: 1rem;
+  }
+  
+  .page2 .sidebar {
+    width: 240px;
+    background-color: #a3d3d6;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .page2 .recharge-box {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .page2 .recharge-title {
+    font-weight: bold;
+    color: #007c7c;
+  }
+  
+  .page2 .recharge-number {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .page2 .change-btn {
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .page2 .change-btn:hover {
+    background-color: #005f5f;
+  }
+  
+  .page2 .sidebar-menu {
+    list-style: none;
+  }
+  
+  .page2 .sidebar-menu li {
+    margin: 0.75rem 0;
+  }
+  
+  .page2 .sidebar-menu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .page2 .sidebar-menu a:hover {
+    color: #007c7c;
+  }
+  
+  .page2 .content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .page2 .section-heading {
+    margin-bottom: 1rem;
+  }
+  
+  .page2 .section-heading h2 {
+    font-size: 1.2rem;
+    color: #007c7c;
+  }
+  
+  .page2 .section-heading span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .page2 .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page2 .plan-card {
+    background-color: #bff0f0; 
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  }
+  
+  .page2 .plan-price {
+    font-size: 1.5rem;
+    color: #007c7c;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page2 .plan-details p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .page2 .buy-btn {
+    margin-top: 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .page2 .buy-btn:hover {
+    background-color: #005f5f;
+  }
+  
+  .page2 .collapsible {
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .page2 .collapsible input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .page2 .collapsible-label {
+    display: block;
+    padding: 0.8rem 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .page2 .collapsible-label:hover {
+    background-color: #005f5f;
+  }
+  
+  .page2 .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #fff;
+    padding: 0 1rem;
+  }
+  
+  .page2 .collapsible input[type="checkbox"]:checked ~ .collapsible-content {
+    max-height: 3000px;
+    padding: 1rem;
+  }
+  
+  .page2 .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+  }
+  
+  .page2 .footer p {
+    padding-top: 20px;
+  }
+
+  .page3 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .page3 body {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .page3 .main-content {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page3 .payment-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+    width: 600px;
+    margin-left: 20px;
+  }
+  
+  .page3 .payment-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #007c7c;
+  }
+  
+  .page3 .section {
+    background-color: #e2f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: left;
+    height: 2000px;
+  }
+  
+  .page3 .collapsible-payment {
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+
+  .page3 .collapsible-payment-upi {
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .page3 .collapsible-label {
+    display: block;
+    padding: 0.8rem 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: left;
+    transition: background 0.3s;
+  }
+  
+  .page3 .collapsible-label:hover {
+    background-color: #005f5f;
+  }
+  
+  .page3 .collapsible-payment input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .page3 .collapsible-payment-upi input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .page3 .collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.1s ease;
+    background-color: #f7fbfb;
+    padding: 0 1rem;
+  }
+  .page3 .collapsible-content-upi {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.1s ease;
+    background-color: #f7fbfb;
+    padding: 0 1rem;
+  }
+  
+  .page3 .collapsible-payment input[type="checkbox"]:checked ~ .collapsible-content {
+    max-height: 500px;
+    padding: 1rem;
+  }
+  
+  .page3 .collapsible-payment-upi input[type="checkbox"]:checked ~ .collapsible-content-upi {
+    max-height: 500px;
+    padding: 1rem;
+  }
+
+  .page3 .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .page3 .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .page3 .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 2px;
+  }
+  
+  .page3 .section-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  .page3 .payable-amount {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .page3 .payment-options {
+    text-align: left;
+    margin: 1.5rem 0;
+  }
+  
+  .page3 .payment-options h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .page3 .payment-method {
+    display: flex;
+    align-items: center;
+    background-color: #e2f5f5;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    gap: 20px;
+  }
+  
+  .page3 .payment-method input[type="radio"] {
+    margin-right: 0.5rem;
+    transform: scale(2);
+  }
+  
+  .page3 .payment-method img {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+  }
+  
+  .page3 .payment-method span {
+    font-size: 1rem;
+  }
+  
+  .page3 .payment-method:hover {
+    background-color: #cdeff0;
+  }
+  
+  .page3 .upi-id-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .page3 .upi-id-btn:hover {
+    background-color: #005f5f;
+    transform: scale(1.03);
+  }
+  
+  .page3 .proceed-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .page3 .proceed-btn:hover {
+    background-color: #005f5f;
+    transform: scale(1.03);
+  }
+
+ button#close{
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none; 
+    cursor: pointer;
+  }
+
+  .page4 .carousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .page4 .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .page4 .carousel img {
+    width: 100%;
+  }
+  
+  .page4 button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+  }
+  
+  .page4 .prev { left: 10px; }
+  .page4 .next { right: 10px; }
+  
+
+  .page4 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  
+  .page4 .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .page4 .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .page4 .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .page4 .header-nav li {
+    margin: 0 1rem;
+  }
+  
+  .page4 .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .page4 .header-nav a:hover {
+    color: black;
+  }
+  .page4 .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+  }
+  
+  .page4 .footer p {
+    padding-top: 20px;
+  }
+
+  .page4 {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.page4 .collapsible {
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .page4 .collapsible input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .page4 .collapsible-label {
+    display: block;
+    padding: 0.8rem 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .page4 .collapsible-label:hover {
+    background-color: #005f5f;
+  }
+  
+  .page4 .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #fff;
+    padding: 0 1rem;
+  }
+  .page4 .content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .page4 .section-heading {
+    margin-bottom: 1rem;
+  }
+  
+  .page4 .section-heading h2 {
+    font-size: 1.2rem;
+    color: #007c7c;
+  }
+  
+  .page4 .section-heading span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .page4 .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page4 .plan-card {
+    background-color: #bff0f0; 
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  }
+  
+  .page4 .plan-price {
+    font-size: 1.5rem;
+    color: #007c7c;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page4 .plan-details p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .page4 .buy-btn {
+    margin-top: 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .page4 .buy-btn:hover {
+    background-color: #005f5f;
+  }

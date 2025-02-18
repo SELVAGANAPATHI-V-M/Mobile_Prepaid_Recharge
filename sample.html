@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+
+</style>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+          <img src="Images/bg.png" alt="Slide 1">
+          <img src="Images/bg.png" alt="Slide 2">
+          <img src="Images/bg.png" alt="Slide 3">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+      
+</body>
+<script>
+    const carousel = document.querySelector(".carousel");
+let images = document.querySelectorAll(".carousel img");
+let index = 0;
+
+// Clone the first image and append it at the end
+const firstClone = images[0].cloneNode(true);
+carousel.appendChild(firstClone);
+images = document.querySelectorAll(".carousel img"); // Update image list
+
+function moveSlide(step) {
+  index += step;
+  carousel.style.transition = "transform 0.5s ease-in-out";
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+
+  // Reset position when reaching the last cloned image
+  if (index >= images.length - 1) {
+    setTimeout(() => {
+      carousel.style.transition = "none";
+      index = 0;
+      carousel.style.transform = `translateX(0)`;
+    }, 500); // Delay to match transition speed
+  }
+}
+
+</script>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge</title>
+    <link rel="stylesheet" href="MobicommStyle.css">
+</head>
+<body>
+    <div class="page1" id="page1">
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Mobicomm.html">Mobile</a></li>
+                <li><a href="#" onclick="trueChange()">True 5G</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="recharge-box" id="recharge-box">
+            <h2>Mobile Recharge</h2>
+            <p>Enter your details to find the best prepaid plans</p>
+            <div style="align-items: center;">
+                <input type="text" placeholder="Phone Number" maxlength="10" class="mobile-input"><br><br>
+                <button class="continue-btn" onclick="changeContent()" id="generate-otp" disabled>Generate OTP</button>
+            </div>
+        </div>
+
+        <div class="recharge-box" id="otp-container" style="display: none;">
+            <div style="text-align: left; margin-bottom: 1px; margin-bottom: 20px">
+                <button onclick = "changeContents()" id="backBtn" style="background: none;border: none; cursor: pointer;"><img src="Images/previous.png" alt="" height="20px"></button>
+            </div>
+            <div style="text-align: left; margin-top: 0px;">
+                <h2 style="font-weight: bolder;">Verify phone number</h2>
+                <p>The OTP has been sent to <span id="phone-number"></span></p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 5px; width: 300px; margin-left: 30px; margin-bottom: 10px;" class="otpp">
+                <input type="text" style="width: 10px;" id="otpInput1" maxlength="1" class="otp" required>
+                <input type="text" style="width: 10px;" id="otpInput2" maxlength="1" class="otp" required disabled>
+                <input type="text" style="width: 10px;" id="otpInput3" maxlength="1" class="otp" required disabled>
+                <input type="text" style="width: 10px;" id="otpInput4" maxlength="1" class="otp" required disabled>
+                <input type="text" style="width: 10px;" id="otpInput5" maxlength="1" class="otp" required disabled>
+                <input type="text" style="width: 10px;" id="otpInput6" maxlength="1" class="otp" required disabled>
+            </div>
+            <div style="text-align: right;">
+                <button id="resendBtn" disabled>Resend OTP (10s)</button>            
+            </div>
+            <br>
+            <button class="continue-btn" onclick="moveNext()" id="continue-btn-otp" disabled>Continue</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="column">
+                <h3>Our Offerings</h3>
+                <ul>
+                    <li><a href="#">Prepaid</a></li>
+                    <li><a href="#">Postpaid</a></li>
+                    <li><a href="#">International Roaming</a></li>
+                    <li><a href="#">Apps</a></li>
+                    <li><a href="#">WiFi Calling</a></li>
+                    <li><a href="#">5G Network</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Locate Us</a></li>
+                    <li><a href="#">Claim Refund</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">TechLife</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Connect with Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com"><img class="prof" src="Images/facebook.png" width="34px" ></a>
+                    <a href="https://www.twitter.com"><img  class="prof" src="Images/twitter.png"  width="33px"></a>
+                    <a href="https://www.instagram.com"><img class="prof" src="Images/instagram.png"  width="35px"></a>
+                    <a href="https://www.linkedin.com"><img  class="prof" src="Images/linkedin.png"  width="35px"></a>
+                    <a href="https://www.youtube.com"><img class="prof" src="Images/youtube.png"  width="35px"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2010-2025 My Tech. All rights reserved.</p>
+    </footer>
+</div>
+
+    <div class="page2" id="page2">
+        <header class="header">
+            <div class="header-left">
+              <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+            </div>
+            <nav class="header-nav">
+              <ul>
+                <li><a href="Mobicomm.html">Mobile</a></li>
+                <li><a href="#">True 5G</a></li>
+                <li><a href="#">Popular Plans</a></li>
+                <li><a href="#">Help</a></li>
+                <img class="profile" src="Images/search.png" alt="" height="20">
+                <img src="Images/user.png" alt="" height="20">
+              </ul>
+            </nav>
+          </header>
+        
+          <div class="main-container">
+        
+            <aside class="sidebar">
+              <div class="recharge-box">
+                <p class="recharge-title">Recharge</p>
+                <p class="recharge-number" id="recharge-number"></p>
+                <button class="change-btn" onclick="changeButton()">Change</button>
+              </div>
+              <ul class="sidebar-menu">
+                <li><a href="#">Popular Plans</a></li>
+                <li><a href="#">5G Unlimited Plans</a></li>
+                <li><a href="#">Data Plans</a></li>
+                <li><a href="#">International Roaming</a></li>
+                <li><a href="#">ISD</a></li>
+                <li><a href="#">In-Flight Packs</a></li>
+                <li><a href="#">Wi-Fi Calling</a></li>
+              </ul>
+            </aside>
+        
+            <section class="content">
+              
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-recommended" checked>
+                <label for="toggle-recommended" class="collapsible-label">
+                  Recommended (2)
+                </label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹599</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹799</div>
+                      <div class="plan-details">
+                        <p>Validity: 56 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-top-trending" />
+                <label for="toggle-top-trending" class="collapsible-label">
+                  Top Trending True 5G Unlimited Plans (10)
+                </label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹3599</div>
+                      <div class="plan-details">
+                        <p>Validity: 365 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2025</div>
+                      <div class="plan-details">
+                        <p>Validity: 200 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹999</div>
+                      <div class="plan-details">
+                        <p>Validity: 56 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹899</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2899</div>
+                      <div class="plan-details">
+                        <p>Validity: 180 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹9999</div>
+                      <div class="plan-details">
+                        <p>Validity: 365 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹3999</div>
+                      <div class="plan-details">
+                        <p>Validity: 305 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹3599</div>
+                      <div class="plan-details">
+                        <p>Validity: 305 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2025</div>
+                      <div class="plan-details">
+                        <p>Validity: 200 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹399</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-2_5gb" />
+                <label for="toggle-2_5gb" class="collapsible-label">2.5 GB/Day Plans (4)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹199</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹399</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                        <div class="plan-price">₹499</div>
+                        <div class="plan-details">
+                          <p>Validity: 36 Days</p>
+                          <p>2.5 GB/Day</p>
+                        </div>
+                        <button class="buy-btn" onclick="payment()">Buy</button>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹738</div>
+                        <div class="plan-details">
+                          <p>Validity: 48 Days</p>
+                          <p>2.5 GB/Day</p>
+                        </div>
+                        <button class="buy-btn" onclick="payment()">Buy</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-2gb" />
+                <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹149</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹249</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                        <div class="plan-price">₹399</div>
+                        <div class="plan-details">
+                          <p>Validity: 36 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                        <button class="buy-btn" onclick="payment()">Buy</button>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹529</div>
+                        <div class="plan-details">
+                          <p>Validity: 48 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                        <button class="buy-btn" onclick="payment()">Buy</button>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹799</div>
+                        <div class="plan-details">
+                          <p>Validity: 78 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                        <button class="buy-btn" onclick="payment()">Buy</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-1gb" />
+                <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹99</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>1 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹149</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>1 GB/Day</p>
+                      </div>
+                      <button class="buy-btn" onclick="payment()">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        
+          <footer class="footer">
+            <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+          </footer>
+    </div>
+
+    <div class="page3" id="page3">  
+          <main class="main-content">
+            <section class="payment-section">
+              <div style="display: grid; grid-template-columns: 1fr;">
+                <div style="text-align: right;">
+                  <button id="close" onclick="moveNext()"><img src="Images/close.png" alt="" height="20px" ></button>
+                </div>
+              </div>
+             
+              <h2>Payment</h2>
+              <p class="payable-amount">Payable Amount: <span id="price-payment"></span>.00</p>
+              <div class="payment-options">
+                <div class="collapsible-payment">
+                  <input type="checkbox" id="upi" class="upi" checked />
+                  <label for="upi" class="collapsible-label">UPI</label>
+                  
+                  <div class="collapsible-content">
+                    <label class="payment-method">
+                      <input type="radio" name="upi-method" />
+                      <span style="padding-right: 300px;">Reliance Pay</span>
+                      <img src="Images/money.png" alt="Reliance Pay Icon" />
+                    </label>
+              
+                    <label class="payment-method">
+                      <input type="radio" name="upi-method" />
+                      <span style="padding-right: 310px;">Google Pay</span>
+                      <img src="Images/google-pay.png" alt="Google Pay Icon" />
+                    </label>
+              
+                    <label class="payment-method">
+                      <input type="radio" name="upi-method" />
+                      <span style="padding-right: 330px;">PhonePe</span>
+                      <img src="Images/phonepe.svg" alt="PhonePe Icon" />
+                    </label>
+              
+                    <div class="collapsible-payment-upi">
+                      <input type="checkbox" id="upiid" />
+                      <label for="upiid" class="collapsible-label">Pay via UPI ID</label>
+                      <div class="collapsible-content-upi" style="background-color: #bff0f0;">
+                        <label class="form-group">
+                          <input type="text" placeholder="UPI ID" id="upiID" >
+                          <span style="color: red; font-size: small;" id="upi-error"></span>
+                        </label>
+                      <div>
+                    </div>
+                </div>
+              </div>
+              <button class="proceed-btn">Proceed to Payment</button>
+              </div>
+              </div>
+              </div>
+        
+              <div class="payment-options" >
+                <div class="collapsible-payment">
+                  <input type="checkbox" id="card" class="upi"/>
+                  <label for="card" class="collapsible-label">Credit/Debit Card</label>
+                  
+                  <div class="collapsible-content" style="background-color: #bff0f0;">
+                    <div class="form-group">
+                      <label>Card Number</label>
+                      <input type="text" placeholder="Enter card number" id="card-number">
+                      <span style="color: red; font-size: small;" id="cardnumber-error"></span>
+                    </div>
+              
+                    <div class="form-group">
+                      <label>Expiry Date</label>
+                      <input type="month" id="expiry-date">
+                      <span style="color: red; font-size: small;" id="expiryDate-error"></span>
+                    </div>
+              
+                    <div class="form-group">
+                      <label>CVV</label>
+                      <input type="password" placeholder="CVV" id="cvv-id">
+                      <span style="color: red; font-size: small;" id="cvv-error"></span>
+                    </div>
+              
+                    <div class="form-group">
+                      <label>Name on the Card</label>
+                      <input type="text" placeholder="Cardholder Name" id="name-on-the-card">
+                      <span style="color: red; font-size: small;" id="name-error"></span>
+                    </div>
+        
+                    <button class="proceed-btn">Proceed to Payment</button>
+        
+                </div>
+              </div>
+              </div>
+            </section>
+          </main>
+    </div>
+
+    <div class="page4" id="page4">
+      <header class="header">
+        <div class="header-left">
+          <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="Mobicomm.html">Mobile</a></li>
+            <li><a href="#">True 5G</a></li>
+            <li><a href="#">Popular Plans</a></li>
+            <li><a href="#">Help</a></li>
+            <img class="profile" src="Images/search.png" alt="" height="20">
+            <img src="Images/user.png" alt="" height="20">
+          </ul>
+        </nav>
+      </header>
+
+      <div class="carousel-container">
+        <div class="carousel">
+          <img src="Images/bg.png" alt="Slide 1">
+          <img src="Images/bg.png" alt="Slide 2">
+          <img src="Images/bg.png" alt="Slide 3">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+
+        <div class="plans-grid">
+          <div class="plan-card">
+            <div class="plan-price">₹3599</div>
+            <div class="plan-details">
+              <p>Validity: 365 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹2025</div>
+            <div class="plan-details">
+              <p>Validity: 200 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹999</div>
+            <div class="plan-details">
+              <p>Validity: 56 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹899</div>
+            <div class="plan-details">
+              <p>Validity: 28 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹2899</div>
+            <div class="plan-details">
+              <p>Validity: 180 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹9999</div>
+            <div class="plan-details">
+              <p>Validity: 365 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹3999</div>
+            <div class="plan-details">
+              <p>Validity: 305 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹3599</div>
+            <div class="plan-details">
+              <p>Validity: 305 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹2025</div>
+            <div class="plan-details">
+              <p>Validity: 200 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+          <div class="plan-card">
+            <div class="plan-price">₹399</div>
+            <div class="plan-details">
+              <p>Validity: 28 Days</p>
+              <p>2.5 GB/Day</p>
+            </div>
+            <button class="buy-btn" onclick="payment()">Buy</button>
+          </div>
+        </div>
+
+      <footer class="footer">
+        <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+      </footer>
+    </div>
+</body>
+
+<script>
+
+ function trueChange(){
+    document.getElementById('page2').style.display = 'none';
+   document.getElementById('page3').style.display = 'none';
+   document.getElementById('page1').style.display = 'none';
+   document.getElementById('page4').style.display = 'block';
+
+  }
+document.addEventListener("DOMContentLoaded", function () {
+    let links = document.querySelectorAll("nav ul li a");
+    links.forEach(link => {
+      if (link.href === window.location.href) {
+        link.style = "text-decoration : underline";
+      }
+    });
+  });
+  
+   document.getElementById('page2').style.display = 'none';
+   document.getElementById('page3').style.display = 'none';
+   document.getElementById('page4').style.display = 'none';
+
+   var otpTimer = 0;
+   function changeContent(){
+    document.getElementById('recharge-box').style.display = 'none';
+    document.getElementById('otp-container').style.display = 'block';
+    startOtpTimer();
+    insertPhoneNumber();
+    }
+
+    function changeContents(){
+    clearOtp();
+    document.getElementById('otp-container').style.display = 'none';
+    document.getElementById('recharge-box').style.display = 'block';
+    document.getElementById('resendBtn').disabled = true;
+    stopOtpTimer();
+    }
+
+    function startOtpTimer(){
+    let seconds = 10;
+    const resendBtn = document.getElementById('resendBtn');
+
+    resendBtn.disabled = true;
+
+    otpTimer = setInterval(() => {
+        resendBtn.textContent = `Resend OTP (${--seconds}s)`;
+
+        if (seconds < 0) {
+            clearInterval(otpTimer);
+            resendBtn.textContent = 'Resend OTP';
+            resendBtn.disabled = false;
+        }
+
+    },1000);
+}     
+    
+    document.getElementById('resendBtn').addEventListener('click', changeContent);
+
+    function stopOtpTimer(){
+        clearInterval(otpTimer);
+         
+    }
+
+    const mbnum = document.getElementsByClassName("mobile-input")[0];
+    mbnum.addEventListener('input', () => {
+    if(mbnum.value.length == 10){
+        document.getElementById("generate-otp").disabled = false;
+    }
+
+    if(mbnum.value.length != 10){
+        document.getElementById("generate-otp").disabled = true;
+    }
+
+    if (mbnum.value.match(/^\d+$/) === null) {
+        mbnum.value = mbnum.value.replace(/\D/g, '');
+    }
+    });
+    function insertPhoneNumber(){
+        var phonenumber = mbnum.value;
+        document.getElementById('phone-number').innerHTML = `+91 ${phonenumber.substring(0,3)}*****${phonenumber.substring(8)}`;
+    }
+
+    
+
+    const otpInputs = document.querySelectorAll('.otp');
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            if (input.value.match(/^\d+$/) === null) {
+                input.value = input.value.replace(/\D/g, '');
+            }
+            else if (input.value.length === 1 && index < otpInputs.length - 1) {                    
+               otpInputs[index+1].disabled = false;    
+               otpInputs[index + 1].focus(); 
+            }
+            
+            if(otpInputs[5].value.length === 1){
+                document.getElementById("continue-btn-otp").disabled = false;
+            }
+            else{
+                document.getElementById("continue-btn-otp").disabled = true;
+            }
+        });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === "Backspace" && input.value === "" && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+
+    function clearOtp(){
+        const otpInputs = document.querySelectorAll('.otp');
+        document.getElementById("continue-btn-otp").disabled = true;
+        otpInputs.forEach((input, index) =>{
+        input.value="";
+        if(index!=0) otpInputs[index].disabled=true;
+    })
+    }
+
+    function moveNext(){
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('page2').style.display = 'block';
+        document.getElementById('page3').style.display = 'none';
+        document.getElementById('page4').style.display = 'none';
+        document.getElementById("recharge-number").textContent = document.getElementsByClassName("mobile-input")[0].value;
+    }
+
+    function payment(){
+
+      const price = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
+
+      document.getElementById("price-payment").textContent = price
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('page2').style.display = 'none';
+        document.getElementById('page3').style.display = 'block';
+        document.getElementById('page4').style.display = 'none';
+    } 
+    function changeButton(){
+        changeContents();
+        clearOtp();
+        document.getElementById('page1').style.display = 'block';
+        document.getElementById('page2').style.display = 'none';
+    }
+
+
+    const checkboxes = document.querySelectorAll(".collapsible input");
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      checkboxes.forEach((cb) => {
+        if (cb !== this) cb.checked = false;
+      });
+    });
+  });
+
+  const Pcheckboxes = document.querySelectorAll(".upi");
+
+Pcheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    Pcheckboxes.forEach((cb) => {
+      if (cb !== this) cb.checked = false;
+    });
+  });
+});
+
+const upiId = document.getElementById("upiID");
+
+upiId.addEventListener('input', () => {
+    if (upiId.value.length > 0) {
+        document.querySelectorAll(".payment-method input").forEach(input => {
+            input.checked = false;
+        });
+    }
+
+    const upiPattern = /^[a-zA-Z0-9._]+@[a-zA-Z]+$/;
+    const errorMessage = document.getElementById("upi-error");
+
+    if (!upiPattern.test(upiId.value)) {
+        errorMessage.textContent = "Invalid UPI ID format (e.g., example@upi)";
+        upiId.style.border = "2px solid red";
+
+    } else {
+        errorMessage.textContent = "";
+        upiId.style.border = "2px solid green";
+    }
+});
+    const upiIdradio = document.querySelectorAll(".payment-method input");
+     upiIdradio.forEach(radio => {
+      radio.addEventListener('change' , ()=>{
+              document.getElementById("upiID").value="";
+              document.getElementById("upiID").style.border = 'none';
+              document.getElementById("upi-error").textContent = "";
+     });
+    });
+
+  const cardnumber = document.getElementById("card-number");
+  const expiryDate = document.getElementById("expiry-date");
+  const cvv = document.getElementById("cvv-id");
+  const name = document.getElementById("name-on-the-card");
+
+  cardnumber.addEventListener('input' , ()=>{
+    const cardNumberPattern = /^\d{16}$/; 
+    if (!cardNumberPattern.test(cardnumber.value)) {
+      document.getElementById("cardnumber-error").textContent =  "Card number must be exactly 16 digits.\n";
+    }
+    else{
+      document.getElementById("cardnumber-error").textContent =  "";
+    }
+  });
+
+  expiryDate.addEventListener('input' , ()=>{
+
+    console.log(document.getElementById("expiry-date").value);
+    const [year,month] = expiryDate.value.split('-');
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear() % 10000;
+        const currentMonth = currentDate.getMonth() + 1;
+        if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(getMonth(month)) < currentMonth)) {
+          document.getElementById("expiryDate-error").textContent = "Expiry date cannot be in the past.\n";
+        }
+        else{
+          document.getElementById("expiryDate-error").textContent = "";
+        }
+  });
+  
+  cvv.addEventListener('input' , ()=>{
+    const cvvPattern = /^\d{3}$/; 
+    if (!cvvPattern.test(cvv.value)) {
+      document.getElementById("cvv-error").textContent =  "CVV must be exactly 3 digits.";
+    }
+    else{
+      document.getElementById("cvv-error").textContent =  "";
+    }
+  });
+
+  name.addEventListener('input' , ()=>{
+    const namePattern = /^[a-zA-Z\s]+$/;
+    if ((!namePattern.test(name.value)) || cvv.value.trim() === "") {
+      document.getElementById("name-error").textContent =  "Name on the card must only contain letters and spaces";
+    }
+    else{
+      document.getElementById("name-error").textContent =  "";
+    }
+  });
+
+const carousel = document.querySelector(".carousel");
+let images = document.querySelectorAll(".carousel img");
+let index = 0;
+
+const firstClone = images[0].cloneNode(true);
+carousel.appendChild(firstClone);
+images = document.querySelectorAll(".carousel img"); 
+
+function moveSlide(step) {
+  index += step;
+  carousel.style.transition = "transform 0.5s ease-in-out";
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+
+  if (index >= images.length - 1) {
+    setTimeout(() => {
+      carousel.style.transition = "none";
+      index = 0;
+      carousel.style.transform = `translateX(0)`;
+    }, 500); 
+  }
+}
+</script>
+</html>
