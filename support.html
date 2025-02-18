@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+     * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+   body {
+    text-align: center;
+    background-color: #bdeff7;
+    color: #333;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  
+   .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .header-nav li {
+    margin: 0 1rem;
+  }
+  
+   .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .header-nav a:hover {
+    color: black;
+  }
+  .faq-container {
+            background-color: #ffffff;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-container h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            color: #127a69;
+        }
+
+        .faq-answer {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+            padding-left: 20px;
+            padding-top: 5px;
+            line-height: 1.5;
+            background-color: #b6eaea;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }        
+        .faq-container p {
+            
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+        }
+   .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+  }
+  
+  .footer p {
+    padding-top: 20px;
+  }
+    </style>
+
+    <header class="header">
+        <div class="header-left">
+          <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+        </div>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="Mobicomm.html">Mobile</a></li>
+            <li><a href="fivegplans.html?status=true">True 5G</a></li>
+            <li><a href="plans.html">Plans</a></li>
+            <li><a href="#">Support</a></li>
+            <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+        </ul>
+        </nav>
+      </header>
+
+      <div class="faq-container">
+        <h2>Frequently Asked Questions (FAQ)</h2><br><br>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(0)">
+                What is the refund policy?
+            </div>
+            <div class="faq-answer" id="answer0">
+                We offer a 30-day money-back guarantee on all purchases. If you’re not satisfied, contact us within 30 days for a full refund.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(1)">
+                How can I reset my password?
+            </div>
+            <div class="faq-answer" id="answer1">
+                To reset your password, click on the 'Forgot Password' link on the login page. You'll receive an email with instructions to reset your password.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(2)">
+                How can I contact customer support?
+            </div>
+            <div class="faq-answer" id="answer2">
+                You can contact our customer support team by emailing support@yourcompany.com or using the live chat option on our website.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(3)">
+                How can I contact customer support?
+            </div>
+            <div class="faq-answer" id="answer3">
+                You can contact our customer support team by emailing support@yourcompany.com or using the live chat option on our website.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(4)">
+                How can I contact customer support?
+            </div>
+            <div class="faq-answer" id="answer4">
+                You can contact our customer support team by emailing support@yourcompany.com or using the live chat option on our website.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(5)">
+                How can I contact customer support?
+            </div>
+            <div class="faq-answer" id="answer5">
+                You can contact our customer support team by emailing support@yourcompany.com or using the live chat option on our website.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(6)">
+                How can I contact customer support?
+            </div>
+            <div class="faq-answer" id="answer6">
+                You can contact our customer support team by emailing support@yourcompany.com or using the live chat option on our website.
+            </div>
+        </div>
+    </div>
+
+      <footer class="footer">
+        <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+      </footer>
+
+</body>
+
+<script>
+    function toggleAnswer(index) {
+    const answer = document.getElementById("answer" + index);
+
+    const answerBlocks = document.getElementsByClassName("faq-answer");
+
+    for (let i = 0; i < answerBlocks.length; i++) {
+        if (answerBlocks[i] === answer && answer.style.display === "none") {
+            answer.style.display = "block"; 
+        } else {
+            answerBlocks[i].style.display = "none";
+        }
+    }
+}
+
+</script>
+
+</html>

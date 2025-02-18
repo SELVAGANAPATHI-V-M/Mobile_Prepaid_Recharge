@@ -5,22 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jio Profile Page</title>
     <style>
-        body {
+
+        body{
             font-family: 'Arial', sans-serif;
-            background-color: #f2f5fa;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            margin: 0;
+        }
+        .body-container {
+            font-family: 'Arial', sans-serif;
+            background-color: #adeeee;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 150vh;
             margin: 0;
         }
-
+        .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    height: 40px;
+  }
+  
+   .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .header-nav li {
+    margin: 0 1rem;
+  }
+  
+   .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .header-nav a:hover {
+    color: black;
+  }
         .profile-container {
             background: white;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 420px;
+            width: 720px;
             text-align: center;
             position: relative;
         }
@@ -65,7 +111,7 @@
         }
 
         .data-usage-container {
-            margin-top: 20px;
+            margin: 40px;
             text-align: left;
         }
 
@@ -135,21 +181,48 @@
             width: 100%;
             margin: 5px;
         }
+        .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+  }
+  
+  .footer p {
+    padding-top: 20px;
+  }
     </style>
 </head>
 <body>
+    
+    <header class="header">
+        <div class="header-left">
+          <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+        </div>
+        <nav class="header-nav" style="padding-right: 50px; padding-top: 2px;">
+          <ul>
+            <li><a href="Mobicomm.html">Home</a></li>
+            <li><a href="fivegplans.html?status=true">True 5G</a></li>
+            <li><a href="#">Plans</a></li>
+            <li><a href="support.html">Support</a></li>
+            <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+          </ul>
+        </nav>
+      </header>
+      <div class="body-container">
     <div class="profile-container">
 
         <div>
             <h2>Profile</h2>
         </div>
         <label for="profilePic">
-            <img src="Images/techm.jpeg" alt="Profile Picture" class="profile-photo" id="profileImage">
+            <img src="Images/bg1.png" alt="Profile Picture" class="profile-photo" id="profileImage">
         </label>
         <input type="file" id="profilePic" class="file-input" accept="image/*" onchange="loadProfilePhoto(event)">
 
         <label class="input-label">Full Name</label>
-        <input type="text" id="name" class="input-field" value="John Doe" disabled>
+        <input type="text" id="name" class="input-field fixed-field" value="John Doe" disabled readonly>
 
         <label class="input-label">Email</label>
         <input type="email" id="email" class="input-field" value="johndoe@example.com" disabled>
@@ -199,6 +272,11 @@
             <button class="save-modal-btn" onclick="saveChanges()">Save</button>
         </div>
     </div>
+</div>
+    <footer class="footer">
+        <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+      </footer>
+    
     
 
     <script>

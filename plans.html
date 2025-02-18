@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .page2 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .page2 body {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .page2 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+  
+  .page2 .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .page2 .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .page2 .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .page2 .header-nav li {
+    margin: 0 1rem;
+  }
+  
+  .page2 .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .page2 .header-nav a:hover {
+    color: black;
+  }
+  
+  .page2 .main-container {
+    display: flex;
+    margin: 1rem;
+  }
+
+  .page2 .content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .page2 .section-heading span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .page2 .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page2 .plan-card {
+    background-color: #bff0f0; 
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+  }
+  
+  .page2 .plan-price {
+    font-size: 1.5rem;
+    color: #007c7c;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page2 .plan-details p {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .page2 .buy-btn {
+    margin-top: 1rem;
+    background-color: #007c7c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .page2 .buy-btn:hover {
+    background-color: #005f5f;
+  }
+  
+  .page2 .collapsible {
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .page2 .collapsible input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .page2 .collapsible-label {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    background-color: #007c7c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .page2 .collapsible-label:hover {
+    background-color: #005f5f;
+  }
+  
+  .page2 .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease;
+    background-color: #fff;
+    padding: 0 1rem;
+  }
+  
+  .page2 .collapsible input[type="checkbox"]:checked ~ .collapsible-content {
+    max-height: 3000px;
+    padding: 1rem;
+  }
+  
+  .page2 .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+  }
+  
+  .page2 .footer p {
+    padding-top: 20px;
+  }
+    </style>
+    <div class="page2" id="page2">
+        <header class="header">
+            <div class="header-left">
+              <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+            </div>
+            <nav class="header-nav">
+              <ul>
+                <li><a href="Mobicomm.html">Mobile</a></li>
+                <li><a href="fivegplans.html">True 5G</a></li>
+                <li><a href="#">Plans</a></li>
+                <li><a href="support.html">Support</a></li>
+              </ul>
+            </nav>
+          </header>
+        
+          <div class="main-container">
+        
+            <section class="content">
+              
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-recommended" checked>
+                <label for="toggle-recommended" class="collapsible-label">
+                  Recommended (2)
+                </label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹599</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹799</div>
+                      <div class="plan-details">
+                        <p>Validity: 56 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-top-trending" />
+                <label for="toggle-top-trending" class="collapsible-label">
+                  Top Trending True 5G Unlimited Plans (10)
+                </label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹3599</div>
+                      <div class="plan-details">
+                        <p>Validity: 365 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2025</div>
+                      <div class="plan-details">
+                        <p>Validity: 200 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹999</div>
+                      <div class="plan-details">
+                        <p>Validity: 56 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹899</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2899</div>
+                      <div class="plan-details">
+                        <p>Validity: 180 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹9999</div>
+                      <div class="plan-details">
+                        <p>Validity: 365 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹3999</div>
+                      <div class="plan-details">
+                        <p>Validity: 305 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹3599</div>
+                      <div class="plan-details">
+                        <p>Validity: 305 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹2025</div>
+                      <div class="plan-details">
+                        <p>Validity: 200 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹399</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-2_5gb" />
+                <label for="toggle-2_5gb" class="collapsible-label">2.5 GB/Day Plans (4)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹199</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹399</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2.5 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                        <div class="plan-price">₹499</div>
+                        <div class="plan-details">
+                          <p>Validity: 36 Days</p>
+                          <p>2.5 GB/Day</p>
+                        </div>
+                          <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹738</div>
+                        <div class="plan-details">
+                          <p>Validity: 48 Days</p>
+                          <p>2.5 GB/Day</p>
+                        </div>
+                          <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-2gb" />
+                <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹149</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹249</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>2 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                        <div class="plan-price">₹399</div>
+                        <div class="plan-details">
+                          <p>Validity: 36 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                          <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹529</div>
+                        <div class="plan-details">
+                          <p>Validity: 48 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                          <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                      </div>
+                      <div class="plan-card">
+                        <div class="plan-price">₹799</div>
+                        <div class="plan-details">
+                          <p>Validity: 78 Days</p>
+                          <p>2 GB/Day</p>
+                        </div>
+                          <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="collapsible">
+                <input type="checkbox" id="toggle-1gb" />
+                <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
+                <div class="collapsible-content">
+                  <div class="plans-grid">
+                    <div class="plan-card">
+                      <div class="plan-price">₹99</div>
+                      <div class="plan-details">
+                        <p>Validity: 14 Days</p>
+                        <p>1 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                    <div class="plan-card">
+                      <div class="plan-price">₹149</div>
+                      <div class="plan-details">
+                        <p>Validity: 28 Days</p>
+                        <p>1 GB/Day</p>
+                      </div>
+                        <a href="Mobicomm.html"><button class="buy-btn">Buy</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        
+          <footer class="footer">
+            <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+          </footer>
+    </div>
+</body>
+<script>
+    const checkboxes = document.querySelectorAll(".collapsible input");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    checkboxes.forEach((cb) => {
+      if (cb !== this) cb.checked = false;
+    });
+  });
+});
+</script>
+</html>
