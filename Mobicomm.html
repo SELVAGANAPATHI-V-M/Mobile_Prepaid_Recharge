@@ -96,7 +96,7 @@
     </footer>
 </div>
 
-    <div class="page2" id="page2">
+    <div id="page2" class="page2" >
         <header class="header">
             <div class="header-left">
               <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
@@ -107,7 +107,14 @@
                 <li><a href="fivegplans.html?status=true">True 5G</a></li>
                 <li><a href="#">Plans</a></li>
                 <li><a href="support.html">Support</a></li>
-                <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+
+                <div>
+                 <img src="Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
+                 <div id="dropdownMenu" class="dropdown-menu">
+                  <a href="profile.html">My Account</a>
+                  <a href="#" onclick="logout()">Logout</a>
+              </div>
+            </div>
               </ul>
             </nav>
           </header>
@@ -121,17 +128,17 @@
                 <button class="change-btn" onclick="changeButton()">Change</button>
               </div>
               <ul class="sidebar-menu">
-                <li><a href="#">Popular Plans</a></li>
-                <li><a href="#">5G Unlimited Plans</a></li>
-                <li><a href="#">Data Plans</a></li>
-                <li><a href="#">International Roaming</a></li>
-                <li><a href="#">ISD</a></li>
-                <li><a href="#">In-Flight Packs</a></li>
-                <li><a href="#">Wi-Fi Calling</a></li>
+                <li><a onclick = "givedetails(1)" style="cursor:pointer;">Popular Plans</a></li>
+                <li><a onclick = "givedetails(2)" style="cursor:pointer;">5G Unlimited Plans</a></li>
+                <li><a onclick = "givedetails(3)" style="cursor:pointer;">Data Plans</a></li>
+                <li><a onclick = "givedetails(4)" style="cursor:pointer;">Top-up</a></li>
+                <li><a onclick = "givedetails(5)" style="cursor:pointer;">Voice only plans</a></li>
+                <li><a onclick = "givedetails(6)" style="cursor:pointer;">Annual Plans</a></li>
               </ul>
             </aside>
         
-            <section class="content">
+            <section class="content" id="1">
+              <h2 style="padding-bottom: 25px;">Popular Plans</h2>
               
               <div class="collapsible">
                 <input type="checkbox" id="toggle-recommended" checked>
@@ -366,7 +373,222 @@
                 </div>
               </div>
             </section>
+            
+
+
+            <section class="content" id="2">
+
+              <h2 style="padding-bottom: 25px;">5G Unlimited Plans</h2>
+              <div class="plans-grid">
+                <div class="plan-card">
+                  <div class="plan-price">₹3999</div>
+                  <div class="plan-details">
+                    <p>Validity: 365 Days</p>
+                    <p>2.5 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹2025</div>
+                  <div class="plan-details">
+                    <p>Validity: 200 Days</p>
+                    <p>2.5 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹3599</div>
+                  <div class="plan-details">
+                    <p>Validity: 365 Days</p>
+                    <p>2.5 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹1049</div>
+                  <div class="plan-details">
+                    <p>Validity: 84 Days</p>
+                    <p>2 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+                <div class="plan-card">
+                  <div class="plan-price">₹1029</div>
+                  <div class="plan-details">
+                    <p>Validity: 84 Days</p>
+                    <p>2 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+              
+
+              <div class="plan-card">
+                <div class="plan-price">₹449</div>
+                <div class="plan-details">
+                  <p>Validity: 28 Days</p>
+                  <p>3 GB/Day</p>
+                </div>
+                <button class="buy-btn" onclick="payment()">Buy</button>
+              </div>
+
+              <div class="plan-card">
+                <div class="plan-price">₹198</div>
+                <div class="plan-details">
+                  <p>Validity: 14 Days</p>
+                  <p>2 GB/Day</p>
+                </div>
+                <button class="buy-btn" onclick="payment()">Buy</button>
+              </div>
+            </div>
+
+            </section>
+
+            <section class="content" id="3">
+              <h2 style="padding-bottom: 25px;">Data Plans</h2>
+              <div class="plans-grid">
+                <div class="plan-card">
+                  <div class="plan-price">₹19</div>
+                  <div class="plan-details">
+                    <p>Validity: 1 Day</p>
+                    <p>1 GB</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹175</div>
+                  <div class="plan-details">
+                    <p>Validity: 28 Days</p>
+                    <p>10 GB</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+                <div class="plan-card">
+                  <div class="plan-price">₹11</div>
+                  <div class="plan-details">
+                    <p>Validity: 1 hour</p>
+                    <p>1 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+                <div class="plan-card">
+                  <div class="plan-price">₹219</div>
+                  <div class="plan-details">
+                    <p>Validity: 30 Days</p>
+                    <p>30 GB</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+
+                <div class="plan-card">
+                  <div class="plan-price">₹289</div>
+                  <div class="plan-details">
+                    <p>Validity: 30 Days</p>
+                    <p>40 GB</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+                <div class="plan-card">
+                  <div class="plan-price">₹359</div>
+                  <div class="plan-details">
+                    <p>Validity: 30 Days</p>
+                    <p>50 GB</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="content" id="4">
+              <h2 style="padding-bottom: 25px;">Top-up</h2>
+              <div class="plans-grid">
+                <div class="plan-card">
+                  <div class="plan-price">₹1000</div>
+                  <div class="plan-details">
+                    <p>Validity: Unlimited</p>
+                    <p>₹844.46</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹500</div>
+                  <div class="plan-details">
+                    <p>Validity: Unlimited</p>
+                    <p>₹420.73</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹100</div>
+                  <div class="plan-details">
+                    <p>Validity: Unlimited</p>
+                    <p>₹81.75</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+                <div class="plan-card">
+                  <div class="plan-price">₹50</div>
+                  <div class="plan-details">
+                    <p>Validity: Unlimited</p>
+                    <p>₹39.37</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="content" id="5">
+              <h2 style="padding-bottom: 25px;">Voice only Plans</h2>
+              <div class="plans-grid">
+                <div class="plan-card">
+                  <div class="plan-price">₹1748</div>
+                  <div class="plan-details">
+                    <p>Validity: 336 Days</p>
+                    <p>Unlimited Voice</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹448</div>
+                  <div class="plan-details">
+                    <p>Validity: 84 Days</p>
+                    <p>Unlimited Voice</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="content" id="6">
+              <h2 style="padding-bottom: 25px;">Annual Plans</h2>
+              <div class="plans-grid">
+                <div class="plan-card">
+                  <div class="plan-price">₹3999</div>
+                  <div class="plan-details">
+                    <p>Validity: 365 Days</p>
+                    <p>2.5 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+                <div class="plan-card">
+                  <div class="plan-price">₹3599</div>
+                  <div class="plan-details">
+                    <p>Validity: 365 Days</p>
+                    <p>2.5 GB/Day</p>
+                  </div>
+                  <button class="buy-btn" onclick="payment()">Buy</button>
+                </div>
+              </div>
+            </section>
           </div>
+          
         
           <footer class="footer">
             <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
@@ -420,7 +642,7 @@
                     </div>
                 </div>
               </div>
-              <button class="proceed-btn">Proceed to Payment</button>
+              <button onclick = "waitPlease()" class="proceed-btn">Proceed to Payment</button>
               </div>
               </div>
               </div>
@@ -455,13 +677,29 @@
                       <span style="color: red; font-size: small;" id="name-error"></span>
                     </div>
         
-                    <button class="proceed-btn">Proceed to Payment</button>
+                    <button onclick = "waitPlease()" class="proceed-btn">Proceed to Payment</button>
         
                 </div>
               </div>
               </div>
             </section>
           </main>
+
+          <div id="paymentModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+                <h2>Payment Successful</h2>
+                <p>Your transaction has been completed successfully.</p>
+                <button onclick="closePaymentModal()">OK</button>
+            </div>
+          </div>
+
+          <div id="paymentprocessModal" class="modal">
+            <div class="modal-content">
+                <h2>Payment is processing . . .</h2>
+                <img src="Images/money.gif" alt="" height = "120px">             
+            </div>
+          </div>
     </div>
       
 </body>
@@ -469,6 +707,42 @@
 <script>
    document.getElementById('page2').style.display = 'none';
    document.getElementById('page3').style.display = 'none';
+
+   document.getElementById(2).style.display = 'none'
+   document.getElementById(3).style.display = 'none'
+   document.getElementById(4).style.display = 'none'
+   document.getElementById(5).style.display = 'none'
+   document.getElementById(6).style.display = 'none'
+
+   function processPayment() {
+    document.getElementById("paymentprocessModal").style.display = "block";
+
+    setTimeout(() => {
+        openPaymentModal();
+    }, 4000);
+
+}
+
+function waitPlease() {
+    
+    document.getElementById("paymentprocessModal").style.display = "block";
+
+    processPayment();
+}
+
+function openPaymentModal() {
+  document.getElementById("paymentprocessModal").style.display = "none";
+
+    document.getElementById("paymentModal").style.display = "flex";
+}
+
+function closePaymentModal() {
+    document.getElementById("paymentModal").style.display = "none";
+    document.getElementById("paymentprocessModal").style.display = "none";
+    document.getElementById('page2').style.display = 'block';
+   document.getElementById('page3').style.display = 'none';
+   document.getElementById('page1').style.display = 'none';
+}
 
  function trueChange(){
     document.getElementById('page2').style.display = 'none';
@@ -709,5 +983,28 @@ upiId.addEventListener('input', () => {
         document.getElementById("page2").style.display = "none";
         document.getElementById("page1").style.display = "Block";
     }
+
+
+function givedetails(inputValue) {
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById(i).style.display = (i === inputValue) ? 'block' : 'none';
+    }
+}
+
+function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownMenu");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+function logout() {
+    var confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+        document.getElementById("page1").style.display = 'block';
+        document.getElementById("page2").style.display = 'none';
+        document.getElementById("page3").style.display = 'none';
+
+    }
+}
+
 </script>
 </html>

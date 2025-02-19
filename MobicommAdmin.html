@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="MobiCommAdminStyles.css">
 </head>
 <body>
@@ -528,7 +528,6 @@
         </div>
         </div>
     </div>
-
 </body>
 <script>
 
@@ -538,46 +537,13 @@
     document.getElementById("recharge-plans").style.display='none';
     document.getElementById("settings").style.display='none';
 
-    function changeContent(input){
-        if(input === 1){
-            document.getElementById("user-management").style.display='block';
-            document.getElementById("recharge-history").style.display='none';
-            document.getElementById("recharge-plans").style.display='none';
-            document.getElementById("settings").style.display='none';
-            document.getElementById("expiry-users").style.display='none';
+function changeContent(input) {
+    const sections = ["user-management", "recharge-history", "recharge-plans", "settings", "expiry-users"];
 
-        }
-        else if(input === 2){
-            document.getElementById("user-management").style.display='none';
-            document.getElementById("recharge-history").style.display='block';
-            document.getElementById("recharge-plans").style.display='none';
-            document.getElementById("settings").style.display='none';
-            document.getElementById("expiry-users").style.display='none';
-
-        }
-        else if(input === 3){
-            document.getElementById("user-management").style.display='none';
-            document.getElementById("recharge-history").style.display='none';
-            document.getElementById("recharge-plans").style.display='block';
-            document.getElementById("settings").style.display='none';
-            document.getElementById("expiry-users").style.display='none';
-
-        }
-        else if(input ===4 ){
-            document.getElementById("user-management").style.display='none';
-            document.getElementById("recharge-history").style.display='none';
-            document.getElementById("recharge-plans").style.display='none';
-            document.getElementById("settings").style.display='block';
-            document.getElementById("expiry-users").style.display='none';
-        }
-        else{
-            document.getElementById("user-management").style.display='none';
-            document.getElementById("recharge-history").style.display='none';
-            document.getElementById("recharge-plans").style.display='none';
-            document.getElementById("settings").style.display='none';
-            document.getElementById("expiry-users").style.display='block';
-        }
-    }
+    sections.forEach((section, index) => {
+        document.getElementById(section).style.display = (index + 1 === input) ? 'block' : 'none';
+    });
+}
 
     let currentRow = null;
 
@@ -730,6 +696,5 @@ function validateInput(fieldId, errorId) {
         errorSpan.textContent = "";
     }
 }
-
 </script>
 </html>

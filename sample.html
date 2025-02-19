@@ -1,291 +1,87 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Prepaid Recharge System</title>
+    <title>Profile Dropdown</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #333;
-            color: white;
-            padding-top: 30px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            color: #fff;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            font-size: 18px;
-        }
-
-        .sidebar ul li:hover {
-            background-color: #444;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
+        .profile-container {
+            position: relative;
+            display: inline-block;
             cursor: pointer;
-            font-size: 16px;
-            margin: 10px 0;
         }
 
-        button:hover {
-            background-color: #45a049;
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
-        .actions button {
-            margin-right: 5px;
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            width: 150px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f1f1f1;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+            color: red;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Admin Dashboard</h2>
-        <ul>
-            <li><a href="javascript:void(0);" onclick="showSection('user-management')">User Management</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('recharge-history')">Recharge History</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('recharge-plans')">Recharge Plan Management</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('settings')">Settings</a></li>
-        </ul>
+
+<div class="profile-container" onclick="toggleDropdown()">
+    <img src="profile.png" alt="Profile" class="profile-icon">
+    <div id="dropdownMenu" class="dropdown-menu">
+        <a href="my-account.html">My Account</a>
+        <a href="#" onclick="logout()">Logout</a>
     </div>
+</div>
 
-    <div class="main-content">
-        <!-- User Management Section -->
-        <div id="user-management" class="section active">
-            <h3>User Management</h3>
-            <button onclick="addUser()">Add New User</button>
-            <table id="user-table">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- User data will be populated here -->
-                </tbody>
-            </table>
-        </div>
+<script>
+function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownMenu");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
 
-        <!-- Recharge History Section -->
-        <div id="recharge-history" class="section">
-            <h3>Recharge History</h3>
-            <table id="history-table">
-                <thead>
-                    <tr>
-                        <th>Transaction ID</th>
-                        <th>User ID</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Recharge History data will be populated here -->
-                </tbody>
-            </table>
-        </div>
+function logout() {
+    var confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+        window.location.href = "logout.html"; 
+    }
+}
 
-        <!-- Recharge Plans Section -->
-        <div id="recharge-plans" class="section">
-            <h3>Recharge Plans</h3>
-            <button onclick="addPlan()">Add New Plan</button>
-            <table id="plans-table">
-                <thead>
-                    <tr>
-                        <th>Plan ID</th>
-                        <th>Plan Name</th>
-                        <th>Price</th>
-                        <th>Validity</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Recharge plans data will be populated here -->
-                </tbody>
-            </table>
-        </div>
+document.addEventListener("click", function(event) {
+    var profileContainer = document.querySelector(".profile-container");
+    if (!profileContainer.contains(event.target)) {
+        document.getElementById("dropdownMenu").style.display = "none";
+    }
+});
+</script>
 
-        <!-- Settings Section -->
-        <div id="settings" class="section">
-            <h3>System Settings</h3>
-            <form id="settings-form">
-                <label for="site-name">Site Name:</label>
-                <input type="text" id="site-name" name="site-name" value="Prepaid Recharge System">
-                <button type="submit">Save Settings</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
-        }
-
-        // Dummy data for demonstration
-        const users = [
-            { id: 1, name: 'John Doe', email: 'john@example.com', phone: '1234567890' },
-            { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '9876543210' }
-        ];
-
-        const history = [
-            { transactionId: 101, userId: 1, amount: 50, status: 'Completed', date: '2025-02-15' },
-            { transactionId: 102, userId: 2, amount: 100, status: 'Pending', date: '2025-02-16' }
-        ];
-
-        const plans = [
-            { planId: 1, name: 'Basic Plan', price: 50, validity: '30 days' },
-            { planId: 2, name: 'Premium Plan', price: 100, validity: '60 days' }
-        ];
-
-        // Function to populate the user table
-        function populateUserTable() {
-            const tbody = document.querySelector('#user-table tbody');
-            tbody.innerHTML = '';
-            users.forEach(user => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td class="actions">
-                        <button onclick="editUser(${user.id})">Edit</button>
-                        <button onclick="deleteUser(${user.id})">Delete</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to populate the recharge history table
-        function populateHistoryTable() {
-            const tbody = document.querySelector('#history-table tbody');
-            tbody.innerHTML = '';
-            history.forEach(transaction => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${transaction.transactionId}</td>
-                    <td>${transaction.userId}</td>
-                    <td>${transaction.amount}</td>
-                    <td>${transaction.status}</td>
-                    <td>${transaction.date}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to populate the recharge plans table
-        function populatePlansTable() {
-            const tbody = document.querySelector('#plans-table tbody');
-            tbody.innerHTML = '';
-            plans.forEach(plan => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${plan.planId}</td>
-                    <td>${plan.name}</td>
-                    <td>${plan.price}</td>
-                    <td>${plan.validity}</td>
-                    <td class="actions">
-                        <button onclick="editPlan(${plan.planId})">Edit</button>
-                        <button onclick="deletePlan(${plan.planId})">Delete</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Function to add a new user (dummy function for demonstration)
-        function addUser() {
-            const newUser = { id: users.length + 1, name: 'New User', email: 'newuser@example.com', phone: '1112223333' };
-            users.push(newUser);
-            populateUserTable();
-        }
-
-        // Function to add a new recharge plan
-        function addPlan() {
-            const newPlan = { planId: plans.length + 1, name: 'New Plan', price: 150, validity: '90 days' };
-            plans.push(newPlan);
-            populatePlansTable();
-        }
-
-        // Initialize tables
-        populateUserTable();
-        populateHistoryTable();
-        populatePlansTable();
-    </script>
 </body>
 </html>

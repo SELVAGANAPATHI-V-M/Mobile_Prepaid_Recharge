@@ -270,8 +270,11 @@
     font-weight: bold;
   }
   
-  .page2 .header-nav a:hover {
-    color: black;
+  .page2 .header-nav ul li a:hover {
+     background-color: rgb(183, 242, 240);
+  color: #005f5f;
+  padding:5px 0px;
+  border-radius: 3px;
   }
   
   .page2 .main-container {
@@ -462,6 +465,102 @@
     color: #333;
   }
   
+  .page2 .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 150px;
+}
+
+.page2 .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.page2 .dropdown-menu a:hover {
+    background: #f1f1f1;
+}
+
+.page2 .dropdown-menu a:last-child {
+    border-bottom: none;
+    color: red;
+    font-weight: bold;
+}
+
+  .page3 .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.page3 .modal-content {
+    background-color: white;
+    padding: 40px;
+    width: 30%;
+    margin: 10% auto;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    height: 34%;
+    text-align: center;
+}
+.page3 .modal-content h2{
+  padding: 15px;
+}
+
+.page3 .modal-content p{
+  padding: 15px;
+}
+
+.page3 .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+
+.page3 .modal button {
+    background-color: #05675d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.page3 .modal button:hover {
+    background-color: #0d5554;
+}
+
+
+
+
+
+
+
+
+
+
+
   .page3 .main-content {
     max-width: 100%;
     margin: 2rem auto;
