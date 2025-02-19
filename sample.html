@@ -1,239 +1,291 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jio Profile Page</title>
+    <title>Admin Dashboard - Prepaid Recharge System</title>
     <style>
+        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f5fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        .profile-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 420px;
-            text-align: center;
-            position: relative;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .profile-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #007c7c;
-            background-color: #ddd;
-            display: block;
-            margin: auto;
-        }
-
-        .input-label {
-            font-weight: bold;
-            color: #333;
-            text-align: left;
-            display: block;
-            margin-top: 12px;
-        }
-
-        .input-field {
-            width: 95%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .fixed-field {
-            background: #e9ecef;
-            color: #555;
-            border: 2px solid #ddd;
-            cursor: not-allowed;
-        }
-
-        .data-usage-container {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 5px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #007c7c;
-            width: 70%;
-            transition: width 0.5s ease-in-out;
-        }
-
-        .button-group {
-            margin-top: 15px;
-        }
-
-        .edit-btn {
-            background: #007c7c;
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .modal {
-            display: none;
+            padding-top: 30px;
             position: fixed;
-            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 400px;
-            margin: 10% auto;
+        .sidebar h2 {
+            text-align: center;
+            color: #fff;
         }
 
-        .close-btn {
-            float: right;
-            font-size: 20px;
-            cursor: pointer;
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .save-modal-btn {
-            background: #007c7c;
+        .sidebar ul li {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .sidebar ul li a {
             color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #444;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Table Styles */
+        table {
             width: 100%;
-            margin: 5px;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .actions button {
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-
-        <div>
-            <h2>Profile</h2>
-        </div>
-        <label for="profilePic">
-            <img src="Images/techm.jpeg" alt="Profile Picture" class="profile-photo" id="profileImage">
-        </label>
-        <input type="file" id="profilePic" class="file-input" accept="image/*" onchange="loadProfilePhoto(event)">
-
-        <label class="input-label">Full Name</label>
-        <input type="text" id="name" class="input-field" value="John Doe" disabled>
-
-        <label class="input-label">Email</label>
-        <input type="email" id="email" class="input-field" value="johndoe@example.com" disabled>
-
-       
-        <label class="input-label">Phone Number</label>
-        <input type="tel" id="phone" class="input-field" value="9876543210" disabled>
-
-        <label class="input-label">Alternate Number</label>
-        <input type="tel" id="anotherNumber" class="input-field" value="9876509876" disabled>
-
-        <label class="input-label">Aadhar Card Number</label>
-        <input type="text" id="aadhar" class="input-field fixed-field" value="1234-5678-9012" readonly>
-
-        <label class="input-label">Address</label>
-        <input type="text" id="address" class="input-field fixed-field" value="123, ABC Street, City, State" readonly>
-
-        <div class="button-group">
-            <button class="edit-btn" onclick="openModal()">Edit</button>
-        </div>
-
-        <div class="data-usage-container"></div>
-            <label class="input-label">Daily Data Usage</label>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="usage-text" id="usageText">Used: 1.5 GB / 2 GB</div>
-        </div>
-
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="javascript:void(0);" onclick="showSection('user-management')">User Management</a></li>
+            <li><a href="javascript:void(0);" onclick="showSection('recharge-history')">Recharge History</a></li>
+            <li><a href="javascript:void(0);" onclick="showSection('recharge-plans')">Recharge Plan Management</a></li>
+            <li><a href="javascript:void(0);" onclick="showSection('settings')">Settings</a></li>
+        </ul>
     </div>
-    
 
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Edit Profile</h2>
+    <div class="main-content">
+        <!-- User Management Section -->
+        <div id="user-management" class="section active">
+            <h3>User Management</h3>
+            <button onclick="addUser()">Add New User</button>
+            <table id="user-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User data will be populated here -->
+                </tbody>
+            </table>
+        </div>
 
-            <label class="input-label">Email</label>
-            <input type="email" id="modalEmail" class="input-field">
+        <!-- Recharge History Section -->
+        <div id="recharge-history" class="section">
+            <h3>Recharge History</h3>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>User ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recharge History data will be populated here -->
+                </tbody>
+            </table>
+        </div>
 
-            <label class="input-label">Phone Number</label>
-            <input type="tel" id="modalphone" class="input-field">
-    
-            <label class="input-label">Alternate Number</label>
-            <input type="tel" id="modalanotherNumber" class="input-field">
+        <!-- Recharge Plans Section -->
+        <div id="recharge-plans" class="section">
+            <h3>Recharge Plans</h3>
+            <button onclick="addPlan()">Add New Plan</button>
+            <table id="plans-table">
+                <thead>
+                    <tr>
+                        <th>Plan ID</th>
+                        <th>Plan Name</th>
+                        <th>Price</th>
+                        <th>Validity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recharge plans data will be populated here -->
+                </tbody>
+            </table>
+        </div>
 
-            <button class="save-modal-btn" onclick="saveChanges()">Save</button>
+        <!-- Settings Section -->
+        <div id="settings" class="section">
+            <h3>System Settings</h3>
+            <form id="settings-form">
+                <label for="site-name">Site Name:</label>
+                <input type="text" id="site-name" name="site-name" value="Prepaid Recharge System">
+                <button type="submit">Save Settings</button>
+            </form>
         </div>
     </div>
-    
 
     <script>
-        function openModal() {
-            document.getElementById('editModal').style.display = 'block';
-            document.getElementById('modalEmail').value = document.getElementById('email').value;
-            document.getElementById('modalphone').value = document.getElementById('phone').value;
-            document.getElementById('modalanotherNumber').value = document.getElementById('anotherNumber').value;
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('editModal').style.display = 'none';
+        // Dummy data for demonstration
+        const users = [
+            { id: 1, name: 'John Doe', email: 'john@example.com', phone: '1234567890' },
+            { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '9876543210' }
+        ];
+
+        const history = [
+            { transactionId: 101, userId: 1, amount: 50, status: 'Completed', date: '2025-02-15' },
+            { transactionId: 102, userId: 2, amount: 100, status: 'Pending', date: '2025-02-16' }
+        ];
+
+        const plans = [
+            { planId: 1, name: 'Basic Plan', price: 50, validity: '30 days' },
+            { planId: 2, name: 'Premium Plan', price: 100, validity: '60 days' }
+        ];
+
+        // Function to populate the user table
+        function populateUserTable() {
+            const tbody = document.querySelector('#user-table tbody');
+            tbody.innerHTML = '';
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td class="actions">
+                        <button onclick="editUser(${user.id})">Edit</button>
+                        <button onclick="deleteUser(${user.id})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function saveChanges() {
-            document.getElementById('email').value = document.getElementById('modalEmail').value;
-            document.getElementById('phone').value = document.getElementById('modalphone').value;
-            document.getElementById('anotherNumber').value = document.getElementById('modalanotherNumber').value;
-            closeModal();
+        // Function to populate the recharge history table
+        function populateHistoryTable() {
+            const tbody = document.querySelector('#history-table tbody');
+            tbody.innerHTML = '';
+            history.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.transactionId}</td>
+                    <td>${transaction.userId}</td>
+                    <td>${transaction.amount}</td>
+                    <td>${transaction.status}</td>
+                    <td>${transaction.date}</td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function loadProfilePhoto(event) {
-            const profileImage = document.getElementById('profileImage');
-            profileImage.src = URL.createObjectURL(event.target.files[0]);
+        // Function to populate the recharge plans table
+        function populatePlansTable() {
+            const tbody = document.querySelector('#plans-table tbody');
+            tbody.innerHTML = '';
+            plans.forEach(plan => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${plan.planId}</td>
+                    <td>${plan.name}</td>
+                    <td>${plan.price}</td>
+                    <td>${plan.validity}</td>
+                    <td class="actions">
+                        <button onclick="editPlan(${plan.planId})">Edit</button>
+                        <button onclick="deletePlan(${plan.planId})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
         }
 
-        function updateDataUsage(used, total) {
-            const progressFill = document.getElementById("progressFill");
-            const usageText = document.getElementById("usageText");
-
-            let usagePercentage = (used / total) * 100;
-            progressFill.style.width = usagePercentage + "%";
-            usageText.innerText = `Used: ${used} GB / ${total} GB`;
+        // Function to add a new user (dummy function for demonstration)
+        function addUser() {
+            const newUser = { id: users.length + 1, name: 'New User', email: 'newuser@example.com', phone: '1112223333' };
+            users.push(newUser);
+            populateUserTable();
         }
-        updateDataUsage(1.5, 2);
+
+        // Function to add a new recharge plan
+        function addPlan() {
+            const newPlan = { planId: plans.length + 1, name: 'New Plan', price: 150, validity: '90 days' };
+            plans.push(newPlan);
+            populatePlansTable();
+        }
+
+        // Initialize tables
+        populateUserTable();
+        populateHistoryTable();
+        populatePlansTable();
     </script>
 </body>
 </html>

@@ -21,312 +21,715 @@
     <div class="main-container">
         
         <aside class="sidebar">
+          <h2 onclick="changeContent(5)">Admin Dashboard</h2>
           <ul class="sidebar-menu">
-            <li><a href="#">DashBoard</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Update Plans</a></li>
+            <li><a href="#" onclick="changeContent(1)">User Management</a></li>
+            <li><a href="#" onclick="changeContent(2)">Recharge System</a></li>
+            <li><a href="#" onclick="changeContent(3)">Recharge plan Management</a></li>
+            <li><a href="#" onclick="changeContent(4)">Settings</a></li>
           </ul>
         </aside>
 
-        <section class="Dashboard-content">
-              
-        </section>
-        <section class="Users-content">
-              
-        </section>
-        <section class="Reports-content">
-              
-        </section>
-        <section class="updatePlans-content">
-            <div class="collapsible">
-                <input type="checkbox" id="toggle-recommended" checked>
-                <label for="toggle-recommended" class="collapsible-label">
-                  Recommended (2)
-                </label>
-                <div class="collapsible-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan Price</th>
-                                <th>Validity</th>
-                                <th>Data Pack</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>₹599</td>
-                                <td>28 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹799</td>
-                                <td>56 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="main-content">
+
+            <div id="expiry-users" class="section active">
+                <h3>User's Plans Expiry in Three Days</h3><br>
+                <table id="user-table-expiry">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                           <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>9876543210</td>
+                            <td>Expires in 3 days</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td>9123456780</td>
+                            <td>Expires in 3 days</td>
+                  
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="user-management" class="section active">
+                <h3>User Management</h3><br>
+                <button class="edit-btn" onclick="openAdduserModal()">Add New User</button>
+                <table id="user-table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>9876543210</td>
+                            <td>
+                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
+                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td>9123456780</td>
+                            <td>
+                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
+                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
+                            </td>                        
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>David Johnson</td>
+                            <td>david@example.com</td>
+                            <td>9234567890</td>
+                            <td>
+                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
+                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
+                            </td>                        
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div id="usereditModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeedituserModal()">&times;</span>
+                        <h2>Edit User</h2>
+            
+                        <label>User ID</label>
+                        <input type="text" id="modalUserId" disabled>
+            
+                        <label>Name</label>
+                        <input type="text" id="modalName" oninput="validateInput('modalName', 'nameError')">
+                        <span class="error" id="nameError"></span>
+
+                        <label>Email</label>
+                        <input type="email" id="modalEmail" oninput="validateInput('modalEmail', 'emailError')">
+                        <span class="error" id="nameError"></span>
+
+                        <label>Phone Number</label>
+                        <input type="tel" id="modalPhone" oninput="validateInput('modalPhone', 'phoneError')">
+                        <span class="error" id="nameError"></span>
+
+                        <button class="save-btn" onclick="saveedituserChanges()">Save</button>
+                    </div>
                 </div>
-              </div>
-        
-              <div class="collapsible">
-                <input type="checkbox" id="toggle-top-trending" />
-                <label for="toggle-top-trending" class="collapsible-label">
-                  Top Trending True 5G Unlimited Plans (10)
-                </label>
-                <div class="collapsible-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan Price</th>
-                                <th>Validity</th>
-                                <th>Data Pack</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>₹3599</td>
-                                <td>365 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹2025</td>
-                                <td>200 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹999</td>
-                                <td>56 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹899</td>
-                                <td>28 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹2899</td>
-                                <td>180 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹9999</td>
-                                <td>365 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹3999</td>
-                                <td>305 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹3599</td>
-                                <td>305 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹2025</td>
-                                <td>200 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹399</td>
-                                <td>28 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
+
+                <div id="useraddModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeadduserModal()">&times;</span>
+                        <h2 id="modalTitle">Add User</h2>
+            
+                        <label>Name</label>
+                        <input type="text" id="addmodalName" oninput="validateInput('addmodalName', 'addNameError')">
+                        <span class="error" id="addNameError"></span>
+
+                        <label>Email</label>
+                        <input type="email" id="addmodalEmail" oninput="validateInput('addmodalEmail', 'addEmailError')">
+                        <span class="error" id="addEmailError"></span>
+
+
+                        <label>Phone Number</label>
+                        <input type="tel" id="addmodalPhone" oninput="validateInput('addmodalPhone', 'addPhoneError')">
+                        <span class="error" id="addPhoneError"></span>
+            
+                        <button class = "edit-btn" id="saveButton" onclick="saveadduserChanges()">Save</button>
+                    </div>
                 </div>
-              </div>
-        
-              <div class="collapsible">
-                <input type="checkbox" id="toggle-2_5gb" />
-                <label for="toggle-2_5gb" class="collapsible-label">2.5 GB/Day Plans (4)</label>
-                <div class="collapsible-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan Price</th>
-                                <th>Validity</th>
-                                <th>Data Pack</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>₹199</td>
-                                <td>14 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹399</td>
-                                <td>28 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹499</td>
-                                <td>36 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹738</td>
-                                <td>48 Days</td>
-                                <td>2.5 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-              </div>
-        
-              <div class="collapsible">
-                <input type="checkbox" id="toggle-2gb" />
-                <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
-                <div class="collapsible-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan Price</th>
-                                <th>Validity</th>
-                                <th>Data Pack</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>₹149</td>
-                                <td>14 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹249</td>
-                                <td>28 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹399</td>
-                                <td>36 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹529</td>
-                                <td>48 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹799</td>
-                                <td>78 Days</td>
-                                <td>2 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-              </div>
-        
-              <div class="collapsible">
-                <input type="checkbox" id="toggle-1gb" />
-                <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
-                <div class="collapsible-content">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Plan Price</th>
-                                <th>Validity</th>
-                                <th>Data Pack</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>₹99</td>
-                                <td>14 Days</td>
-                                <td>1 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>₹149</td>
-                                <td>28 Days</td>
-                                <td>1 GB/Day</td>
-                                <td><button class="edit-btn" onclick="openModal()">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>                    
-                </div>
-              </div>
-        </section>
-    </div>
+
+            </div>
+            
     
-    <div class="modal" id="editModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Edit Plan</h2>
-            <div class="form-group">
-                <label for="planPrice">Plan Price</label>
-                <input type="text" id="planPrice">
+            <div id="recharge-history" class="section">
+                <h3>Recharge History</h3>
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>User ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>TXN001</td>
+                            <td>123</td>
+                            <td>$50.00</td>
+                            <td>Success</td>
+                            <td>2025-02-19</td>
+                        </tr>
+                        <tr>
+                            <td>TXN002</td>
+                            <td>456</td>
+                            <td>$25.00</td>
+                            <td>Pending</td>
+                            <td>2025-02-18</td>
+                        </tr>
+                        <tr>
+                            <td>TXN003</td>
+                            <td>789</td>
+                            <td>$75.00</td>
+                            <td>Failed</td>
+                            <td>2025-02-17</td>
+                        </tr>
+                        <tr>
+                            <td>TXN004</td>
+                            <td>101</td>
+                            <td>$100.00</td>
+                            <td>Success</td>
+                            <td>2025-02-16</td>
+                        </tr>
+                        <tr>
+                            <td>TXN005</td>
+                            <td>202</td>
+                            <td>$60.00</td>
+                            <td>Pending</td>
+                            <td>2025-02-15</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group">
-                <label for="validity">Validity</label>
-                <input type="text" id="validity">
-            </div>
-            <div class="form-group">
-                <label for="dataPack">Data Pack</label>
-                <input type="text" id="dataPack">
-            </div>
-            <button class="save-btn" onclick="saveChanges()">Save</button>
+
+                
+    
+            <div id="recharge-plans" class="section">
+                <section class="updatePlans-content">
+                    <div class="collapsible">
+                        <input type="checkbox" id="toggle-recommended" checked>
+                        <label for="toggle-recommended" class="collapsible-label">
+                          Recommended (2)
+                        </label>
+                        <div class="collapsible-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plan Price</th>
+                                        <th>Validity</th>
+                                        <th>Data Pack</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>₹599</td>
+                                        <td>28 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹799</td>
+                                        <td>56 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                
+                      <div class="collapsible">
+                        <input type="checkbox" id="toggle-top-trending" />
+                        <label for="toggle-top-trending" class="collapsible-label">
+                          Top Trending True 5G Unlimited Plans (10)
+                        </label>
+                        <div class="collapsible-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plan Price</th>
+                                        <th>Validity</th>
+                                        <th>Data Pack</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>₹3599</td>
+                                        <td>365 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹2025</td>
+                                        <td>200 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹999</td>
+                                        <td>56 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹899</td>
+                                        <td>28 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹2899</td>
+                                        <td>180 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹9999</td>
+                                        <td>365 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹3999</td>
+                                        <td>305 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹3599</td>
+                                        <td>305 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹2025</td>
+                                        <td>200 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹399</td>
+                                        <td>28 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                      </div>
+                
+                      <div class="collapsible">
+                        <input type="checkbox" id="toggle-2_5gb" />
+                        <label for="toggle-2_5gb" class="collapsible-label">2.5 GB/Day Plans (4)</label>
+                        <div class="collapsible-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plan Price</th>
+                                        <th>Validity</th>
+                                        <th>Data Pack</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>₹199</td>
+                                        <td>14 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹399</td>
+                                        <td>28 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹499</td>
+                                        <td>36 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹738</td>
+                                        <td>48 Days</td>
+                                        <td>2.5 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                      </div>
+                
+                      <div class="collapsible">
+                        <input type="checkbox" id="toggle-2gb" />
+                        <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
+                        <div class="collapsible-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plan Price</th>
+                                        <th>Validity</th>
+                                        <th>Data Pack</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>₹149</td>
+                                        <td>14 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹249</td>
+                                        <td>28 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹399</td>
+                                        <td>36 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹529</td>
+                                        <td>48 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹799</td>
+                                        <td>78 Days</td>
+                                        <td>2 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                      </div>
+                
+                      <div class="collapsible">
+                        <input type="checkbox" id="toggle-1gb" />
+                        <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
+                        <div class="collapsible-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plan Price</th>
+                                        <th>Validity</th>
+                                        <th>Data Pack</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>₹99</td>
+                                        <td>14 Days</td>
+                                        <td>1 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>₹149</td>
+                                        <td>28 Days</td>
+                                        <td>1 GB/Day</td>
+                                        <td><button class="edit-btn" onclick="openModal(this)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>                    
+                        </div>
+                      </div>
+                </section>
+
+                <div class="modal" id="planeditModal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeModal()">&times;</span>
+                        <h2>Edit Plan</h2>
+                        <div class="form-group">
+                            <label for="planPrice">Plan Price</label>
+                            <input type="text" id="planPrice">
+                        </div>
+                        <div class="form-group">
+                            <label for="validity">Validity</label>
+                            <input type="text" id="validity">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataPack">Data Pack</label>
+                            <input type="text" id="dataPack">
+                        </div>
+                        <button class="save-btn" onclick="saveChanges()">Save</button>
+                        </div>
+                    </div>
+                </div>
+        
+            
+            
+    
+            <div id="settings" class="section1">
+                <h3>System Settings</h3>
+                <form id="settings-form">
+                    <label for="site-name">Site Name:</label>
+                    <input type="text" id="site-name" name="site-name" value="Prepaid Recharge System">
+            
+                    <label for="currency">Default Currency:</label>
+                    <select id="currency" name="currency">
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="INR" selected>INR - Indian Rupee</option>
+                        <option value="EUR">EUR - Euro</option>
+                    </select>
+            
+                    <label for="min-recharge">Minimum Recharge Amount:</label>
+                    <input type="number" id="min-recharge" name="min-recharge" value="10">
+            
+                    <label for="max-recharge">Maximum Recharge Amount:</label>
+                    <input type="number" id="max-recharge" name="max-recharge" value="5000">
+            
+                    <label for="timezone">System Timezone:</label>
+                    <select id="timezone" name="timezone">
+                        <option value="UTC">UTC</option>
+                        <option value="IST" selected>IST - Indian Standard Time</option>
+                        <option value="EST">EST - Eastern Standard Time</option>
+                    </select>
+            
+                    <label for="support-email">Support Email:</label>
+                    <input type="email" id="support-email" name="support-email" value="support@prepaidrecharge.com">
+            
+                    <label for="auto-refund">Auto Refund Failed Transactions:</label>
+                    <select id="auto-refund" name="auto-refund">
+                        <option value="yes" selected>Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <br>
+                    <br>
+            
+                    <button type="submit">Save Settings</button>
+                </form>
             </div>
         </div>
+        </div>
     </div>
+
 </body>
 <script>
 
-        let selectedRow;
+    document.getElementById("expiry-users").style.display='block';
+    document.getElementById("user-management").style.display='none';
+    document.getElementById("recharge-history").style.display='none';
+    document.getElementById("recharge-plans").style.display='none';
+    document.getElementById("settings").style.display='none';
 
-        function openModal(button) {
-            let row = button.closest("tr");
-            selectedRow = row;
+    function changeContent(input){
+        if(input === 1){
+            document.getElementById("user-management").style.display='block';
+            document.getElementById("recharge-history").style.display='none';
+            document.getElementById("recharge-plans").style.display='none';
+            document.getElementById("settings").style.display='none';
+            document.getElementById("expiry-users").style.display='none';
 
-            document.getElementById("planPrice").value = row.cells[0].textContent;
-            document.getElementById("validity").value = row.cells[1].textContent;
-            document.getElementById("dataPack").value = row.cells[2].textContent;
-
-            document.getElementById("editModal").style.display = "block";
         }
+        else if(input === 2){
+            document.getElementById("user-management").style.display='none';
+            document.getElementById("recharge-history").style.display='block';
+            document.getElementById("recharge-plans").style.display='none';
+            document.getElementById("settings").style.display='none';
+            document.getElementById("expiry-users").style.display='none';
 
-        function closeModal() {
-            document.getElementById("editModal").style.display = "none";
         }
+        else if(input === 3){
+            document.getElementById("user-management").style.display='none';
+            document.getElementById("recharge-history").style.display='none';
+            document.getElementById("recharge-plans").style.display='block';
+            document.getElementById("settings").style.display='none';
+            document.getElementById("expiry-users").style.display='none';
 
-        function saveChanges() {
-            selectedRow.cells[0].textContent = document.getElementById("planPrice").value;
-            selectedRow.cells[1].textContent = document.getElementById("validity").value;
-            selectedRow.cells[2].textContent = document.getElementById("dataPack").value;
-
-            closeModal();
         }
+        else if(input ===4 ){
+            document.getElementById("user-management").style.display='none';
+            document.getElementById("recharge-history").style.display='none';
+            document.getElementById("recharge-plans").style.display='none';
+            document.getElementById("settings").style.display='block';
+            document.getElementById("expiry-users").style.display='none';
+        }
+        else{
+            document.getElementById("user-management").style.display='none';
+            document.getElementById("recharge-history").style.display='none';
+            document.getElementById("recharge-plans").style.display='none';
+            document.getElementById("settings").style.display='none';
+            document.getElementById("expiry-users").style.display='block';
+        }
+    }
+
+    let currentRow = null;
+
+function openedituserModal(button) {
+    currentRow = button.closest("tr");
+    let cells = currentRow.querySelectorAll("td");
+
+    if (cells.length < 4) return;
+
+    document.getElementById("modalUserId").value = cells[0].textContent.trim();
+    document.getElementById("modalName").value = cells[1].textContent.trim();
+    document.getElementById("modalEmail").value = cells[2].textContent.trim();
+    document.getElementById("modalPhone").value = cells[3].textContent.trim();
+
+    document.getElementById("usereditModal").style.display = "block";
+}
+
+function saveedituserChanges() {
+    let name = document.getElementById("modalName").value;
+    let email = document.getElementById("modalEmail").value;
+    let phone = document.getElementById("modalPhone").value;
+
+    if (currentRow) {
+        currentRow.cells[1].textContent = name;
+        currentRow.cells[2].textContent = email;
+        currentRow.cells[3].textContent = phone;
+    }
+    closeedituserModal();
+}
+
+function closeedituserModal() {
+    document.getElementById("usereditModal").style.display = "none";
+}
+
+function openAdduserModal() {
+    document.getElementById("addmodalName").value = "";
+    document.getElementById("addmodalEmail").value = "";
+    document.getElementById("addmodalPhone").value = "";
+
+    document.getElementById("useraddModal").style.display = "block";
+}
+
+function saveadduserChanges() {
+    let name = document.getElementById("addmodalName").value;
+    let email = document.getElementById("addmodalEmail").value;
+    let phone = document.getElementById("addmodalPhone").value;
+
+    if (name.trim() === "" || email.trim() === "" || phone.trim() === "") {
+        alert("All fields are required!");
+        return;
+    }
+
+    let tableBody = document.getElementById("user-table").querySelector("tbody");
+    let newRow = tableBody.insertRow();
+    
+    let userId = generateUserId(); 
+    newRow.innerHTML = `
+        <td>${userId}</td>
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${phone}</td>
+        <td>
+            <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
+            <button class="edit-btn" onclick="deleteUser(this)">Delete</button>
+        </td>
+    `;
+
+    closeadduserModal();
+}
+
+function closeadduserModal() {
+    document.getElementById("useraddModal").style.display = "none";
+}
+
+function deleteUser(button) {
+    let row = button.closest("tr");
+    row.remove();
+}
+let useridnumber = 103;
+function generateUserId() {
+
+    useridnumber++;
+
+    return useridnumber;
+}
+
+let currentPlanRow = null;
+
+function openModal(button) {
+    currentPlanRow = button.closest("tr"); 
+    let cells = currentPlanRow.getElementsByTagName("td");
+
+    if (cells.length < 3) return;
+
+    document.getElementById("planPrice").value = cells[0].textContent.trim();
+    document.getElementById("validity").value = cells[1].textContent.trim();
+    document.getElementById("dataPack").value = cells[2].textContent.trim();
+
+    document.getElementById("planeditModal").style.display = "block";
+}
+
+function saveChanges() {
+    if (!currentPlanRow) return;
+
+    let newPrice = document.getElementById("planPrice").value.trim();
+    let newValidity = document.getElementById("validity").value.trim();
+    let newDataPack = document.getElementById("dataPack").value.trim();
+
+    if (newPrice === "" || newValidity === "" || newDataPack === "") {
+        alert("All fields are required!");
+        return;
+    }
+
+    currentPlanRow.cells[0].textContent = `${newPrice}`;
+    currentPlanRow.cells[1].textContent = newValidity;
+    currentPlanRow.cells[2].textContent = newDataPack;
+
+    closeModal();
+}
+
+function closeModal() {
+    document.getElementById("planeditModal").style.display = "none";
+}
+
+document.querySelectorAll(".collapsible input[type='checkbox']").forEach(toggle => {
+    toggle.addEventListener("change", function () {
+        let content = this.parentElement.querySelector(".collapsible-content");
+        content.style.display = this.checked ? "block" : "none";
+    });
+});
+
+
+function validateInput(fieldId, errorId) {
+    let value = document.getElementById(fieldId).value.trim();
+    let errorSpan = document.getElementById(errorId);
+
+    if (fieldId.includes("Name")) {
+        let nameRegex = /^[A-Za-z\s]+$/;
+        errorSpan.textContent = nameRegex.test(value) && value !== "" ? "" : "Name should contain only letters.";
+    } 
+    else if (fieldId.includes("Email")) {
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        errorSpan.textContent = emailRegex.test(value) ? "" : "Invalid email format.";
+    } 
+    else if (fieldId.includes("Phone")) {
+        let phoneRegex = /^\d{10}$/;
+        errorSpan.textContent = phoneRegex.test(value) ? "" : "Phone must be exactly 10 digits.";
+    } 
+    else {
+        errorSpan.textContent = "";
+    }
+}
+
 </script>
 </html>

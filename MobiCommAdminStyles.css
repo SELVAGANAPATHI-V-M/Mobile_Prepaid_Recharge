@@ -18,7 +18,9 @@ header img{
     display: flex;
     margin: 1rem;
   }
-  
+  .main-content{
+    width: 100%;
+  }
 .sidebar {
     width: 240px;
     background-color: #a3d3d6;
@@ -162,7 +164,7 @@ header img{
 }
 
 .open-modal-btn:hover {
-    background-color: #0056b3;
+    background-color: #a8c7e9;
 }
 .update-btn {
     margin-top: 1rem;
@@ -266,7 +268,7 @@ th {
     right: 15px;
     font-size: 20px;
     cursor: pointer;
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 .form-group {
@@ -289,7 +291,7 @@ input {
 }
 
 .save-btn {
-    background-color: #007bff;
+    background-color: #05675d;
     color: white;
     padding: 10px;
     border: none;
@@ -301,5 +303,60 @@ input {
 }
 
 .save-btn:hover {
-    background-color: #0056b3;
+    background-color: #0d5554;
+}
+
+/* #user-management{
+  width: 100%;
+} */
+
+table {
+   width: 100%;
+   margin-top: 20px; 
+}
+.error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+#settings{
+  max-width: 600px;
+}
+
+#settings h3 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+
+#settings-form label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#settings-form input,
+#settings-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#settings-form button {
+  background: #206b66;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#settings-form button:hover {
+  background: #0b3d2a;
 }
