@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>Profile</title>
     <style>
-
-        body{
+        body {
             font-family: 'Arial', sans-serif;
-            justify-content: center;
-            align-items: center;
-            height: 150vh;
+            background-color: #b3f1f0;
             margin: 0;
+            padding: 0;
         }
-        .body-container {
-            font-family: 'Arial', sans-serif;
-            background-color: #adeeee;
+        .dashboard-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 150vh;
-            margin: 0;
+            padding: 20px;
         }
-        .header {
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width:60%;
+            margin-bottom: 20px;
+        }
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #006666;
     padding: 0.5rem 1rem;
-    width: 100%;
-    height: 40px;
+    width: 98%;
   }
   
    .header-left {
@@ -64,60 +66,17 @@
   padding:5px 0px;
   border-radius: 3px;
 }
-        .profile-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 720px;
-            text-align: center;
-            position: relative;
-        }
 
-        .file-input {
-            display: none;
+        .profile-section {
+            display: flex;
+            align-items: center;
         }
-
         .profile-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #007c7c;
-            background-color: #ddd;
-            display: block;
-            margin: auto;
+            margin-right: 20px;
         }
-
-        .input-label {
-            font-weight: bold;
-            color: #333;
-            text-align: left;
-            display: block;
-            margin-top: 12px;
-        }
-
-        .input-field {
-            width: 95%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .fixed-field {
-            background: #e9ecef;
-            color: #555;
-            border: 2px solid #ddd;
-            cursor: not-allowed;
-        }
-
-        .data-usage-container {
-            margin: 40px;
-            text-align: left;
-        }
-
         .progress-bar {
             width: 100%;
             height: 20px;
@@ -126,207 +85,208 @@
             overflow: hidden;
             margin-top: 5px;
         }
-
         .progress-fill {
             height: 100%;
             background: #007c7c;
             width: 70%;
-            transition: width 0.5s ease-in-out;
         }
-
-        .button-group {
-            margin-top: 15px;
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
-
+        .transaction-table th, .transaction-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
         .edit-btn {
             background: #007c7c;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 400px;
-            margin: 10% auto;
-        }
-
-        .close-btn {
-            float: right;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .save-modal-btn {
-            background: #007c7c;
-            color: white;
-            border: none;
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
-            margin: 5px;
         }
-        .footer {
-    text-align: center;
-    margin: 1rem;
-    color: #fefefe;
-    background-color: #005f5f;
-    height: 50px;
-  }
-  
-  .footer p {
-    padding-top: 20px;
-  }
- 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    margin: 10% auto;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 97%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.save-btn {
+    background-color: #05675d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.save-btn:hover {
+    background-color: #0d5554;
+}
+
+
     </style>
 </head>
 <body>
-    
-    <header class="header">
+    <div class="header">
         <div class="header-left">
-          <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
-        </div>
-        <nav class="header-nav" style="padding-right: 50px; padding-top: 2px;">
-          <ul>
-            <li><a href="Mobicomm.html">Home</a></li>
-            <li><a href="fivegplans.html?status=true">True 5G</a></li>
-            <li><a href="#">Plans</a></li>
-            <li><a href="support.html">Support</a></li>
-            <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+            <img src="Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+          </div>
+          <nav class="header-nav">
+            <ul>
+              <li><a href="" id="back">Mobile</a></li>
+              <li><a href="fivegplans.html?status=true">True 5G</a></li>
+              <li><a href="plans.html">Plans</a></li>
+              <li style="margin-right: 4px;"><a href="#">Support</a></li>
           </ul>
-        </nav>
-      </header>
-      <div class="body-container">
-    <div class="profile-container">
+          </nav>
+    </div>
 
+    
 
-        <div class="button-group">
-            <button class="edit-btn" onclick="closePage()">Exit</button>
-        </div>
-
-        <div>
-            <h2>Profile</h2>
-        </div>
-        <label for="profilePic">
-            <img src="Images/bg1.png" alt="Profile Picture" class="profile-photo" id="profileImage">
-        </label>
-        <input type="file" id="profilePic" class="file-input" accept="image/*" onchange="loadProfilePhoto(event)">
-
-        <label class="input-label">Full Name</label>
-        <input type="text" id="name" class="input-field fixed-field" value="John Doe" disabled readonly>
-
-        <label class="input-label">Email</label>
-        <input type="email" id="email" class="input-field" value="johndoe@example.com" disabled>
-
-       
-        <label class="input-label">Phone Number</label>
-        <input type="tel" id="phone" class="input-field" value="9876543210" disabled>
-
-        <label class="input-label">Alternate Number</label>
-        <input type="tel" id="anotherNumber" class="input-field" value="9876509876" disabled>
-
-        <label class="input-label">Aadhar Card Number</label>
-        <input type="text" id="aadhar" class="input-field fixed-field" value="1234-5678-9012" readonly>
-
-        <label class="input-label">Address</label>
-        <input type="text" id="address" class="input-field fixed-field" value="123, ABC Street, City, State" readonly>
-
-        <div class="button-group">
-            <button class="edit-btn" onclick="openModal()">Edit</button>
-        </div>
-
-        <div class="data-usage-container"></div>
-            <label class="input-label">Daily Data Usage</label>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+    <div class="dashboard-container">
+        <div class="card">
+            <div class="profile-section">
+                <img src="Images/bg1.png" alt="Profile Picture" class="profile-photo">
+                <div>
+                    <h2 id="name">John Doe</h2>
+                    <p>Email: <span id="email">johndoe@example.com</span></p>
+                    <p>Phone: <span id="phonenumber"> 9876543210</span></p>
+                </div>
             </div>
-            <div class="usage-text" id="usageText">Used: 1.5 GB / 2 GB</div>
+            <button class="edit-btn"  onclick="openModal()">Edit Profile</button>
+
+        </div>
+
+        <div id="editModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2>Edit Profile</h2>
+        
+                <label>Full Name</label>
+                <input type="text" id="modalName" class="input-field">
+        
+                <label>Email</label>
+                <input type="email" id="modalEmail" class="input-field">
+        
+                <label>Phone Number</label>
+                <input type="tel" id="modalPhone" class="input-field">
+        
+                <button class="save-btn" onclick="saveChanges()">Save</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Current Plan</h3>
+            <p>Plan: Unlimited 5G - ₹599/month</p>
+            <p>Data Remaining: 80GB / 100GB</p>
+            <h3>Data Usage</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%; color: white; text-align: center;">80%</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Transaction History</h3>
+            <table class="transaction-table">
+                <tr style="background-color: #007c7c;">
+                    <th>Date</th>
+                    <th>Plan</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Feb 10, 2025</td>
+                    <td>Unlimited 5G</td>
+                    <td>₹599</td>
+                    <td>Success</td>
+                </tr>
+                <tr>
+                    <td>Jan 10, 2025</td>
+                    <td>Unlimited 5G</td>
+                    <td>₹599</td>
+                    <td>Success</td>
+                </tr>
+            </table>
         </div>
 
     </div>
-    
-
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Edit Profile</h2>
-
-            <label class="input-label">Email</label>
-            <input type="email" id="modalEmail" class="input-field">
-
-            <label class="input-label">Phone Number</label>
-            <input type="tel" id="modalphone" class="input-field">
-    
-            <label class="input-label">Alternate Number</label>
-            <input type="tel" id="modalanotherNumber" class="input-field">
-
-            <button class="save-modal-btn" onclick="saveChanges()">Save</button>
-        </div>
-    </div>
-</div>
-    <footer class="footer">
-        <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
-      </footer>
-    
-    
-
-    <script>
-        function openModal() {
-            document.getElementById('editModal').style.display = 'block';
-            document.getElementById('modalEmail').value = document.getElementById('email').value;
-            document.getElementById('modalphone').value = document.getElementById('phone').value;
-            document.getElementById('modalanotherNumber').value = document.getElementById('anotherNumber').value;
-        }
-
-        function closeModal() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        function saveChanges() {
-            document.getElementById('email').value = document.getElementById('modalEmail').value;
-            document.getElementById('phone').value = document.getElementById('modalphone').value;
-            document.getElementById('anotherNumber').value = document.getElementById('modalanotherNumber').value;
-            closeModal();
-        }
-
-        function loadProfilePhoto(event) {
-            const profileImage = document.getElementById('profileImage');
-            profileImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-
-        function updateDataUsage(used, total) {
-            const progressFill = document.getElementById("progressFill");
-            const usageText = document.getElementById("usageText");
-
-            let usagePercentage = (used / total) * 100;
-            progressFill.style.width = usagePercentage + "%";
-            usageText.innerText = `Used: ${used} GB / ${total} GB`;
-        }
-        updateDataUsage(1.5, 2);
-
-
-       function closePage(){
-           window.location.href = "Mobicomm.html";
-       }
-   
-    </script>
 </body>
+
+<script>
+     function openModal() {
+        document.getElementById("editModal").style.display = "block";
+        document.getElementById("modalName").value = document.getElementById("name").innerText;
+        document.getElementById("modalEmail").value = document.getElementById("email").innerText;
+        document.getElementById("modalPhone").value = document.getElementById("phonenumber").innerText;
+    }
+
+    function closeModal() {
+        document.getElementById("editModal").style.display = "none";
+    }
+
+    function saveChanges() {
+        document.getElementById("name").innerText = document.getElementById("modalName").value;
+        document.getElementById("email").innerText = document.getElementById("modalEmail").value;
+        document.getElementById("phonenumber").innerText = document.getElementById("modalPhone").value;
+        closeModal();
+    }
+document.getElementById("back").addEventListener("click", function(event) {
+        var queryParams = new URLSearchParams(window.location.search);
+        var numbers = queryParams.get('phonenumber');
+        console.log(numbers);
+        this.href = `Mobicomm.html?status=true&phonenumber=${encodeURIComponent(numbers)}`;
+       
+    });
+</script>
 </html>

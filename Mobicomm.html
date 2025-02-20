@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Recharge</title>
     <link rel="stylesheet" href="MobicommStyle.css">
+    
 </head>
 <body>
-    <div class="page1" id="page1">
+  <div class="page1" id="page1">
 
     <header class="navbar">
         <div class="logo">
@@ -95,7 +96,7 @@
         <p class="copyright">&copy; 2010-2025 My Tech. All rights reserved.</p>
     </footer>
 </div>
-
+  
     <div id="page2" class="page2" >
         <header class="header">
             <div class="header-left">
@@ -109,15 +110,17 @@
                 <li><a href="support.html">Support</a></li>
 
                 <div>
-                 <img src="Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
+                 <img style="cursor:pointer" src="Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
                  <div id="dropdownMenu" class="dropdown-menu">
-                  <a href="profile.html">My Account</a>
-                  <a href="#" onclick="logout()">Logout</a>
+                  <a href="" id="account">My Account</a>
+                  <a href="" onclick="logout()">Logout</a>
               </div>
             </div>
               </ul>
             </nav>
           </header>
+
+          
         
           <div class="main-container">
         
@@ -594,7 +597,8 @@
             <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
           </footer>
     </div>
-
+    
+  
     <div class="page3" id="page3">  
           <main class="main-content">
             <section class="payment-section">
@@ -642,7 +646,7 @@
                     </div>
                 </div>
               </div>
-              <button onclick = "waitPlease()" class="proceed-btn">Proceed to Payment</button>
+              <button onclick = "waitPlease()" class="proceed-btn" id="paymentbutton" disabled>Proceed to Payment</button>
               </div>
               </div>
               </div>
@@ -677,7 +681,7 @@
                       <span style="color: red; font-size: small;" id="name-error"></span>
                     </div>
         
-                    <button onclick = "waitPlease()" class="proceed-btn">Proceed to Payment</button>
+                    <button onclick = "waitPlease()" class="proceed-btn" id="paymentsbutton" disabled>Proceed to Payment</button>
         
                 </div>
               </div>
@@ -705,6 +709,7 @@
 </body>
 
 <script>
+
    document.getElementById('page2').style.display = 'none';
    document.getElementById('page3').style.display = 'none';
 
@@ -713,6 +718,20 @@
    document.getElementById(4).style.display = 'none'
    document.getElementById(5).style.display = 'none'
    document.getElementById(6).style.display = 'none'
+
+
+   document.addEventListener("DOMContentLoaded", function() {
+    var queryParams = new URLSearchParams(window.location.search);
+    var status = queryParams.get('status');
+    var mobileNumber  = queryParams.get('phonenumber');
+
+    if(status === "true"){
+        document.getElementById('page2').style.display = 'block';
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById("recharge-number").textContent = mobileNumber;
+    }
+});
+
 
    function processPayment() {
     document.getElementById("paymentprocessModal").style.display = "block";
@@ -724,6 +743,7 @@
 }
 
 function waitPlease() {
+  initialStage();
     
     document.getElementById("paymentprocessModal").style.display = "block";
 
@@ -837,6 +857,23 @@ function closePaymentModal() {
         });
     });
 
+document.getElementById("account").addEventListener("click", function(event) {
+    var phoneNumber = document.getElementsByClassName('mobile-input')[0].value;
+
+    if (!sessionStorage.getItem("ephonenumbers")) {
+        sessionStorage.setItem("ephonenumbers", phoneNumber);
+    }
+
+    var ephonenumbers =sessionStorage.getItem("ephonenumbers");
+
+    if (ephonenumbers === "null") {
+        ephonenumbers = phoneNumber; 
+        sessionStorage.setItem("ephonenumbers", phoneNumber);
+    }
+
+    this.href = `profile.html?phonenumber=${encodeURIComponent(ephonenumbers)}`;
+});
+
     function clearOtp(){
         const otpInputs = document.querySelectorAll('.otp');
         document.getElementById("continue-btn-otp").disabled = true;
@@ -876,6 +913,8 @@ function closePaymentModal() {
     checkbox.addEventListener("change", function () {
       checkboxes.forEach((cb) => {
         if (cb !== this) cb.checked = false;
+        document.getElementById("paymentbutton").disabled = false;
+
       });
     });
   });
@@ -905,10 +944,12 @@ upiId.addEventListener('input', () => {
     if (!upiPattern.test(upiId.value)) {
         errorMessage.textContent = "Invalid UPI ID format (e.g., example@upi)";
         upiId.style.border = "2px solid red";
-
+        document.getElementById("paymentbutton").disabled = true;
     } else {
         errorMessage.textContent = "";
         upiId.style.border = "2px solid green";
+        document.getElementById("paymentbutton").disabled = false;
+
     }
 });
     const upiIdradio = document.querySelectorAll(".payment-method input");
@@ -917,6 +958,8 @@ upiId.addEventListener('input', () => {
               document.getElementById("upiID").value="";
               document.getElementById("upiID").style.border = 'none';
               document.getElementById("upi-error").textContent = "";
+              document.getElementById("paymentbutton").disabled = false;
+
      });
     });
 
@@ -929,9 +972,12 @@ upiId.addEventListener('input', () => {
     const cardNumberPattern = /^\d{16}$/; 
     if (!cardNumberPattern.test(cardnumber.value)) {
       document.getElementById("cardnumber-error").textContent =  "Card number must be exactly 16 digits.\n";
+      document.getElementById("paymentsbutton").disabled = true;
     }
     else{
       document.getElementById("cardnumber-error").textContent =  "";
+      document.getElementById("paymentsbutton").disabled = false;
+
     }
   });
 
@@ -944,9 +990,13 @@ upiId.addEventListener('input', () => {
         const currentMonth = currentDate.getMonth() + 1;
         if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
           document.getElementById("expiryDate-error").textContent = "Expiry date cannot be in the past.\n";
+          document.getElementById("paymentsbutton").disabled = true;
+
         }
         else{
           document.getElementById("expiryDate-error").textContent = "";
+          document.getElementById("paymentsbutton").disabled = false;
+
         }
   });
   
@@ -954,9 +1004,13 @@ upiId.addEventListener('input', () => {
     const cvvPattern = /^\d{3}$/; 
     if (!cvvPattern.test(cvv.value)) {
       document.getElementById("cvv-error").textContent =  "CVV must be exactly 3 digits.";
+      document.getElementById("paymentsbutton").disabled = true;
+
     }
     else{
       document.getElementById("cvv-error").textContent =  "";
+      document.getElementById("paymentsbutton").disabled = false;
+
     }
   });
 
@@ -964,15 +1018,16 @@ upiId.addEventListener('input', () => {
     const namePattern = /^[a-zA-Z\s]+$/;
     if ((!namePattern.test(name.value)) || cvv.value.trim() === "") {
       document.getElementById("name-error").textContent =  "Name on the card must only contain letters and spaces";
+      document.getElementById("paymentsbutton").disabled = true;
     }
     else{
       document.getElementById("name-error").textContent =  "";
+      document.getElementById("paymentsbutton").disabled = false;
     }
   });
 
   const params = new URLSearchParams(window.location.search);
     if (params.get("showDiv") === "true") {
-      console.log("mv ");
        document.getElementById("price-payment").textContent = params.get("value")
         document.getElementById("page3").style.display = "block";
         document.getElementById("page2").style.display = "none";
@@ -1000,11 +1055,41 @@ function logout() {
     var confirmLogout = confirm("Are you sure you want to log out?");
     if (confirmLogout) {
         document.getElementById("page1").style.display = 'block';
+        
         document.getElementById("page2").style.display = 'none';
         document.getElementById("page3").style.display = 'none';
+
+        document.getElementById('otp-container').style.display = 'none';
+        document.getElementById('recharge-box').style.display = 'block';
+
+         document.getElementsByClassName("mobile-input")[0].value="";
+clearOtp();
+toggleDropdown();
 
     }
 }
 
+function initialStage(){
+  document.getElementById("upiID").value = "";
+  document.getElementById("card-number").value = "";
+  document.getElementById("expiry-date").value = "";
+  document.getElementById("cvv-id").value = "";
+  document.getElementById("name-on-the-card").value = "";
+
+  document.getElementById("upi-error").textContent = "";
+  document.getElementById("cardnumber-error").textContent = "";
+  document.getElementById("expiryDate-error").textContent = "";
+  document.getElementById("cvv-error").textContent = "";
+  document.getElementById("name-error").textContent = "";
+
+  document.querySelectorAll(".payment-method input ,.upiid").forEach((input) => {
+    input.checked = false;
+  });
+
+  document.getElementById("paymentsbutton").disabled = true;
+  document.getElementById("paymentbutton").disabled = true;
+
+
+}
 </script>
 </html>

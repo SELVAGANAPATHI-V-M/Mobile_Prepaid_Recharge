@@ -155,7 +155,9 @@ button:hover {
     margin: 0.2rem 0;
     font-size: 1.1rem;
   }
-  
+.header-nav li{
+  padding-top: 5px;
+}
   .buy-btn {
     margin-top: 1rem;
     background-color: #007c7c;
@@ -192,8 +194,11 @@ button:hover {
             <li><a href="Mobicomm.html">Mobile</a></li>
             <li><a href="#">True 5G</a></li>
             <li><a href="plans.html">Plans</a></li>
-            <li><a href="support.html">Help</a></li>
-            <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+            <li><a href="support.html">Support</a></li>
+            <div id="classImage">
+              <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
+
+            </div>
           </ul>
         </nav>
       </header>
@@ -322,11 +327,14 @@ button:hover {
 
 <script>
 
+var params = new URLSearchParams(window.location.search);
+var status = params.get("status"); 
+
+if(status === "false"){
+  document.getElementById("classImage").style.display='none';
+}
+
 function call(){
-
-  const params = new URLSearchParams(window.location.search);
-const status = params.get("status"); 
-
 Array.from(document.getElementsByClassName("buy-btn")).forEach((input) => {
     input.onclick = function(event) {
       const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;

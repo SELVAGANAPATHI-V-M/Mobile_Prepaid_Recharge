@@ -21,7 +21,7 @@
     <div class="main-container">
         
         <aside class="sidebar">
-          <h2 onclick="changeContent(5)">Admin Dashboard</h2>
+          <h2 style="cursor: pointer;" onclick="changeContent(5)">Admin Dashboard</h2>
           <ul class="sidebar-menu">
             <li><a href="#" onclick="changeContent(1)">User Management</a></li>
             <li><a href="#" onclick="changeContent(2)">Recharge System</a></li>
@@ -219,6 +219,7 @@
                 
     
             <div id="recharge-plans" class="section">
+                <h3>Plan Management</h3>
                 <section class="updatePlans-content">
                     <div class="collapsible">
                         <input type="checkbox" id="toggle-recommended" checked>
@@ -544,6 +545,17 @@ function changeContent(input) {
         document.getElementById(section).style.display = (index + 1 === input) ? 'block' : 'none';
     });
 }
+
+const checkboxes = document.querySelectorAll(".collapsible input");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    checkboxes.forEach((cb) => {
+      if (cb !== this) cb.checked = false;
+    });
+  });
+});
+
 
     let currentRow = null;
 
