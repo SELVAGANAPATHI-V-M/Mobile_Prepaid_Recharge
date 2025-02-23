@@ -1,7 +1,6 @@
 *{
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
 }
 
 .page1 {
@@ -40,16 +39,17 @@
 }
 
 .page1 .navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 7px; 
+  display: inline-block;
+  border-radius: 3px;
 }
 
 .page1 .navbar ul li a:hover {
   background-color: rgb(183, 242, 240);
   color: #005f5f;
-  padding:5px 0px;
-  border-radius: 3px;
 }
 
 .page1 .main-container {
@@ -127,7 +127,8 @@
     width: 100%;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
+    opacity: 50%; 
+    cursor:no-drop;
 }
 
 .page1 .mobile-input {
@@ -261,20 +262,21 @@
   }
   
   .page2 .header-nav li {
-    margin: 0 1rem;
+    margin: 0.2rem 0.5rem;
   }
   
   .page2 .header-nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding: 5px 7px; 
+    display: inline-block;
+    border-radius: 3px;
   }
-  
+ 
   .page2 .header-nav ul li a:hover {
-     background-color: rgb(183, 242, 240);
-  color: #005f5f;
-  padding:5px 0px;
-  border-radius: 3px;
+    background-color: rgb(183, 242, 240);
+    color: #005f5f;
   }
   
   .page2 .main-container {
@@ -284,11 +286,13 @@
   
   .page2 .sidebar {
     width: 240px;
-    background-color: #a3d3d6;
+    background-color: #9ecfd0;
     border-radius: 6px;
     padding: 1rem;
     margin-right: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   }
+
   
   .page2 .recharge-box {
     text-align: center;
@@ -322,19 +326,26 @@
     list-style: none;
   }
   
-  .page2 .sidebar-menu li {
-    margin: 0.75rem 0;
-  }
-  
-  .page2 .sidebar-menu a {
-    color: #333;
+  .sidebar-menu li a {
+    color: black;
     text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .page2 .sidebar-menu a:hover {
-    color: #007c7c;
-  }
+    font-weight: bold;
+    padding: 5px;
+    display: block;
+    border-radius: 3px;
+}
+
+.sidebar-menu li a.active {  
+    background-color: #005f5f;
+    color: #ffffff;
+}
+
+.sidebar-menu li a:hover {  
+  background-color: #bff0f0;
+  color: #000000;
+}
+
+
   
   .page2 .content {
     flex: 1;
@@ -781,105 +792,3 @@
     border: none; 
     cursor: pointer;
   }
-  
-  @media screen and (max-width: 768px) {
-    .page1 .navbar {
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
-    }
-
-    .page1 .navbar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .page1 .navbar ul li {
-        margin: 5px 0;
-    }
-
-    .page1 .main-container {
-        flex-direction: column;
-        align-items: center;
-        padding-left: 0;
-        height: auto;
-        text-align: center;
-        padding-top: 180px;
-    }
-
-    .page1 .recharge-box {
-        width: 90%;
-    }
-
-    .page1 .button-group {
-        flex-direction: column;
-    }
-
-    .page1 .button-group button {
-        width: 100%;
-    }
-
-    .page1 .footer-columns {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .page1 .column {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-    .page2 .column {
-      width: 100%;
-      margin-bottom: 15px;
-  }
-    .page2 .navbar {
-      flex-direction: column;
-      height: auto;
-      padding: 10px;
-  }
-
-  .page2 header {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-}
-
-  .page2 .navbar ul {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .page2 .navbar ul li {
-      margin: 5px 0;
-  }
-
-
-  .page2 .main-container {
-    flex-direction: column;
-}
-
-    .page2 .sidebar {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .page2 .content {
-        width: 100%;
-    }
-
-    .page2 .plans-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .page3 .payment-section {
-        width: 90%;
-    }
-
-    .page3 .modal-content {
-        width: 90%;
-    }
-
-    .page3 .modal button {
-        width: 50%;
-    }
-}

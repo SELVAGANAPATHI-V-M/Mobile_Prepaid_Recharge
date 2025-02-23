@@ -1,0 +1,331 @@
+<style>
+  .collapsible {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+
+  .collapsible-label {
+    display: inline-block;
+    padding: 10px;
+    background-color: #eee;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+  }
+
+  .collapsible-content {
+    padding: 10px;
+    display: none;
+    border: 1px solid #ccc;
+    margin-top: -1px;
+  }
+
+  .collapsible input[type="checkbox"] {
+    display: none;
+  }
+
+  .collapsible input[type="checkbox"]:checked + .collapsible-label {
+    background-color: #ddd;
+    border-bottom: none;
+  }
+
+  .collapsible input[type="checkbox"]:checked ~ .collapsible-content {
+    display: block;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .plan-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .plan-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .plan-details p {
+    margin: 5px 0;
+  }
+
+  .buy-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<section>
+  <div class="collapsible">
+    <input
+      type="checkbox"
+      id="toggle-recommended"
+      name="plan-tabs"
+      checked
+    />
+    <label for="toggle-recommended" class="collapsible-label">
+      Recommended (2)
+    </label>
+    <div class="collapsible-content">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-price">₹599</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹799</div>
+          <div class="plan-details">
+            <p>Validity: 56 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <input type="checkbox" id="toggle-top-trending" name="plan-tabs" />
+    <label for="toggle-top-trending" class="collapsible-label">
+      Top Trending True 5G Unlimited Plans (10)
+    </label>
+    <div class="collapsible-content">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-price">₹3599</div>
+          <div class="plan-details">
+            <p>Validity: 365 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹2025</div>
+          <div class="plan-details">
+            <p>Validity: 200 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹999</div>
+          <div class="plan-details">
+            <p>Validity: 56 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹899</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹2899</div>
+          <div class="plan-details">
+            <p>Validity: 180 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹9999</div>
+          <div class="plan-details">
+            <p>Validity: 365 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹3999</div>
+          <div class="plan-details">
+            <p>Validity: 305 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹3599</div>
+          <div class="plan-details">
+            <p>Validity: 305 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹2025</div>
+          <div class="plan-details">
+            <p>Validity: 200 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹399</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <input type="checkbox" id="toggle-2_5gb" name="plan-tabs" />
+    <label for="toggle-2_5gb" class="collapsible-label">
+      2.  5 GB/Day Plans (4)
+    </label>
+    <div class="collapsible-content">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-price">₹199</div>
+          <div class="plan-details">
+            <p>Validity: 14 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹399</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹499</div>
+          <div class="plan-details">
+            <p>Validity: 36 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹738</div>
+          <div class="plan-details">
+            <p>Validity: 48 Days</p>
+            <p>2.5 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <input type="checkbox" id="toggle-2gb" name="plan-tabs" />
+    <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
+    <div class="collapsible-content">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-price">₹149</div>
+          <div class="plan-details">
+            <p>Validity: 14 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹249</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹399</div>
+          <div class="plan-details">
+            <p>Validity: 36 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹529</div>
+          <div class="plan-details">
+            <p>Validity: 48 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹799</div>
+          <div class="plan-details">
+            <p>Validity: 78 Days</p>
+            <p>2 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <input type="checkbox" id="toggle-1gb" name="plan-tabs" />
+    <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
+    <div class="collapsible-content">
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-price">₹99</div>
+          <div class="plan-details">
+            <p>Validity: 14 Days</p>
+            <p>1 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-price">₹149</div>
+          <div class="plan-details">
+            <p>Validity: 28 Days</p>
+            <p>1 GB/Day</p>
+          </div>
+          <button class="buy-btn" onclick="payment()">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function payment() {
+    alert("Payment functionality is not implemented yet.");
+  }
+
+  const tabCheckboxes = document.querySelectorAll('input[name="plan-tabs"]');
+
+  tabCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        tabCheckboxes.forEach(otherCheckbox => {
+          if (otherCheckbox !== this) {
+            otherCheckbox.checked = false;
+          }
+        });
+      }
+    });
+  });
+</script>

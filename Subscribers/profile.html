@@ -184,16 +184,14 @@ input {
           </div>
           <nav class="header-nav">
             <ul>
-              <li><a href="" id="back">Mobile</a></li>
+              <li><a href="page1.html" id="back">Home</a></li>
               <li><a href="fivegplans.html?status=true">True 5G</a></li>
-              <li><a href="plans.html">Plans</a></li>
-              <li style="margin-right: 4px;"><a href="#">Support</a></li>
+              <li><a href="page2.html?status=true">Plans</a></li>
+              <li style="margin-right: 4px;"><a href="support.html?status=true">Support</a></li>
           </ul>
           </nav>
     </div>
-
     
-
     <div class="dashboard-container">
         <div class="card">
             <div class="profile-section">
@@ -201,7 +199,7 @@ input {
                 <div>
                     <h2 id="name">John Doe</h2>
                     <p>Email: <span id="email">johndoe@example.com</span></p>
-                    <p>Phone: <span id="phonenumber"> 9876543210</span></p>
+                    <p>Phone: <span id="phonenumber"></span></p>
                 </div>
             </div>
             <button class="edit-btn"  onclick="openModal()">Edit Profile</button>
@@ -264,6 +262,9 @@ input {
 </body>
 
 <script>
+
+    document.getElementById("phonenumber").textContent = localStorage.getItem("phonenumber");
+
      function openModal() {
         document.getElementById("editModal").style.display = "block";
         document.getElementById("modalName").value = document.getElementById("name").innerText;
@@ -281,12 +282,6 @@ input {
         document.getElementById("phonenumber").innerText = document.getElementById("modalPhone").value;
         closeModal();
     }
-document.getElementById("back").addEventListener("click", function(event) {
-        var queryParams = new URLSearchParams(window.location.search);
-        var numbers = queryParams.get('phonenumber');
-        console.log(numbers);
-        this.href = `Mobicomm.html?status=true&phonenumber=${encodeURIComponent(numbers)}`;
-       
-    });
+
 </script>
 </html>

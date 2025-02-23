@@ -191,13 +191,12 @@ button:hover {
         </div>
         <nav class="header-nav">
           <ul>
-            <li><a href="Mobicomm.html">Mobile</a></li>
-            <li><a href="#">True 5G</a></li>
-            <li><a href="plans.html">Plans</a></li>
-            <li><a href="support.html">Support</a></li>
+            <li><a href="page1.html">Home</a></li>
+            <li><a href="" style="text-decoration: underline;">True 5G</a></li>
+            <li><a href="" id="plansid">Plans</a></li>
+            <li><a href="" id="supportid">Support</a></li>
             <div id="classImage">
               <a href="profile.html"><img src="Images/user.png" alt="" height="25"></a>
-
             </div>
           </ul>
         </nav>
@@ -332,13 +331,29 @@ var status = params.get("status");
 
 if(status === "false"){
   document.getElementById("classImage").style.display='none';
+  document.getElementById("plansid").href="page2.html?status=false";
+  document.getElementById("supportid").href="support.html?status=false";
+}
+else{
+  document.getElementById("plansid").href="page2.html?status=true";
+  document.getElementById("supportid").href="support.html?status=true";
+
 }
 
 function call(){
 Array.from(document.getElementsByClassName("buy-btn")).forEach((input) => {
     input.onclick = function(event) {
-      const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
-        window.location.href = `Mobicomm.html?showDiv=${status === "true" ?"true" : "false"}&value=${value1}`;
+
+      if(status=='false'){
+        window.location.href = "page1.html";
+
+      }
+      else{
+        const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
+        localStorage.setItem('price' , value1);
+        window.location.href = "page3.html?target=5g";
+      }
+      
 
     };
 });
