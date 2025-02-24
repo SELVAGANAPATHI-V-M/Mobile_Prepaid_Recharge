@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="MobiCommAdminStyles.css">
 </head>
 <body>
 
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: #005f5f; border-bottom: 2px solid #ddd;">
         <div>
-            <img src="Images/logo2-removebg-preview.png" alt="MobiComm Logo" height="40px">
+            <img src="/Images/logo2-removebg-preview.png" alt="MobiComm Logo" height="40px">
         </div>
     
         <div style="display: flex; align-items: center;">
-            <img src="Images/user.png" alt="User Icon" height="35px" style="padding-right: 20px;">
+            <img src="/Images/user.png" alt="User Icon" height="35px" style="padding-right: 20px;">
         </div>
     </header>
     
@@ -33,6 +35,41 @@
         <div class="main-content">
 
             <div id="expiry-users" class="section active">
+                <div class="stats-container">
+                    <div class=" card allcard">
+                        <h3>Total Transactions</h3>
+                        <p>1,250</p>
+                    </div>
+                    <div class=" card successcard">
+                        <h3>Successful Transactions</h3>
+                        <p>1,050</p>
+                    </div>
+                    <div class="card failedcard">
+                        <h3>Failed Transactions</h3>
+                        <p>120</p>
+                    </div>
+                    <div class="card totalcard">
+                        <h3>Total Revenue</h3>
+                        <p>₹5,75,000</p>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                
+
+                <div style="display:flex; gap:20px">
+                <canvas id="transactionChart" width="600" height="300"></canvas>
+                <canvas id="paymentChart" height="20px"></canvas>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <br>
+
                 <h3>User's Plans Expiry in Three Days</h3><br>
                 <table id="user-table-expiry">
                     <thead>
@@ -46,22 +83,146 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>125</td>
+                            <td>David Johnson</td>
+                            <td>david@example.com</td>
+                            <td>9234567890</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>112</td>
+                            <td>Emily White</td>
+                            <td>emily@example.com</td>
+                            <td>9345678901</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>135</td>
+                            <td>Robert King</td>
+                            <td>robert@example.com</td>
+                            <td>9456789012</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>109</td>
+                            <td>Sarah Brown</td>
+                            <td>sarah@example.com</td>
+                            <td>9567890123</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>142</td>
+                            <td>Michael Lee</td>
+                            <td>michael@example.com</td>
+                            <td>9678901234</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
                             <td>101</td>
                             <td>John Doe</td>
                             <td>john@example.com</td>
                             <td>9876543210</td>
                             <td>Expires in 3 days</td>
-                            
                         </tr>
                         <tr>
-                            <td>102</td>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>9123459090</td>
-                            <td>Expires in 3 days</td>
-                  
+                            <td>119</td>
+                            <td>Jessica Taylor</td>
+                            <td>jessica@example.com</td>
+                            <td>9789012345</td>
+                            <td>Expires in 3 day</td>
                         </tr>
-                       
+                        <tr>
+                            <td>130</td>
+                            <td>Chris Evans</td>
+                            <td>chris@example.com</td>
+                            <td>9890123456</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>105</td>
+                            <td>Olivia Wilson</td>
+                            <td>olivia@example.com</td>
+                            <td>9901234567</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>138</td>
+                            <td>Daniel Clark</td>
+                            <td>daniel@example.com</td>
+                            <td>9123456789</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>150</td>
+                            <td>Sophia Adams</td>
+                            <td>sophia@example.com</td>
+                            <td>9234567891</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>113</td>
+                            <td>Liam Harris</td>
+                            <td>liam@example.com</td>
+                            <td>9345678902</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>122</td>
+                            <td>Emma Scott</td>
+                            <td>emma@example.com</td>
+                            <td>9456789013</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>108</td>
+                            <td>James Walker</td>
+                            <td>james@example.com</td>
+                            <td>9567890124</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>136</td>
+                            <td>Isabella Young</td>
+                            <td>isabella@example.com</td>
+                            <td>9678901235</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>147</td>
+                            <td>Lucas Martin</td>
+                            <td>lucas@example.com</td>
+                            <td>9789012346</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>Ava Robinson</td>
+                            <td>ava@example.com</td>
+                            <td>9890123457</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>141</td>
+                            <td>Mason Thomas</td>
+                            <td>mason@example.com</td>
+                            <td>9901234568</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>120</td>
+                            <td>Mia Hall</td>
+                            <td>mia@example.com</td>
+                            <td>9123456788</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        <tr>
+                            <td>110</td>
+                            <td>Ethan Wright</td>
+                            <td>ethan@example.com</td>
+                            <td>9234567892</td>
+                            <td>Expires in 3 days</td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -76,39 +237,321 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
+                            <th>Date Of Birth</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>101</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>9876543210</td>
+                            <td>Rahul Sharma</td>
+                            <td>rahul.sharma@example.com</td>
+                            <td>+91 9876543210</td>
+                            <td>1990-05-15</td>
+                            <td>Male</td>
+                            <td>123 Park Street, Mumbai, Maharashtra</td>
+                            <td><button class="activeClass">active</button></td>
                             <td>
-                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
-                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
                             </td>
                         </tr>
                         <tr>
                             <td>102</td>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>9123456780</td>
+                            <td>Priya Patel</td>
+                            <td>priya.patel@example.com</td>
+                            <td>+91 9876543211</td>
+                            <td>1992-08-21</td>
+                            <td>Female</td>
+                            <td>456 MG Road, Bangalore, Karnataka</td>
+                            <td><button class="activeClass">active</button></td>
                             <td>
-                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
-                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
-                            </td>                        
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
                         </tr>
                         <tr>
                             <td>103</td>
-                            <td>David Johnson</td>
-                            <td>david@example.com</td>
-                            <td>9234567890</td>
+                            <td>Amit Kumar</td>
+                            <td>amit.kumar@example.com</td>
+                            <td>+91 9876543212</td>
+                            <td>1988-03-30</td>
+                            <td>Male</td>
+                            <td>789 Civil Lines, Delhi</td>
+                            <td><button class="inactiveClass">inactive</button></td>
                             <td>
-                                <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
-                                <button class ="edit-btn" onclick="deleteUser(this)">Delete</button>
-                            </td>                        
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>104</td>
+                            <td>Neha Singh</td>
+                            <td>neha.singh@example.com</td>
+                            <td>+91 9876543213</td>
+                            <td>1995-11-12</td>
+                            <td>Female</td>
+                            <td>321 Sector 18, Noida, UP</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>105</td>
+                            <td>Vikram Malhotra</td>
+                            <td>vikram.m@example.com</td>
+                            <td>+91 9876543214</td>
+                            <td>1991-07-25</td>
+                            <td>Male</td>
+                            <td>654 Anna Salai, Chennai, Tamil Nadu</td>
+                            <td><button class="suspendedClass">suspended</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>106</td>
+                            <td>Anjali Gupta</td>
+                            <td>anjali.g@example.com</td>
+                            <td>+91 9876543215</td>
+                            <td>1993-09-18</td>
+                            <td>Female</td>
+                            <td>987 Banjara Hills, Hyderabad, Telangana</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>107</td>
+                            <td>Sandeep Reddy</td>
+                            <td>sandeep.r@example.com</td>
+                            <td>+91 9876543216</td>
+                            <td>1987-12-05</td>
+                            <td>Male</td>
+                            <td>147 South City, Kolkata, West Bengal</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>108</td>
+                            <td>Meera Iyer</td>
+                            <td>meera.i@example.com</td>
+                            <td>+91 9876543217</td>
+                            <td>1994-04-28</td>
+                            <td>Female</td>
+                            <td>258 FC Road, Pune, Maharashtra</td>
+                            <td><button class="inactiveClass">inactive</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>109</td>
+                            <td>Rajesh Khanna</td>
+                            <td>rajesh.k@example.com</td>
+                            <td>+91 9876543218</td>
+                            <td>1989-06-15</td>
+                            <td>Male</td>
+                            <td>369 CG Road, Ahmedabad, Gujarat</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>110</td>
+                            <td>Pooja Mehta</td>
+                            <td>pooja.m@example.com</td>
+                            <td>+91 9876543219</td>
+                            <td>1996-02-20</td>
+                            <td>Female</td>
+                            <td>741 Mall Road, Lucknow, UP</td>
+                            <td><button class="suspendedClass">suspended</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>111</td>
+                            <td>Karthik Rajan</td>
+                            <td>karthik.r@example.com</td>
+                            <td>+91 9876543220</td>
+                            <td>1992-10-08</td>
+                            <td>Male</td>
+                            <td>852 MG Marg, Jaipur, Rajasthan</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>112</td>
+                            <td>Kavita Rao</td>
+                            <td>kavita.r@example.com</td>
+                            <td>+91 9876543221</td>
+                            <td>1990-12-31</td>
+                            <td>Female</td>
+                            <td>963 Church Street, Kochi, Kerala</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>113</td>
+                            <td>Deepak Chopra</td>
+                            <td>deepak.c@example.com</td>
+                            <td>+91 9876543222</td>
+                            <td>1988-08-17</td>
+                            <td>Male</td>
+                            <td>159 Race Course, Coimbatore, Tamil Nadu</td>
+                            <td><button class="inactiveClass">inactive</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>114</td>
+                            <td>Sunita Sharma</td>
+                            <td>sunita.s@example.com</td>
+                            <td>+91 9876543223</td>
+                            <td>1993-05-22</td>
+                            <td>Female</td>
+                            <td>753 Gandhi Road, Nagpur, Maharashtra</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>115</td>
+                            <td>Arjun Nair</td>
+                            <td>arjun.n@example.com</td>
+                            <td>+91 9876543224</td>
+                            <td>1991-03-14</td>
+                            <td>Male</td>
+                            <td>951 Beach Road, Visakhapatnam, AP</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>116</td>
+                            <td>Lakshmi Menon</td>
+                            <td>lakshmi.m@example.com</td>
+                            <td>+91 9876543225</td>
+                            <td>1994-07-19</td>
+                            <td>Female</td>
+                            <td>357 Hill Road, Shimla, HP</td>
+                            <td><button class="suspendedClass">suspended</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>117</td>
+                            <td>Suresh Kumar</td>
+                            <td>suresh.k@example.com</td>
+                            <td>+91 9876543226</td>
+                            <td>1989-09-30</td>
+                            <td>Male</td>
+                            <td>456 Lake Road, Bhopal, MP</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>118</td>
+                            <td>Maya Pillai</td>
+                            <td>maya.p@example.com</td>
+                            <td>+91 9876543227</td>
+                            <td>1995-11-25</td>
+                            <td>Female</td>
+                            <td>789 Temple Street, Madurai, TN</td>
+                            <td><button class="inactiveClass">inactive</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>119</td>
+                            <td>Kiran Shah</td>
+                            <td>kiran.s@example.com</td>
+                            <td>+91 9876543228</td>
+                            <td>1990-01-15</td>
+                            <td>Male</td>
+                            <td>123 Beach Road, Panaji, Goa</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>120</td>
+                            <td>Divya Mathur</td>
+                            <td>divya.m@example.com</td>
+                            <td>+91 9876543229</td>
+                            <td>1992-04-05</td>
+                            <td>Female</td>
+                            <td>456 Market Road, Trivandrum, Kerala</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>121</td>
+                            <td>Prakash Verma</td>
+                            <td>prakash.v@example.com</td>
+                            <td>+91 9876543230</td>
+                            <td>1993-08-11</td>
+                            <td>Male</td>
+                            <td>789 Ring Road, Surat, Gujarat</td>
+                            <td><button class="suspendedClass">suspended</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>122</td>
+                            <td>Anita Desai</td>
+                            <td>anita.d@example.com</td>
+                            <td>+91 9876543231</td>
+                            <td>1991-06-28</td>
+                            <td>Female</td>
+                            <td>321 College Road, Indore, MP</td>
+                            <td><button class="activeClass">active</button></td>
+                            <td>
+                                <button onclick="openedituserModal(this)"><span class="material-icons">edit
+                                <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -128,11 +571,19 @@
 
                         <label>Email</label>
                         <input type="email" id="modalEmail" oninput="validateInput('modalEmail', 'emailError')">
-                        <span class="error" id="nameError"></span>
+                        <span class="error" id="emailError"></span>
 
                         <label>Phone Number</label>
                         <input type="tel" id="modalPhone" oninput="validateInput('modalPhone', 'phoneError')">
-                        <span class="error" id="nameError"></span>
+                        <span class="error" id="phoneError"></span>
+
+                        <label>Date Of Birth</label>
+                        <input type="date" id="modaldob" oninput="validateInput('modaldob', 'dobError')">
+                        <span class="error" id="dobError"></span>
+
+                        <label>Address</label>
+                        <input type="text" id="modalAddress" oninput="validateInput('modalAddress', 'addressError')">
+                        <span class="error" id="addressError"></span>
 
                         <button class="save-btn" onclick="saveedituserChanges()">Save</button>
                     </div>
@@ -155,6 +606,24 @@
                         <label>Phone Number</label>
                         <input type="tel" id="addmodalPhone" oninput="validateInput('addmodalPhone', 'addPhoneError')">
                         <span class="error" id="addPhoneError"></span>
+
+                        <label>Date Of Birth</label>
+                        <input type="date" id="addmodaldob" oninput="validateInput('addmodaldob', 'adddobError')">
+                        <span class="error" id="adddobError"></span>
+
+                        <label>Gender:</label>
+
+                        <div class="form-group">
+                            <input type="radio" name="male" value="male" id="male">
+                            <label for="male">Male</label>
+                        
+                            <input type="radio" name="gender" value="female" id="female">
+                            <label for="female">Female</label>
+                        </div>
+                        
+                        <label>Address</label>
+                        <input type="text" id="addmodaladdress" oninput="validateInput('addmodaladdress', 'addaddressError')">
+                        <span class="error" id="addaddressError"></span>
             
                         <button class = "edit-btn" id="saveButton" onclick="saveadduserChanges()">Save</button>
                     </div>
@@ -170,49 +639,38 @@
                         <tr>
                             <th>Transaction ID</th>
                             <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Plan ID</th>
                             <th>Amount</th>
+                            <th>Payment Method</th>
                             <th>Status</th>
                             <th>Date</th>
                         </tr>
                     </thead>
-                    
                     <tbody>
-                        <tr>
-                            <td>TXN001</td>
-                            <td>123</td>
-                            <td>$50.00</td>
-                            <td>Success</td>
-                            <td>2025-02-19</td>
-                        </tr>
-                        <tr>
-                            <td>TXN002</td>
-                            <td>456</td>
-                            <td>$25.00</td>
-                            <td>Pending</td>
-                            <td>2025-02-18</td>
-                        </tr>
-                        <tr>
-                            <td>TXN003</td>
-                            <td>789</td>
-                            <td>$75.00</td>
-                            <td>Failed</td>
-                            <td>2025-02-17</td>
-                        </tr>
-                        <tr>
-                            <td>TXN004</td>
-                            <td>101</td>
-                            <td>$100.00</td>
-                            <td>Success</td>
-                            <td>2025-02-16</td>
-                        </tr>
-                        <tr>
-                            <td>TXN005</td>
-                            <td>202</td>
-                            <td>$60.00</td>
-                            <td>Pending</td>
-                            <td>2025-02-15</td>
-                        </tr>
+                        <tr><td>TXN542</td><td>127</td><td>Amit Sharma</td><td>amit.sharma@email.com</td><td>9876543210</td><td>PLAN001</td><td>₹199</td><td>UPI</td><td><button class="TSClass">Success</button></td><td>2025-02-19 14:30:45</td></tr>
+                        <tr><td>TXN203</td><td>119</td><td>Sneha Verma</td><td>sneha.verma@email.com</td><td>9823456789</td><td>PLAN002</td><td>₹399</td><td>Credit Card</td><td><button class="TFClass">Failed</button></td><td>2025-02-18 09:15:32</td></tr>
+                        <tr><td>TXN671</td><td>135</td><td>Rohan Gupta</td><td>rohan.gupta@email.com</td><td>9834567890</td><td>PLAN003</td><td>₹599</td><td>Debit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-17 22:10:18</td></tr>
+                        <tr><td>TXN874</td><td>127</td><td>Amit Sharma</td><td>amit.sharma@email.com</td><td>9876543210</td><td>PLAN004</td><td>₹349</td><td>UPI</td><td><button class="TPClass">Pending</button></td><td>2025-02-16 18:50:10</td></tr>
+                        <tr><td>TXN102</td><td>141</td><td>Rahul Yadav</td><td>rahul.yadav@email.com</td><td>9878901234</td><td>PLAN005</td><td>₹149</td><td>Credit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-15 08:40:05</td></tr>
+                        <tr><td>TXN321</td><td>132</td><td>Anjali Mishra</td><td>anjali.mishra@email.com</td><td>9867890123</td><td>PLAN006</td><td>₹699</td><td>Debit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-14 11:20:55</td></tr>
+                        <tr><td>TXN715</td><td>138</td><td>Neha Kapoor</td><td>neha.kapoor@email.com</td><td>9889012345</td><td>PLAN007</td><td>₹519</td><td>Credit Card</td><td><button class="TPClass">Pending</button></td><td>2025-02-12 16:30:29</td></tr>
+                        <tr><td>TXN455</td><td>135</td><td>Rohan Gupta</td><td>rohan.gupta@email.com</td><td>9834567890</td><td>PLAN008</td><td>₹299</td><td>UPI</td><td><button class="TFClass">Failed</button></td><td>2025-02-13 19:05:12</td></tr>
+                        <tr><td>TXN929</td><td>141</td><td>Rahul Yadav</td><td>rahul.yadav@email.com</td><td>9878901234</td><td>PLAN002</td><td>₹399</td><td>Debit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-11 12:20:35</td></tr>
+                        <tr><td>TXN618</td><td>127</td><td>Amit Sharma</td><td>amit.sharma@email.com</td><td>9876543210</td><td>PLAN003</td><td>₹599</td><td>UPI</td><td><button class="TFClass">Failed</button></td><td>2025-02-10 20:10:22</td></tr>
+                        <tr><td>TXN738</td><td>119</td><td>Sneha Verma</td><td>sneha.verma@email.com</td><td>9823456789</td><td>PLAN001</td><td>₹199</td><td>Credit Card</td><td><button class="TPClass">Pending</button></td><td>2025-02-09 09:50:55</td></tr>
+                        <tr><td>TXN840</td><td>135</td><td>Rohan Gupta</td><td>rohan.gupta@email.com</td><td>9834567890</td><td>PLAN005</td><td>₹149</td><td>Debit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-08 14:10:45</td></tr>
+                        <tr><td>TXN256</td><td>141</td><td>Rahul Yadav</td><td>rahul.yadav@email.com</td><td>9878901234</td><td>PLAN004</td><td>₹349</td><td>UPI</td><td><button class="TFClass">Failed</button></td><td>2025-02-07 18:05:32</td></tr>
+                        <tr><td>TXN134</td><td>132</td><td>Anjali Mishra</td><td>anjali.mishra@email.com</td><td>9867890123</td><td>PLAN007</td><td>₹519</td><td>Credit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-06 21:30:29</td></tr>
+                        <tr><td>TXN982</td><td>119</td><td>Sneha Verma</td><td>sneha.verma@email.com</td><td>9823456789</td><td>PLAN006</td><td>₹699</td><td>Debit Card</td><td><button class="TPClass">Pending</button></td><td>2025-02-05 16:50:10</td></tr>
+                        <tr><td>TXN473</td><td>138</td><td>Neha Kapoor</td><td>neha.kapoor@email.com</td><td>9889012345</td><td>PLAN003</td><td>₹599</td><td>UPI</td><td><button class="TFClass">Failed</button></td><td>2025-02-04 12:40:05</td></tr>
+                        <tr><td>TXN810</td><td>141</td><td>Rahul Yadav</td><td>rahul.yadav@email.com</td><td>9878901234</td><td>PLAN002</td><td>₹399</td><td>Credit Card</td><td><button class="TSClass">Success</button></td><td>2025-02-03 14:20:55</td></tr>
+                        <tr><td>TXN627</td><td>135</td><td>Rohan Gupta</td><td>rohan.gupta@email.com</td><td>9834567890</td><td>PLAN008</td><td>₹299</td><td>Debit Card</td><td><button class="TPClass">Pending</button></td><td>2025-02-02 10:10:18</td></tr>
+                        <tr><td>TXN953</td><td>132</td><td>Anjali Mishra</td><td>anjali.mishra@email.com</td><td>9867890123</td><td>PLAN005</td><td>₹149</td><td>UPI</td><td><button class="TSClass">Success</button></td><td>2025-02-01 08:05:12</td></tr>
                     </tbody>
+                    
                 </table>
             </div>
 
@@ -263,7 +721,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Plan Price</th>
+                                     <th>Plan Price</th>
                                         <th>Validity</th>
                                         <th>Data Pack</th>
                                         <th>Action</th>
@@ -557,18 +1015,47 @@ checkboxes.forEach((checkbox) => {
 });
 
 
+var ctx = document.getElementById('transactionChart').getContext('2d');
+    var transactionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Success', 'Failed', 'Pending'],
+            datasets: [{
+                label: 'Transaction Status',
+                data: [1050, 120, 80],
+                backgroundColor: ['green', 'red', 'orange']
+            }]
+        }
+    });
+
+    var ctx = document.getElementById('paymentChart').getContext('2d');
+    var paymentChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['UPI', 'Credit Card', 'Debit Card'],
+            datasets: [{
+                data: [600, 400, 250],
+                backgroundColor: ['#007bff', '#28a745', '#ffc107']
+            }]
+        }
+    });
+
+
     let currentRow = null;
 
 function openedituserModal(button) {
     currentRow = button.closest("tr");
     let cells = currentRow.querySelectorAll("td");
 
-    if (cells.length < 4) return;
+ 
 
     document.getElementById("modalUserId").value = cells[0].textContent.trim();
     document.getElementById("modalName").value = cells[1].textContent.trim();
     document.getElementById("modalEmail").value = cells[2].textContent.trim();
     document.getElementById("modalPhone").value = cells[3].textContent.trim();
+    document.getElementById("modaldob").value = cells[4].textContent.trim();
+    document.getElementById("modalAddress").value = cells[6].textContent.trim();
+
 
     document.getElementById("usereditModal").style.display = "block";
 }
@@ -577,11 +1064,15 @@ function saveedituserChanges() {
     let name = document.getElementById("modalName").value;
     let email = document.getElementById("modalEmail").value;
     let phone = document.getElementById("modalPhone").value;
+    let dob = document.getElementById("modaldob").value
+    let address = document.getElementById("modalAddress").value
 
     if (currentRow) {
         currentRow.cells[1].textContent = name;
         currentRow.cells[2].textContent = email;
         currentRow.cells[3].textContent = phone;
+        currentRow.cells[4].textContent = dob;
+        currentRow.cells[6].textContent = address;
     }
     closeedituserModal();
 }
@@ -602,6 +1093,17 @@ function saveadduserChanges() {
     let name = document.getElementById("addmodalName").value;
     let email = document.getElementById("addmodalEmail").value;
     let phone = document.getElementById("addmodalPhone").value;
+    let dob = document.getElementById("addmodaldob").value;
+let gender;
+    let maleRadio = document.getElementById("male");
+    if (maleRadio.checked) {
+        gender = "Male"    
+    }
+    else{
+        gender = "Female"   
+    }
+    let address = document.getElementById("addmodaladdress").value;
+
 
     if (name.trim() === "" || email.trim() === "" || phone.trim() === "") {
         alert("All fields are required!");
@@ -612,16 +1114,19 @@ function saveadduserChanges() {
     let newRow = tableBody.insertRow();
     
     let userId = generateUserId(); 
-    newRow.innerHTML = `
-        <td>${userId}</td>
-        <td>${name}</td>
-        <td>${email}</td>
-        <td>${phone}</td>
-        <td>
-            <button class="edit-btn" onclick="openedituserModal(this)">Edit</button>
-            <button class="edit-btn" onclick="deleteUser(this)">Delete</button>
-        </td>
-    `;
+    newRow.innerHTML = `<td>${userId}</td>
+                     <td>${name}</td>
+                     <td>${email}</td>
+                     <td>${phone}</td>
+                     <td>${dob}</td>
+                     <td>${gender}</td>
+                     <td>${address}</td>
+                     <td><button class="activeClass">active</button></td>
+                    <td>
+                        <button onclick="openedituserModal(this)"><span class="material-icons">edit</span></button>
+                        <button onclick="deleteUser(this)"><span class="material-icons">delete</span></button>
+                    </td>`;
+    
 
     closeadduserModal();
 }
@@ -634,7 +1139,7 @@ function deleteUser(button) {
     let row = button.closest("tr");
     row.remove();
 }
-let useridnumber = 103;
+let useridnumber = 122;
 function generateUserId() {
 
     useridnumber++;
