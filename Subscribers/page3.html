@@ -300,7 +300,7 @@ button#close{
         <section class="payment-section">
           <div style="display: grid; grid-template-columns: 1fr;">
             <div style="text-align: right;">
-              <button id="close" onclick="moveNext()"><img src="Images/close.png" alt="" height="20px" ></button>
+              <button id="close" onclick="moveNext()"><img src="/Images/close.png" alt="" height="20px" ></button>
             </div>
           </div>
          
@@ -315,19 +315,19 @@ button#close{
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 300px;">Reliance Pay</span>
-                  <img src="Images/money.png" alt="Reliance Pay Icon" />
+                  <img src="/Images/money.png" alt="Reliance Pay Icon" />
                 </label>
           
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 310px;">Google Pay</span>
-                  <img src="Images/google-pay.png" alt="Google Pay Icon" />
+                  <img src="/Images/google-pay.png" alt="Google Pay Icon" />
                 </label>
           
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 330px;">PhonePe</span>
-                  <img src="Images/phonepe.svg" alt="PhonePe Icon" />
+                  <img src="/Images/phonepe.svg" alt="PhonePe Icon" />
                 </label>
           
                 <div class="collapsible-payment-upi">
@@ -397,7 +397,7 @@ button#close{
       <div id="paymentprocessModal" class="modal">
         <div class="modal-content">
             <h2>Payment is processing . . .</h2>
-            <img src="Images/money.gif" alt="" height = "120px">             
+            <img src="/Images/money.gif" alt="" height = "120px">             
         </div>
       </div>
 </div>
@@ -419,7 +419,7 @@ function moveNext(){
   const params = new URLSearchParams(window.location.search);
 
   var pageStatus = params.get('target') === '5g'; 
-        window.location.href = pageStatus ? "fivegplans.html?status=true":"page2.html?status=true";
+  window.location.href = pageStatus ? "fivegplans.html?status=true":"page2.html?status=true";
 }
 
 document.getElementById("price-payment").textContent = localStorage.getItem('price')
@@ -438,8 +438,10 @@ function openPaymentModal() {
 }
 
 function closePaymentModal() {
-    document.getElementById("paymentModal").style.display = "none";
-    document.getElementById("paymentprocessModal").style.display = "none";
+  const params = new URLSearchParams(window.location.search);
+
+var pageStatus = params.get('target') === '5g'; 
+window.location.href = pageStatus ? "fivegplans.html?status=true":"page2.html?status=true";
 }
 
 const Pcheckboxes = document.querySelectorAll(".upi");
