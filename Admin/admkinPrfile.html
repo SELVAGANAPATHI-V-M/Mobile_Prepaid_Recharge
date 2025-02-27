@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .profile-container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-details {
+            padding: 20px 0;
+            width: 100%;
+        }
+        .profile-details p {
+            margin: 8px 0;
+        }
+        .edit-btn {
+            background: #007b5e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            margin: 10% auto;
+            border-radius: 10px;
+        }
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .save-btn {
+            background: #007b5e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+        /* Style enhancements */
+        .profile-header i {
+            color: #007b5e; /* Icon color */
+            margin-right: 5px;
+        }
+        .profile-details i {
+            color: #007b5e; /* Icon color */
+            margin-right: 5px;
+        }
+        .profile-container {
+            border: 1px solid #ddd; /* Added border */
+        }
+        .modal-content h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .profile-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .profile-actions button {
+            width: 45%;
+        }
+        .profile-actions .delete-btn {
+            background-color: #dc3545;
+        }
+        .profile-actions .change-password-btn {
+            background-color: #007bff;
+        }
+        .notification {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .success-notification {
+            background-color: #c6efce;
+            color: #3e8e41;
+        }
+        .error-notification {
+            background-color: #f2c6c6;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/120" alt="Admin Profile">
+            <div>
+                <h2>Admin User</h2>
+                <p><i class="fas fa-envelope"></i> Email: admin.user@example.com</p>
+            </div>
+        </div>
+        <div class="profile-details">
+            <p><i class="fas fa-user"></i> Username: adminUser</p>
+            <p><i class="fas fa-lock"></i> Password: ********</p>
+        </div>
+        <div class="profile-actions">
+            <button class="edit-btn" onclick="openEditModal()">Edit Profile</button>
+            <button class="change-password-btn" onclick="openChangePasswordModal()">Change Password</button>
+        </div>
+        <button class="delete-btn" style="width: 100%; margin-top: 20px;" onclick="openDeleteModal()">Delete Account</button>
+        <div id="notifications"></div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+            <h3>Edit Profile</h3>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" value="adminUser">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" value="admin.user@example.com">
+            </div>
+            <button class="save-btn" onclick="saveProfileChanges()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeChangePasswordModal()">&times;</span>
+            <h3>Change Password</h3>
+            <div class="form-group">
+                <label>Old Password</label>
+                <input type="password" id="oldPassword">
+            </div>
+            <div class="form-group">
+                <label>New Password</label>
+                <input type="password" id="newPassword">
+            </div>
+            <div class="form-group">
+                <label>Confirm New Password</label>
+                <input type="password" id="confirmNewPassword">
+            </div>
+            <button class="save-btn" onclick="savePasswordChanges()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
+            <h3>Delete Account</h3>
+            <p>Are you sure you want to delete your account?</p>
+            <button class="save-btn" style="background-color: #dc3545;" onclick="deleteAccount()">Delete</button>
+            <button class="save-btn" style="background-color: #007bff;" onclick="closeDeleteModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal() {
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function saveProfileChanges() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+
+            // Basic validation
+            if (username.length < 3) {
+                displayNotification("error", "Username must be at least 3 characters long.");
+                return;
+            }
+
+            if (!email.includes('@')) {
+                displayNotification("error", "Invalid email address.");
+                return;
+            }
+
+            displayNotification("success", "Profile Updated Successfully!");
+            closeEditModal();
+        }
+
+        function openChangePasswordModal() {
+            document.getElementById("changePasswordModal").style.display = "block";
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById("changePasswordModal").style.display = "none";
+        }
+
+        function savePasswordChanges() {
+            let oldPassword = document.getElementById("oldPassword").value;
+            let newPassword = document.getElementById("newPassword").value;
+            let confirmNewPassword = document.getElementById("confirmNewPassword").value;
+            let savedPassword = "admin@123";  // Replace with backend validation
+
+            if (oldPassword !== savedPassword) {
+                displayNotification("error", "Incorrect old password!");
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                displayNotification("error", "New password must be at least 8 characters long.");
+                return;
+            }
+
+            if (newPassword !== confirmNewPassword) {
+                displayNotification("error", "Passwords do not match.");
+                return;
+            }
+
+            displayNotification("success", "Password Updated Successfully!");
+            closeChangePasswordModal();
+        }
+
+        function openDeleteModal() {
+            document.getElementById("deleteModal").style.display = "block";
+        }
+
+        function closeDeleteModal() {
+            document.getElementById("deleteModal").style.display = "none";
+        }
+
+        function deleteAccount() {
+            // Backend logic to delete account
+            displayNotification("success", "Account Deleted Successfully!");
+            closeDeleteModal();
+        }
+
+        function displayNotification(type, message) {
+            let notificationElement = document.createElement("div");
+            notificationElement.classList.add("notification");
+            if (type === "success") {
+                notificationElement.classList.add("success-notification");
+            } else if (type === "error") {
+                notificationElement.classList.add("error-notification");
+            }
+            notificationElement.innerText = message;
+            document.getElementById("notifications").appendChild(notificationElement);
+            setTimeout(() => {
+                notificationElement.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>FiveGPlans</title>
 </head>
 <body>
@@ -62,23 +63,30 @@
   border-radius: 3px;
 }
 
-  .carousel-container {
+.carousel-container {
   position: relative;
-  width: 40%; 
-  max-width: 800px;
+  width: 100%;
+  max-width: 1200px;
   margin: auto;
   overflow: hidden;
 }
 
 .carousel {
-  margin-top: 10px;
   display: flex;
   transition: transform 0.5s ease-in-out;
+  width: 300%;
 }
 
 .carousel-slide {
+  width: 33.333%; 
+  flex-shrink: 0; 
+}
+
+.carousel img {
   width: 100%;
-  max-height: 400px;
+  height: 500px;
+  object-fit: cover; 
+  display: block; 
 }
 
 .carousel-container button {
@@ -88,11 +96,12 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
   cursor: pointer;
   font-size: 24px;
+  z-index: 10; 
+  border-radius: 50%;
 }
-
 button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -239,7 +248,7 @@ button:hover {
 
     <header class="header">
         <div class="header-left">
-          <img src="/Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+          <img src="../Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
         </div>
         <nav class="header-nav">
           <ul>
@@ -248,7 +257,7 @@ button:hover {
             <li><a href="" id="plansid">Plans</a></li>
             <li><a href="" id="supportid">Support</a></li>
             <div id="classImage">
-              <a href="profile.html"><img src="/Images/user.png" alt="" height="25"></a>
+              <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
             </div>
           </ul>
         </nav>
@@ -256,12 +265,18 @@ button:hover {
 
       <div class="carousel-container">
         <div class="carousel">
-          <img src="/Images/g51.jpg" alt="Slide 1" class="carousel-slide">
-          <img src="/Images/g52.jpg" alt="Slide 2" class="carousel-slide">
-          <img src="/Images/g53.jpg" alt="Slide 3" class="carousel-slide">
+          <div class="carousel-slide">
+            <img src="../Images/g51.jpg" alt="Slide 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="../Images/g52.jpg" alt="Slide 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="../Images/g53.jpg" alt="Slide 3">
+          </div>
         </div>
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button> 
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
       </div>
       
 
@@ -549,19 +564,19 @@ Array.from(document.getElementsByClassName("buy-btn")).forEach((input) => {
 
 let currentSlide = 0;
 
-function moveSlide(step) {
-  const slides = document.querySelectorAll(".carousel-slide");
-  currentSlide += step;
+const totalSlides = document.querySelectorAll('.carousel-slide').length;
+const carousel = document.querySelector('.carousel');
 
-  if (currentSlide < 0) {
-    currentSlide = slides.length - 1; 
-  } else if (currentSlide >= slides.length) {
-    currentSlide = 0; 
-  }
-
-  const newTransform = `translateX(-${currentSlide * 100}%)`;
-  document.querySelector(".carousel").style.transform = newTransform;
+function moveSlide(direction) {
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  updateCarousel();
 }
+
+function updateCarousel() {
+  carousel.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+}
+
+updateCarousel();
 
 setInterval(() => {
   moveSlide(1);

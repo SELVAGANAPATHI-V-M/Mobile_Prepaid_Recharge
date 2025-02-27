@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
+    <title>Payment</title>
 </head>
 <body>
     <style>
@@ -300,7 +301,7 @@ button#close{
         <section class="payment-section">
           <div style="display: grid; grid-template-columns: 1fr;">
             <div style="text-align: right;">
-              <button id="close" onclick="moveNext()"><img src="/Images/close.png" alt="" height="20px" ></button>
+              <button id="close" onclick="moveNext()"><img src="../Images/close.png" alt="" height="20px" ></button>
             </div>
           </div>
          
@@ -315,19 +316,19 @@ button#close{
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 300px;">Reliance Pay</span>
-                  <img src="/Images/money.png" alt="Reliance Pay Icon" />
+                  <img src="../Images/money.png" alt="Reliance Pay Icon" />
                 </label>
           
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 310px;">Google Pay</span>
-                  <img src="/Images/google-pay.png" alt="Google Pay Icon" />
+                  <img src="../Images/google-pay.png" alt="Google Pay Icon" />
                 </label>
           
                 <label class="payment-method">
                   <input type="radio" name="upi-method" />
                   <span style="padding-right: 330px;">PhonePe</span>
-                  <img src="/Images/phonepe.svg" alt="PhonePe Icon" />
+                  <img src="../Images/phonepe.svg" alt="PhonePe Icon" />
                 </label>
           
                 <div class="collapsible-payment-upi">
@@ -397,7 +398,7 @@ button#close{
       <div id="paymentprocessModal" class="modal">
         <div class="modal-content">
             <h2>Payment is processing . . .</h2>
-            <img src="/Images/money.gif" alt="" height = "120px">             
+            <img src="../Images/money.gif" alt="" height = "120px">             
         </div>
       </div>
 </div>
@@ -405,6 +406,12 @@ button#close{
 </body>
 
 <script>
+
+document.getElementById("paymentsbutton").style.opacity = '50%';
+      document.getElementById("paymentsbutton").style.cursor = 'no-drop';
+      document.getElementById("paymentbutton").style.opacity = '50%';
+      document.getElementById("paymentbutton").style.cursor = 'no-drop';
+
 
 function processPayment() {
     document.getElementById("paymentprocessModal").style.display = "block";
@@ -424,12 +431,7 @@ function moveNext(){
 
 document.getElementById("price-payment").textContent = localStorage.getItem('price')
 
-function waitPlease() {
-    
-    document.getElementById("paymentprocessModal").style.display = "block";
 
-    processPayment();
-}
 
 function openPaymentModal() {
   document.getElementById("paymentprocessModal").style.display = "none";
@@ -457,12 +459,6 @@ Pcheckboxes.forEach((checkbox) => {
 const upiId = document.getElementById("upiID");
 
 upiId.addEventListener('input', () => {
-    if (upiId.value.length > 0) {
-        document.querySelectorAll(".payment-method input").forEach(input => {
-            input.checked = false;
-        });
-    }
-
     const upiPattern = /^[a-zA-Z0-9._]+@[a-zA-Z]+$/;
     const errorMessage = document.getElementById("upi-error");
 
@@ -470,12 +466,19 @@ upiId.addEventListener('input', () => {
         errorMessage.textContent = "Invalid UPI ID format (e.g., example@upi)";
         upiId.style.border = "2px solid red";
         document.getElementById("paymentbutton").disabled = true;
+        document.getElementById("paymentbutton").style.opacity = '50%';
+        document.getElementById("paymentbutton").style.cursor = 'no-drop';
     } else {
         errorMessage.textContent = "";
         upiId.style.border = "2px solid green";
         document.getElementById("paymentbutton").disabled = false;
-
+        document.getElementById("paymentbutton").style.opacity = '100%';
+      document.getElementById("paymentbutton").style.cursor = 'pointer';
     }
+      
+
+
+    
 });
     const upiIdradio = document.querySelectorAll(".payment-method input");
      upiIdradio.forEach(radio => {
@@ -483,7 +486,7 @@ upiId.addEventListener('input', () => {
               document.getElementById("upiID").value="";
               document.getElementById("upiID").style.border = 'none';
               document.getElementById("upi-error").textContent = "";
-              document.getElementById("paymentbutton").disabled = false;
+              document.getElementById("upiid").checked = true;
 
      });
     });
@@ -491,19 +494,38 @@ upiId.addEventListener('input', () => {
   const cardnumber = document.getElementById("card-number");
   const expiryDate = document.getElementById("expiry-date");
   const cvv = document.getElementById("cvv-id");
-  const name = document.getElementById("name-on-the-card");
+  const username = document.getElementById("name-on-the-card");
 
+  var b1status = false;
+  var b2status = false;
+  var b3status = false;
+  var b4status = false;
   cardnumber.addEventListener('input' , ()=>{
     const cardNumberPattern = /^\d{16}$/; 
     if (!cardNumberPattern.test(cardnumber.value)) {
       document.getElementById("cardnumber-error").textContent =  "Card number must be exactly 16 digits.\n";
+      b1status=false;
     }
     else{
       document.getElementById("cardnumber-error").textContent =  "";
+      b1status=true;
+    }
+    if(b1status && b2status && b3status && b4status){
+      document.getElementById("paymentsbutton").disabled = false;
+      document.getElementById("paymentsbutton").style.opacity = '100%';
+      document.getElementById("paymentsbutton").style.cursor = 'pointer';
+
+    }
+    else{
+      document.getElementById("paymentsbutton").disabled = true;
+      document.getElementById("paymentsbutton").style.opacity = '50%';
+      document.getElementById("paymentsbutton").style.cursor = 'no-drop';
+
     }
     
 
   });
+
 
   expiryDate.addEventListener('input' , ()=>{
 
@@ -514,34 +536,90 @@ upiId.addEventListener('input', () => {
         const currentMonth = currentDate.getMonth() + 1;
         if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
           document.getElementById("expiryDate-error").textContent = "Expiry date cannot be in the past.\n";
+          b2status=false;
+
         }
         else{
           document.getElementById("expiryDate-error").textContent = "";
+          b2status=true;
 
         }
-  });
+        if(b1status && b2status && b3status && b4status){
+      document.getElementById("paymentsbutton").disabled = false;
+      document.getElementById("paymentsbutton").style.opacity = '100%';
+      document.getElementById("paymentsbutton").style.cursor = 'pointer';
+
+    }
+    else{
+      document.getElementById("paymentsbutton").disabled = true;
+      document.getElementById("paymentsbutton").style.opacity = '50%';
+      document.getElementById("paymentsbutton").style.cursor = 'no-drop';
+
+    }
   
+  });
+ 
+
   cvv.addEventListener('input' , ()=>{
     const cvvPattern = /^\d{3}$/; 
     if (!cvvPattern.test(cvv.value)) {
       document.getElementById("cvv-error").textContent =  "CVV must be exactly 3 digits.";
+      b3status=false;
+
     }
     else{
       document.getElementById("cvv-error").textContent =  "";
+      b3status=true;
 
     }
+    if(b1status && b2status && b3status && b4status){
+      document.getElementById("paymentsbutton").disabled = false;
+      document.getElementById("paymentsbutton").style.opacity = '100%';
+      document.getElementById("paymentsbutton").style.cursor = 'pointer';
 
-  });
-
-  name.addEventListener('input' , ()=>{
-    const namePattern = /^[a-zA-Z\s]+$/;
-    if ((!namePattern.test(name.value)) || cvv.value.trim() === "") {
-      document.getElementById("name-error").textContent =  "Name on the card must only contain letters and spaces";
     }
     else{
-      document.getElementById("name-error").textContent =  "";
+      document.getElementById("paymentsbutton").disabled = true;
+      document.getElementById("paymentsbutton").style.opacity = '50%';
+      document.getElementById("paymentsbutton").style.cursor = 'no-drop';
+
+    }
+
+  });
+
+  username.addEventListener('input' , ()=>{
+    const namePattern = /^[a-zA-Z\s]+$/;
+    if ((!namePattern.test(username.value)) || username.value.trim() === "") {
+      document.getElementById("name-error").textContent =  "Name on the card must only contain letters and spaces";
+      b4status=false;
+
+    }
+    else{
+      document.getElementById("name-error").textContent =  "";   
+      b4status=true;
+
+    }
+
+    if(b1status && b2status && b3status && b4status){
+      document.getElementById("paymentsbutton").disabled = false;
+      document.getElementById("paymentsbutton").style.opacity = '100%';
+      document.getElementById("paymentsbutton").style.cursor = 'pointer';
+
+    }
+    else{
+      document.getElementById("paymentsbutton").disabled = true;
+      document.getElementById("paymentsbutton").style.opacity = '50%';
+      document.getElementById("paymentsbutton").style.cursor = 'no-drop';
+
     }
   });
+
+  function waitPlease() {
+    
+    document.getElementById("paymentprocessModal").style.display = "block";
+
+    processPayment();
+}
 
 </script>
 

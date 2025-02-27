@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
+    <title>Recharge</title>
 </head>
 
 <style>
@@ -24,6 +25,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #006666;
+    position: fixed;
     padding: 0.5rem 1rem;
     width: 100%;
 }
@@ -64,7 +66,8 @@ body {
 
 .main-container {
     display: flex;
-    margin: 1rem;
+    margin-top: 0px;
+    padding-top: 60px;
 }
 
 .sidebar {
@@ -196,47 +199,6 @@ body {
     background-color: #005f5f;
 }
 
-.collapsible {
-    margin-bottom: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid #ddd;
-}
-
-.collapsible input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.collapsible-label {
-    display: block;
-    padding: 0.5rem 0.5rem;
-    background-color: #007c7c;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.collapsible-label:hover {
-    background-color: #005f5f;
-}
-
-.collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    background-color: #fff;
-    padding: 0 1rem;
-}
-
-.collapsible input[type="checkbox"]:checked ~ .collapsible-content {
-    max-height: 3000px;
-    padding: 1rem;
-}
-
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -308,6 +270,10 @@ body {
     margin: 0 auto;
   }
 
+  .tab-content {
+            padding: 20px;
+        }
+
   .ott-name {
     font-size: 12px;
     color: #4b5563;
@@ -323,15 +289,52 @@ body {
     height: 50px;
 }
 
+
 .footer p {
     padding-top: 20px;
 }
+
+.tab-buttons {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-buttons button {
+            background: #ffffff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            padding: 12px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+
+            transition: all 0.3s ease-in-out;
+        }
+
+        .tab-buttons button:hover {
+            background: #f0f0f0;
+            border-color: #bbb;
+        }
+
+        .tab-buttons button.active {
+            background: #187f76;
+            color: white;
+            border-color: #187f76;
+        }
+
+        .validityId{
+  font-weight: 600;
+}
+
+
 
 </style>
 <body>
     <header class="header">
         <div class="header-left">
-          <img src="/Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+          <img src="../Images/logo2-removebg-preview.png" alt="Logo" height="20" class="logo">
         </div>
         <nav class="header-nav" style="padding-right: 50px; padding-top: 2px;">
           <ul>
@@ -341,10 +344,10 @@ body {
             <li><a href="" id="support">Support</a></li>
 
             <div>
-             <img style="cursor:pointer; margin-top: 10px;" src="/Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
+             <img style="cursor:pointer; margin-top: 10px;" src="../Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
              <div id="dropdownMenu" class="dropdown-menu">
               <a href="" id="account">My Account</a>
-              <a href="" onclick="logout()">Logout</a>
+              <a href="" onclick="logout(this)">Logout</a>
           </div>
         </div>
           </ul>
@@ -374,20 +377,27 @@ body {
         </aside>
     
         <section class="content" id="1">
-          <h2 style="padding-bottom: 25px;">Popular Plans</h2>
+
+            <h2 style="padding-bottom: 25px;">Popular Plans</h2>
+
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="openTab(event, 'recommended')">Recommended</button>
+                <button class="tab-button" onclick="openTab(event, 'trending')">Top Trending True 5G Unlimited Plans</button>
+                <button class="tab-button" onclick="openTab(event, '2.5gbplans')">2.5 GB/Day Plans</button>
+                <button class="tab-button" onclick="openTab(event, '2gbplans')">2 GB/Day Plans</button>
+                <button class="tab-button" onclick="openTab(event, '1gbplans')">1 GB/Day Plans</button>
+            </div>
+
           
-          <div class="collapsible">
-            <input type="checkbox" id="toggle-recommended" checked>
-            <label for="toggle-recommended" class="collapsible-label">
-              Recommended (2)
-            </label>
-            <div class="collapsible-content">
+          <div id="recommended" class="tab-content">
+           
+           
               <div class="plans-grid">
                 <div class="plan-card">
                   <div class="plan-price">₹599</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>2</b> GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -411,8 +421,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹799</div>
                   <div class="plan-details">
-                    <p>Validity: 56 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 56 Days</p>
+                    <p><b> 2.5</b> GB/Day</p>
                   </div>
 
                   <div class="ott-section">
@@ -434,22 +444,71 @@ body {
                 </div>
                   <button class="buy-btn" onclick="payment()">Buy</button>
                 </div>
+
+                
+                <div class="plan-card">
+                    <div class="plan-price">₹3599</div>
+                    <div class="plan-details">
+                      <p>Validity:<span class="validityId"> 305 Days</p>
+                      <p><b>2.5 </b>GB/Day</p>
+                    </div>
+                    <div class="ott-section">
+                      <div class="ott-title">Included OTT Subscriptions</div>
+                      <div class="ott-plans">
+                          <div class="ott-platform">
+                              <div class="ott-icon">🎬</div>
+                              <div class="ott-name">Netflix</div>
+                          </div>
+                          <div class="ott-platform">
+                              <div class="ott-icon">📺</div>
+                              <div class="ott-name">Disney+</div>
+                          </div>
+                          <div class="ott-platform">
+                              <div class="ott-icon">🎥</div>
+                              <div class="ott-name">Prime</div>
+                          </div>
+                      </div>
+                  </div>
+                    <button class="buy-btn" onclick="payment()">Buy</button>
+                  </div>
+
+                  <div class="plan-card">
+                    <div class="plan-price">₹399</div>
+                    <div class="plan-details">
+                      <p>Validity:<span class="validityId"> 36 Days</p>
+                      <p><b>2 </b> GB/Day</p>
+                    </div>
+                    <div class="ott-section">
+                      <div class="ott-title">Included OTT Subscriptions</div>
+                      <div class="ott-plans">
+                          <div class="ott-platform">
+                              <div class="ott-icon">🎬</div>
+                              <div class="ott-name">Netflix</div>
+                          </div>
+                          <div class="ott-platform">
+                              <div class="ott-icon">📺</div>
+                              <div class="ott-name">Disney+</div>
+                          </div>
+                          
+                      </div>
+                  </div>
+                    <button class="buy-btn" onclick="payment()">Buy</button>
+                  </div>
+
+                  
               </div>
+              
             </div>
-          </div>
     
-          <div class="collapsible">
-            <input type="checkbox" id="toggle-top-trending" />
-            <label for="toggle-top-trending" class="collapsible-label">
-              Top Trending True 5G Unlimited Plans (10)
-            </label>
-            <div class="collapsible-content">
+          <div id="trending" class="tab-content">
+           
+           
               <div class="plans-grid">
                 <div class="plan-card">
                   <div class="plan-price">₹3599</div>
                   <div class="plan-details">
-                    <p>Validity: 365 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 365 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -470,8 +529,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹2025</div>
                   <div class="plan-details">
-                    <p>Validity: 200 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 200 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -491,8 +550,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹999</div>
                   <div class="plan-details">
-                    <p>Validity: 56 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 56 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -513,8 +572,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹899</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -538,8 +597,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹2899</div>
                   <div class="plan-details">
-                    <p>Validity: 180 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 180 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
                       <div class="ott-plans">
@@ -563,8 +622,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹9999</div>
                   <div class="plan-details">
-                    <p>Validity: 365 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 365 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -581,8 +640,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹3999</div>
                   <div class="plan-details">
-                    <p>Validity: 305 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 305 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -603,8 +662,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹3599</div>
                   <div class="plan-details">
-                    <p>Validity: 305 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 305 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -628,8 +687,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹2025</div>
                   <div class="plan-details">
-                    <p>Validity: 200 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 200 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -650,8 +709,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹399</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -671,18 +730,16 @@ body {
                 </div>
               </div>
             </div>
-          </div>
     
-          <div class="collapsible">
-            <input type="checkbox" id="toggle-2_5gb" />
-            <label for="toggle-2_5gb" class="collapsible-label">2.5 GB/Day Plans (4)</label>
-            <div class="collapsible-content">
+          <div  id="2.5gbplans" class="tab-content">
+          
+           
               <div class="plans-grid">
                 <div class="plan-card">
                   <div class="plan-price">₹199</div>
                   <div class="plan-details">
-                    <p>Validity: 14 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 14 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -706,8 +763,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹399</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2.5 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>2.5 </b>GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -728,8 +785,8 @@ body {
                 <div class="plan-card">
                     <div class="plan-price">₹499</div>
                     <div class="plan-details">
-                      <p>Validity: 36 Days</p>
-                      <p>2.5 GB/Day</p>
+                      <p>Validity:<span class="validityId"> 36 Days</p>
+                      <p><b>2.5 </b>GB/Day</p>
                     </div>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
@@ -746,8 +803,8 @@ body {
                   <div class="plan-card">
                     <div class="plan-price">₹738</div>
                     <div class="plan-details">
-                      <p>Validity: 48 Days</p>
-                      <p>2.5 GB/Day</p>
+                      <p>Validity:<span class="validityId"> 48 Days</p>
+                      <p><b>2.5 </b>GB/Day</p>
                     </div>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
@@ -770,18 +827,16 @@ body {
                   </div>
               </div>
             </div>
-          </div>
     
-          <div class="collapsible">
-            <input type="checkbox" id="toggle-2gb" />
-            <label for="toggle-2gb" class="collapsible-label">2 GB/Day Plans (5)</label>
-            <div class="collapsible-content">
+          <div id="2gbplans" class="tab-content">
+           
+           
               <div class="plans-grid">
                 <div class="plan-card">
                   <div class="plan-price">₹149</div>
                   <div class="plan-details">
-                    <p>Validity: 14 Days</p>
-                    <p>2 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 14 Days</p>
+                    <p><b>2 </b> GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -802,8 +857,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹249</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>2 </b> GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -827,8 +882,8 @@ body {
                 <div class="plan-card">
                     <div class="plan-price">₹399</div>
                     <div class="plan-details">
-                      <p>Validity: 36 Days</p>
-                      <p>2 GB/Day</p>
+                      <p>Validity:<span class="validityId"> 36 Days</p>
+                      <p><b>2 </b> GB/Day</p>
                     </div>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
@@ -849,8 +904,8 @@ body {
                   <div class="plan-card">
                     <div class="plan-price">₹529</div>
                     <div class="plan-details">
-                      <p>Validity: 48 Days</p>
-                      <p>2 GB/Day</p>
+                      <p>Validity:<span class="validityId"> 48 Days</p>
+                      <p><b>2 </b> GB/Day</p>
                     </div>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
@@ -874,8 +929,8 @@ body {
                   <div class="plan-card">
                     <div class="plan-price">₹799</div>
                     <div class="plan-details">
-                      <p>Validity: 78 Days</p>
-                      <p>2 GB/Day</p>
+                      <p>Validity:<span class="validityId"> 78 Days</p>
+                      <p><b>2 </b> GB/Day</p>
                     </div>
                     <div class="ott-section">
                       <div class="ott-title">Included OTT Subscriptions</div>
@@ -891,18 +946,16 @@ body {
                   </div>
               </div>
             </div>
-          </div>
     
-          <div class="collapsible">
-            <input type="checkbox" id="toggle-1gb" />
-            <label for="toggle-1gb" class="collapsible-label">1 GB/Day Plans (2)</label>
-            <div class="collapsible-content">
+          <div id="1gbplans" class="tab-content">
+          
+           
               <div class="plans-grid">
                 <div class="plan-card">
                   <div class="plan-price">₹99</div>
                   <div class="plan-details">
-                    <p>Validity: 14 Days</p>
-                    <p>1 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 14 Days</p>
+                    <p><b>1 </b> GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -926,8 +979,8 @@ body {
                 <div class="plan-card">
                   <div class="plan-price">₹149</div>
                   <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>1 GB/Day</p>
+                    <p>Validity:<span class="validityId"> 28 Days</p>
+                    <p><b>1 </b> GB/Day</p>
                   </div>
                   <div class="ott-section">
                     <div class="ott-title">Included OTT Subscriptions</div>
@@ -950,7 +1003,6 @@ body {
                 </div>
               </div>
             </div>
-          </div>
         </section>
         
 
@@ -962,8 +1014,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹3999</div>
               <div class="plan-details">
-                <p>Validity: 365 Days</p>
-                <p>2.5 GB/Day</p>
+                <p>Validity:<span class="validityId"> 365 Days</p>
+                <p><b>2.5 </b>GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -987,8 +1039,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹2025</div>
               <div class="plan-details">
-                <p>Validity: 200 Days</p>
-                <p>2.5 GB/Day</p>
+                <p>Validity:<span class="validityId"> 200 Days</p>
+                <p><b>2.5 </b>GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1012,8 +1064,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹3599</div>
               <div class="plan-details">
-                <p>Validity: 365 Days</p>
-                <p>2.5 GB/Day</p>
+                <p>Validity:<span class="validityId"> 365 Days</p>
+                <p><b>2.5 </b>GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1038,8 +1090,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹1049</div>
               <div class="plan-details">
-                <p>Validity: 84 Days</p>
-                <p>2 GB/Day</p>
+                <p>Validity:<span class="validityId"> 84 Days</p>
+                <p><b>2 </b> GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1064,8 +1116,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹1029</div>
               <div class="plan-details">
-                <p>Validity: 84 Days</p>
-                <p>2 GB/Day</p>
+                <p>Validity:<span class="validityId"> 84 Days</p>
+                <p><b>2 </b> GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1091,8 +1143,8 @@ body {
           <div class="plan-card">
             <div class="plan-price">₹449</div>
             <div class="plan-details">
-              <p>Validity: 28 Days</p>
-              <p>3 GB/Day</p>
+              <p>Validity:<span class="validityId"> 28 Days</p>
+              <p><b>3 </b> GB/Day</p>
             </div>
             <div class="ott-section">
               <div class="ott-title">Included OTT Subscriptions</div>
@@ -1117,8 +1169,8 @@ body {
           <div class="plan-card">
             <div class="plan-price">₹198</div>
             <div class="plan-details">
-              <p>Validity: 14 Days</p>
-              <p>2 GB/Day</p>
+              <p>Validity:<span class="validityId"> 14 Days</p>
+              <p><b>2 </b> GB/Day</p>
             </div>
             <div class="ott-section">
               <div class="ott-title">Included OTT Subscriptions</div>
@@ -1149,8 +1201,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹19</div>
               <div class="plan-details">
-                <p>Validity: 1 Day</p>
-                <p>1 GB</p>
+                <p>Validity:<span class="validityId"> 1 Day</p>
+                <p><b>1 </b> GB</p>
                 <div class="ott-section">
                   <div class="ott-title">Included OTT Subscriptions</div>
                   <div class="ott-plans">
@@ -1174,8 +1226,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹175</div>
               <div class="plan-details">
-                <p>Validity: 28 Days</p>
-                <p>10 GB</p>
+                <p>Validity:<span class="validityId"> 28 Days</p>
+                <p><b>1 </b> GB</p>
                 <div class="ott-section">
                   <div class="ott-title">Included OTT Subscriptions</div>
                   <div class="ott-plans">
@@ -1197,8 +1249,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹11</div>
               <div class="plan-details">
-                <p>Validity: 1 hour</p>
-                <p>1 GB/Day</p>
+                <p>Validity:<span class="validityId"> 1 hour</p>
+                <p><b>1 </b> GB/Day</p>
                 <div class="ott-section">
                   <div class="ott-title">Included OTT Subscriptions</div>
                   <div class="ott-plans">
@@ -1216,8 +1268,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹219</div>
               <div class="plan-details">
-                <p>Validity: 30 Days</p>
-                <p>30 GB</p>
+                <p>Validity:<span class="validityId"> 30 Days</p>
+                <p><b>3 </b> GB</p>
               </div>
               
               <div class="ott-section">
@@ -1244,8 +1296,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹289</div>
               <div class="plan-details">
-                <p>Validity: 30 Days</p>
-                <p>40 GB</p>
+                <p>Validity:<span class="validityId"> 30 Days</p>
+                <p><b>40</b> GB</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1263,8 +1315,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹359</div>
               <div class="plan-details">
-                <p>Validity: 30 Days</p>
-                <p>50 GB</p>
+                <p>Validity:<span class="validityId"> 30 Days</p>
+                <p><b>50</b> GB</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1295,24 +1347,24 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹1000</div>
               <div class="plan-details">
-                <p>Validity: Unlimited</p>
-                <p>₹844.46</p>
+                <p>Validity:<span class="validityId"> Unlimited</p>
+                <p><b>₹844.46</b></p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
             </div>
             <div class="plan-card">
               <div class="plan-price">₹500</div>
               <div class="plan-details">
-                <p>Validity: Unlimited</p>
-                <p>₹420.73</p>
+                <p>Validity:<span class="validityId"> Unlimited</p>
+                <p><b>₹420.73</b></p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
             </div>
             <div class="plan-card">
               <div class="plan-price">₹100</div>
               <div class="plan-details">
-                <p>Validity: Unlimited</p>
-                <p>₹81.75</p>
+                <p>Validity:<span class="validityId"> Unlimited</p>
+                <p><b>₹81.75</b></p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
             </div>
@@ -1320,8 +1372,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹50</div>
               <div class="plan-details">
-                <p>Validity: Unlimited</p>
-                <p>₹39.37</p>
+                <p>Validity:<span class="validityId"> Unlimited</p>
+                <p><b>₹39.37</b></p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
             </div>
@@ -1335,7 +1387,7 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹1748</div>
               <div class="plan-details">
-                <p>Validity: 336 Days</p>
+                <p>Validity:<span class="validityId"> 336 Days</p>
                 <p>Unlimited Voice</p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
@@ -1343,7 +1395,7 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹448</div>
               <div class="plan-details">
-                <p>Validity: 84 Days</p>
+                <p>Validity:<span class="validityId">84 Days</p>
                 <p>Unlimited Voice</p>
               </div>
               <button class="buy-btn" onclick="payment()">Buy</button>
@@ -1357,8 +1409,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹3999</div>
               <div class="plan-details">
-                <p>Validity: 365 Days</p>
-                <p>2.5 GB/Day</p>
+                <p>Validity:<span class="validityId"> 365 Days</p>
+                <p><b>2.5 </b>GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1382,8 +1434,8 @@ body {
             <div class="plan-card">
               <div class="plan-price">₹3599</div>
               <div class="plan-details">
-                <p>Validity: 365 Days</p>
-                <p>2.5 GB/Day</p>
+                <p>Validity:<span class="validityId"> 365 Days</p>
+                <p><b>2.5 </b>GB/Day</p>
               </div>
               <div class="ott-section">
                 <div class="ott-title">Included OTT Subscriptions</div>
@@ -1416,14 +1468,32 @@ body {
 </body>
 
 <script>
+    tabcontent = document.getElementsByClassName("tab-content");
+
+     for (i = 1; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+     }
 
    document.getElementById("box").classList.add("active")
 
-   document.getElementById(2).style.display = 'none'
-   document.getElementById(3).style.display = 'none'
-   document.getElementById(4).style.display = 'none'
-   document.getElementById(5).style.display = 'none'
-   document.getElementById(6).style.display = 'none'
+   for (i = 2; i <=6; i++) {
+    document.getElementById(i).style.display = 'none'
+      
+    }
+
+   function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
    document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -1475,7 +1545,7 @@ body {
     this.href = "profile.html";
 });
 
-const checkboxes = document.querySelectorAll(".collapsible input");
+const checkboxes = document.querySelectorAll(".tab-content input");
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", function () {
@@ -1505,10 +1575,11 @@ function toggleDropdown() {
   }  
 }
 
-function logout() {
+function logout(clicked) {
     var confirmLogout = confirm("Are you sure you want to log out?");
     if (confirmLogout) {
-        window.location.href="page1.html";
+      console.log("vndgjd");
+        clicked.href="page1.html";
     }
 }
 
