@@ -1,884 +1,345 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../Images/favicon.jpg">
-    <title>FiveGPlans - Enhanced</title>
-    <style>
-        /* ==========================================================================
-           1. CSS Reset - Meyer Reset (modified)
-           ========================================================================== */
-
-        html,
-        body,
-        div,
-        span,
-        applet,
-        object,
-        iframe,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        blockquote,
-        pre,
-        a,
-        abbr,
-        acronym,
-        address,
-        big,
-        cite,
-        code,
-        del,
-        dfn,
-        em,
-        img,
-        ins,
-        kbd,
-        q,
-        s,
-        samp,
-        small,
-        strike,
-        strong,
-        sub,
-        sup,
-        tt,
-        var,
-        b,
-        u,
-        i,
-        center,
-        dl,
-        dt,
-        dd,
-        ol,
-        ul,
-        li,
-        fieldset,
-        form,
-        label,
-        legend,
-        table,
-        caption,
-        tbody,
-        tfoot,
-        thead,
-        tr,
-        th,
-        td,
-        article,
-        aside,
-        canvas,
-        details,
-        embed,
-        figure,
-        figcaption,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        output,
-        ruby,
-        section,
-        summary,
-        time,
-        mark,
-        audio,
-        video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-
-        /* HTML5 display-role reset for older browsers */
-        article,
-        aside,
-        details,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        section {
-            display: block;
-        }
-
-        body {
-            line-height: 1;
-        }
-
-        ol,
-        ul {
-            list-style: none;
-        }
-
-        blockquote,
-        q {
-            quotes: none;
-        }
-
-        blockquote:before,
-        blockquote:after,
-        q:before,
-        q:after {
-            content: '';
-            content: none;
-        }
-
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        /* ==========================================================================
-           2. CSS Variables (Custom Properties)
-           ========================================================================== */
-
-        :root {
-            --primary-color: #006666;
-            --secondary-color: #007c7c;
-            --text-color: #333;
-            --background-color: #f2f2f2;
-            --white: #fff;
-            --plan-card-background: #bff0f0;
-
-            /* Fonts */
-            --font-family: 'Arial', sans-serif;
-            --heading-font-weight: 700;
-
-            /* Spacing */
-            --spacing-unit: 1rem;
-            --border-radius: 6px;
-
-            /* Transitions */
-            --transition-duration: 0.3s;
-            --transition-easing: ease;
-        }
-
-        /* ==========================================================================
-           3. General Styles
-           ========================================================================== */
-
-        body {
-            text-align: center;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: var(--font-family);
-            line-height: 1.6;
-            /* Improved readability */
-        }
-
-        .main-container {
-            padding: 0 var(--spacing-unit);
-            /* Using CSS variable for consistent spacing */
-        }
-
-        /* ==========================================================================
-           4. Header Styles
-           ========================================================================== */
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: var(--primary-color);
-            padding: var(--spacing-unit);
-            width: 100%;
-        }
-
-        .header__logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            height: 40px;
-            margin-right: var(--spacing-unit);
-        }
-
-        .header__navigation ul {
-            display: flex;
-            gap: calc(var(--spacing-unit) * 2);
-            /* Increased gap using calc() */
-            list-style: none;
-        }
-
-        .header__navigation li {
-            padding-top: 5px;
-        }
-
-        .header__navigation a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: var(--heading-font-weight);
-            transition: background-color var(--transition-duration) var(--transition-easing), color var(--transition-duration) var(--transition-easing);
-            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
-            border-radius: var(--border-radius);
-            display: block;
-            /* Make the entire link area clickable */
-        }
-
-        .header__navigation a:hover {
-            background-color: rgba(183, 242, 240, 0.5);
-            color: var(--primary-color);
-        }
-
-        .header__navigation a[aria-current="page"] {
-            text-decoration: underline;
-            /* Indicates the current page */
-        }
-
-        /* ==========================================================================
-           5. Carousel Styles
-           ========================================================================== */
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: calc(var(--spacing-unit) * 2) auto;
-            /* Added top/bottom margin */
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            /* Subtle shadow */
-        }
-
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: 300%;
-            /* Adjust based on the number of slides */
-        }
-
-        .carousel-slide {
-            width: 33.333%;
-            flex-shrink: 0;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carousel-container button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: var(--white);
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 24px;
-            z-index: 10;
-            border-radius: 50%;
-        }
-
-        .carousel-container button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-
-        /* ==========================================================================
-           6. Content Styles
-           ========================================================================== */
-
-        .content {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            padding: calc(var(--spacing-unit) * 2);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            max-width: 1200px;
-            /* Limit content width */
-        }
-
-        .section-heading {
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
-            text-align: left;
-            /* Align headings to the left */
-        }
-
-        .section-heading h2 {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: calc(var(--spacing-unit) / 2);
-            font-weight: var(--heading-font-weight);
-        }
-
-        .section-heading span {
-            font-size: 1rem;
-            color: #777;
-        }
-
-        /* ==========================================================================
-           7. Plans Grid Styles
-           ========================================================================== */
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            /* More flexible sizing */
-            gap: calc(var(--spacing-unit) * 2);
-            margin-bottom: calc(var(--spacing-unit) * 2);
-        }
-
-        /* ==========================================================================
-           8. Plan Card Styles
-           ========================================================================== */
-
-        .plan-card {
-            background-color: var(--plan-card-background);
-            border-radius: var(--border-radius);
-            padding: calc(var(--spacing-unit) * 1.5);
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform var(--transition-duration) var(--transition-easing), box-shadow var(--transition-duration) var(--transition-easing);
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .plan-card__tag {
-            margin-bottom: var(--spacing-unit);
-        }
-
-        .plan-card__tag p {
-            color: var(--white);
-            font-style: italic;
-            background-color: rgb(11, 76, 85);
-            border-radius: 5px;
-            width: 60%;
-            /* Adjusted width */
-            margin: 0 auto;
-            padding: calc(var(--spacing-unit) / 2);
-            font-size: 0.9rem;
-        }
-
-        .plan-card__price {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            font-weight: var(--heading-font-weight);
-            margin-bottom: calc(var(--spacing-unit) / 2);
-        }
-
-        .plan-card__details {
-            list-style: none;
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
-        }
-
-        .plan-card__details li {
-            margin: calc(var(--spacing-unit) / 2) 0;
-            font-size: 1.2rem;
-        }
-
-        /* ==========================================================================
-           9. Buy Button Styles
-           ========================================================================== */
-
-        .buy-btn {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: var(--heading-font-weight);
-            width: 100%;
-            transition: background-color var(--transition-duration) var(--transition-easing);
-            font-size: 1.1rem;
-        }
-
-        .buy-btn:hover {
-            background-color: #005f5f;
-        }
-
-        /* ==========================================================================
-           10. OTT Section Styles
-           ========================================================================== */
-
-        .ott-section {
-            margin-top: calc(var(--spacing-unit) * 1.5);
-        }
-
-        .ott-title {
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: var(--spacing-unit);
-            text-align: left;
-            font-weight: var(--heading-font-weight);
-        }
-
-        .ott-plans {
-            display: flex;
-            justify-content: space-around;
-            gap: var(--spacing-unit);
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
-        }
-
-        .ott-platform {
-            padding: var(--spacing-unit);
-            border-radius: var(--border-radius);
-            background: #f3f4f6;
-            transition: all 0.2s ease;
-            width: 30%;
-            /* Adjust width for better spacing */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            /* subtle shadow for depth */
-        }
-
-        .ott-platform:hover {
-            background: #ddd;
-            transform: translateY(-2px);
-        }
-
-        .ott-icon {
-            width: 32px;
-            height: 32px;
-            margin: 0 auto;
-            display: block;
-        }
-
-        .ott-name {
-            font-size: 0.9rem;
-            color: #4b5563;
-            margin-top: calc(var(--spacing-unit) / 2);
-            font-weight: var(--heading-font-weight);
-        }
-
-        /* ==========================================================================
-           11. Footer Styles
-           ========================================================================== */
-
-        .footer {
-            text-align: center;
-            padding: var(--spacing-unit);
-            background-color: #005f5f;
-            color: var(--white);
-        }
-
-        .footer p {
-            margin: 0;
-        }
-
-        /* ==========================================================================
-           12. Responsive Design
-           ========================================================================== */
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .header__logo-container {
-                margin-bottom: var(--spacing-unit);
-            }
-
-            .header__navigation ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .content {
-                padding: calc(var(--spacing-unit) * 1.5);
-            }
-
-            .plans-grid {
-                grid-template-columns: 1fr;
-                /* Stack on smaller screens */
-            }
-
-            .ott-plans {
-                flex-direction: column;
-            }
-
-            .ott-platform {
-                width: 80%;
-                /* Make OTT platforms wider on smaller screens */
-                margin: 0 auto;
-            }
-
-            .carousel img {
-                height: 300px;
-                /* Adjust carousel height for smaller screens */
-            }
-        }
-    </style>
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
+    <title>Support</title>
 </head>
-
 <body>
+    <style>
+     * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+   body {
+    
+    text-align: center;
+    background-color: #bdeff7;
+    color: #333;
+  }
+  
+  .header {
+    
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-top: -90px;
+   
+  }
+  
+   .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .header-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .header-nav li {
+    margin: 0 1rem;
+    padding-top: 7px;
+  }
+  
+   .header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .header-nav ul li a:hover {
+  background-color: rgb(183, 242, 240);
+  color: #005f5f;
+  padding:5px 0px;
+  border-radius: 3px;
+}
 
-    <!-- ==========================================================================
-           Header Section
-           ========================================================================== -->
+  .faq-container {
+            background-color: #ffffff;
+            max-width: 800px;
+            margin: 90px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-container h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            color: #127a69;
+        }
+
+        .faq-answer {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+            padding-left: 20px;
+            padding-top: 5px;
+            line-height: 1.5;
+            background-color: #b6eaea;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }        
+        .faq-container p {
+            
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+        button{
+            background-color: #067171;
+            padding: 20px; 
+            border-radius: 5px; 
+            border-style: none; 
+            font-size: 18px; 
+            color: white; 
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #005f5f;
+        }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 500px;
+    margin: 15% auto;
+    text-align: center;
+    border-radius: 8px;
+}
+.modal-content  p{
+    padding: 30px;
+}
+.close-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+   .footer {
+    text-align: center;
+    margin: 1rem;
+    color: #fefefe;
+    background-color: #005f5f;
+    height: 50px;
+    width: 100%;
+  }
+  
+  .footer p {
+    padding-top: 20px;
+  }
+    </style>
+
     <header class="header">
-        <div class="header__logo-container">
-            <a href="/">
-                <img src="../Images/logo2-removebg-preview.png" alt="FiveGPlans Logo" class="logo">
-            </a>
+        <div class="header-left">
+          <img src="/Images/logo2-removebg-preview.png" alt="Logo" height="20" class="logo">
         </div>
-        <nav class="header__navigation">
-            <ul>
-                <li><a href="page1.html">Home</a></li>
-                <li><a href="#" aria-current="page">True 5G</a></li>
-                <li><a href="#plansid">Plans</a></li>
-                <li><a href="#supportid">Support</a></li>
-                <li>
-                    <a href="profile.html">
-                        <img src="../Images/user.png" alt="User Profile" height="25">
-                    </a>
-                </li>
-            </ul>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="page1.html">Home</a></li>
+            <li><a href="" id="true5G">True 5G</a></li>
+            <li><a href="" id="plans">Plans</a></li>
+            <li><a href="" style="text-decoration: underline;">Support</a></li>
+            <div id="classImage">
+                <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
+            </div>
+        </ul>
+       
         </nav>
-    </header>
+      </header>
 
-    <!-- ==========================================================================
-           Carousel Section
-           ========================================================================== -->
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="carousel-slide">
-                <img src="../Images/g51.jpg" alt="5G Plan Slide 1">
+      <div class="faq-container">
+        <h2>Frequently Asked Questions (FAQ)</h2><br><br>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(0)">
+                How can I recharge my prepaid mobile online?            
             </div>
-            <div class="carousel-slide">
-                <img src="../Images/g52.jpg" alt="5G Plan Slide 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="../Images/g53.jpg" alt="5G Plan Slide 3">
+            <div class="faq-answer" id="answer0">
+                You can recharge your prepaid mobile by visiting a recharge website or using a mobile app. Simply enter your mobile number, select your operator, choose a plan, and proceed with payment.
             </div>
         </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-    </div>
 
-    <!-- ==========================================================================
-           Main Content Section
-           ========================================================================== -->
-    <div class="main-container">
-        <main class="content">
-            <section class="section-heading" id="plansid">
-                <h2>Explore Our 5G Plans</h2>
-                <span>Find the perfect plan for your needs</span>
-            </section>
-
-            <!-- ==========================================================================
-                   Plans Grid
-                   ========================================================================== -->
-            <div class="plans-grid">
-
-                <!-- Plan Card 1 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹599</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 28 Days</li>
-                        <li>2 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 2 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹799</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 56 Days</li>
-                        <li>2.5 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 3 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹599</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 28 Days</li>
-                        <li>2 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 4 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹799</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 56 Days</li>
-                        <li>2.5 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 5 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹599</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 28 Days</li>
-                        <li>2 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 6 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹799</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 56 Days</li>
-                        <li>2.5 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 7 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹599</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 28 Days</li>
-                        <li>2 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
-                <!-- Plan Card 8 -->
-                <article class="plan-card">
-                    <div class="plan-card__tag">
-                        <p>True 5G</p>
-                    </div>
-                    <div class="plan-card__price">₹799</div>
-                    <ul class="plan-card__details">
-                        <li>Validity: 56 Days</li>
-                        <li>2.5 GB/Day</li>
-                    </ul>
-                    <section class="ott-section">
-                        <h3 class="ott-title">Included OTT Subscriptions</h3>
-                        <div class="ott-plans">
-                            <div class="ott-platform">
-                                <img src="netflix-logo.png" alt="Netflix" class="ott-icon">
-                                <div class="ott-name">Netflix</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="disney-plus-logo.png" alt="Disney+" class="ott-icon">
-                                <div class="ott-name">Disney+</div>
-                            </div>
-                            <div class="ott-platform">
-                                <img src="prime-video-logo.png" alt="Prime Video" class="ott-icon">
-                                <div class="ott-name">Prime Video</div>
-                            </div>
-                        </div>
-                    </section>
-                    <button class="buy-btn" onclick="call()">Buy Now</button>
-                </article>
-
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(1)">
+                What payment methods are accepted for prepaid recharges?            
             </div>
-        </main>
+            <div class="faq-answer" id="answer1">
+                Most platforms accept credit/debit cards, UPI, net banking, wallets, and sometimes even cash on delivery in select cases.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(2)">
+                How do I check my prepaid balance and validity?
+            </div>
+            <div class="faq-answer" id="answer2">
+                You can check your balance and validity by dialing USSD codes provided by your operator or using the telecom provider’s official app.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(3)">
+                What should I do if my recharge fails but the amount is deducted?
+            </div>
+            <div class="faq-answer" id="answer3">
+                If your recharge fails but money is deducted, the amount is usually refunded within 2-3 working days. If not, contact customer support with your transaction ID.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(4)">
+                Can I recharge for someone else?
+            </div>
+            <div class="faq-answer" id="answer4">
+                Yes, you can recharge for any number by entering their mobile number and choosing the appropriate plan.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(5)">
+                Are there any offers or cashback available on prepaid recharges?
+            </div>
+            <div class="faq-answer" id="answer5">
+                Yes, many platforms offer cashback, discounts, and promo codes on prepaid recharges. Check the offers section of the recharge platform.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(6)">
+                Can I recharge my prepaid number in advance?
+            </div>
+            <div class="faq-answer" id="answer6">
+                Yes, most operators allow queueing of recharges, meaning your next plan will be activated once the current plan expires.
+            </div>
+        </div>
     </div>
 
-    <!-- ==========================================================================
-           Footer Section
-           ========================================================================== -->
-    <footer class="footer">
-        <p>&copy; 2025 FiveGPlans. All rights reserved.</p>
-    </footer>
+    <button id="openModalBtn">Call us @ +91 9089877887</button>
 
-    <script>
-        // ==========================================================================
-        // Carousel JavaScript
-        // ==========================================================================
-        let slideIndex = 0;
-        const slides = document.querySelector('.carousel').children;
-        const totalSlides = slides.length;
+    <div id="simpleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Thank you for reaching out to us!</h2>
+            <p>Our team will call you shortly</p>
+        </div>
+    </div>
 
-        function moveSlide(direction) {
-            slideIndex += direction;
-
-            if (slideIndex < 0) {
-                slideIndex = totalSlides - 1;
-            } else if (slideIndex >= totalSlides) {
-                slideIndex = 0;
-            }
-
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            const translateX = -slideIndex * 100 / 3; // Divide by 3 since there are 3 slides
-            document.querySelector('.carousel').style.transform = `translateX(${translateX}%)`;
-        }
-
-        // Optional: Auto-advance the carousel
-        setInterval(() => {
-            moveSlide(1);
-        }, 5000); // Change slide every 5 seconds
-
-        // ==========================================================================
-        // Buy Button JavaScript (Placeholder)
-        // ==========================================================================
-        function call() {
-            alert("Function is calling - Replace with actual purchase logic");
-        }
-    </script>
+      <footer class="footer">
+        <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
+      </footer>
 
 </body>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    var pageStatus = params.get('status') === 'true';
+
+    if(pageStatus === false){
+        document.getElementById("classImage").style.display='none';
+        document.getElementById("true5G").href="fivegplans.html?status=false";
+        document.getElementById("plans").href="page2.html?status=false";
+    }
+    else{
+        document.getElementById("true5G").href="fivegplans.html?status=true";
+        document.getElementById("plans").href="page2.html?status=true";
+    }
+
+});
+
+    function toggleAnswer(index) {
+    const answer = document.getElementById("answer" + index);
+
+    const answerBlocks = document.getElementsByClassName("faq-answer");
+
+    for (let i = 0; i < answerBlocks.length; i++) {
+        if (answerBlocks[i] === answer && answer.style.display === "none") {
+            answer.style.display = "block"; 
+        } else {
+            answerBlocks[i].style.display = "none";
+        }
+    }
+}
+
+
+const modal = document.getElementById("simpleModal");
+const openModalBtn = document.getElementById("openModalBtn");
+const closeModalBtn = document.querySelector(".close-btn");
+
+openModalBtn.onclick = () => {
+    const params = new URLSearchParams(window.location.search);
+    var pageStatus = params.get('status') === 'true';
+
+    if(pageStatus){
+        modal.style.display = "block";
+    }
+    else{
+        window.location.href = "page1.html"
+    }
+    
+};
+
+closeModalBtn.onclick = () => {
+    modal.style.display = "none";
+};
+
+
+</script>
 
 </html>
