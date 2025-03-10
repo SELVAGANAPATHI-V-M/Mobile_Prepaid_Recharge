@@ -5,564 +5,581 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>FiveGPlans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <style>
-     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-   body {
-    text-align: center;
-    background-color: #f2f2f2;
-    color: #333;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #006666;
-    padding: 0.5rem 1rem;
-    width: 100%;
-  }
-  
-   .header-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 40px;
-    margin-right: 1rem;
-  }
-  
-  .header-nav ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-  }
-  
-  .header-nav li {
-    margin: 0 1rem;
-  }
-  
-   .header-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-   .header-nav ul li a:hover {
-  background-color: rgb(183, 242, 240);
-  color: #005f5f;
-  padding:5px 0px;
-  border-radius: 3px;
-}
+        body {
+            text-align: center;
+            background-color: #f2f2f2;
+            color: #333;
+        }
 
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-}
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #006666;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            position: relative;
+        }
 
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 300%;
-}
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
 
-.carousel-slide {
-  width: 33.333%; 
-  flex-shrink: 0; 
-}
+        .logo {
+            height: 40px;
+            margin-right: 1rem;
+        }
 
-.carousel img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover; 
-  display: block; 
-}
+        .header-nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
 
-.carousel-container button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 24px;
-  z-index: 10; 
-  border-radius: 50%;
-}
-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+        .header-nav li {
+            margin: 0 1rem;
+        }
 
-.prev {
-  left: 10px;
-}
+        .header-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-.next {
-  right: 10px;
-}
+        .header-nav ul li a:hover {
+            background-color: rgb(183, 242, 240);
+            color: #005f5f;
+            padding: 5px 0px;
+            border-radius: 3px;
+        }
 
-.content {
-    flex: 1;
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 1rem;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    margin: 0px 200px;
-  }
-  
-  .section-heading {
-    margin-bottom: 1rem;
-  }
-  
-   .section-heading h2 {
-    font-size: 1.2rem;
-    color: #007c7c;
-  }
-  
-   .section-heading span {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap:2rem;
-    margin-bottom: 1.5rem;
-  
-  }
-  
-   .plan-card {
-    background-color: #bff0f0; 
-    border-radius: 6px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 0 3px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .plan-card:hover{
-  transform: translateY(-10px);
-}
-  
-  .plan-price {
-    font-size: 1.8rem;
-    color: #007c7c;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-   .plan-details p {
-    margin: 0.2rem 0;
-    font-size: 1.1rem;
-  }
-.header-nav li{
-  padding-top: 5px;
-}
-  .buy-btn {
-    margin-top: 1rem;
-    background-color: #007c7c;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-  }
-  
-   .buy-btn:hover {
-    background-color: #005f5f;
-  }
+        .hamburger-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+            margin-left: 200px;
+        }
 
-  .ott-section {
-    margin: 20px 0;
-  }
+        .hamburger-icon span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
 
-  .ott-title {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 12px;
-    text-align: left;
-    font-weight: bold;
-  }
+        .carousel-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-  .ott-plans {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 20px;
-  }
+        .carousel img {
+            height: 400px;
+            object-fit: cover;
+        }
 
-  .ott-platform {
-    padding: 8px;
-    border-radius: 8px;
-    background: #f3f4f6;
-    transition: all 0.2s ease;
-  }
+        .plan-price {
+            color: #007c7c;
+        }
 
-  .ott-platform:hover {
-    background: #31b4ba;
-    transform: translateY(-2px);
-  }
+        .plan-card {
+            background-color: #e6f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-  .ott-icon {
-    width: 24px;
-    height: 24px;
-    margin: 0 auto;
-  }
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-  .ott-name {
-    font-size: 12px;
-    color: #4b5563;
-    margin-top: 4px;
-    font-weight: bold;
-  }
+        .ott-platform {
+            background: #f3f4f6;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
 
+        .ott-platform:hover {
+            background: #31b4ba;
+            transform: translateY(-2px);
+        }
 
- .footer {
-    text-align: center;
-    margin: 1rem;
-    color: #fefefe;
-    background-color: #005f5f;
-    height: 50px;
-  }
-  
-  .footer p {
-    padding-top: 20px;
-  }
+        .buy-btn {
+            background-color: #007c7c;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: #005f5f;
+        }
+
+        .footer {
+            background-color: #005f5f;
+            color: #fefefe;
+        }
+
+        .true-5g-label {
+            background-color: rgb(11, 76, 85);
+            color: white;
+            font-style: italic;
+            border-radius: 5px;
+            padding: 0.5em 1em;
+            display: inline-block;
+            margin-bottom: 1em;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 1rem;
+            color: #fefefe;
+            background-color: #005f5f;
+            height: 50px;
+        }
+
+        .footer p {
+            padding-top: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger-icon {
+                display: flex;
+                margin-right: 2px;
+            }
+
+            .header-nav ul {
+                display: none;
+                position: absolute;
+                top: 56px;
+                right: 0;
+                width: 100%;
+                background-color: #006666;
+                flex-direction: column;
+                gap: 0;
+                z-index: 1000;
+            }
+
+            .header-nav.active ul {
+                display: flex;
+            }
+
+            .header-nav li {
+                margin: 0;
+                width: 100%;
+            }
+
+            .header-nav li a {
+                display: block;
+                padding: 15px 25px;
+                width: 100%;
+            }
+
+            .carousel img {
+                height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .header {
+                padding: 0.5rem;
+            }
+
+            .carousel img {
+                height: 200px;
+            }
+
+            .plan-card {
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 
     <header class="header">
         <div class="header-left">
-          <img src="../Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+            <img src="../Images/logo2-removebg-preview.png" alt="Tech Mahindra Logo" height="20" class="logo">
+        </div>
+        <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <nav class="header-nav">
-          <ul>
-            <li><a href="page1.html">Home</a></li>
-            <li><a href="" style="text-decoration: underline;">True 5G</a></li>
-            <li><a href="" id="plansid">Plans</a></li>
-            <li><a href="" id="supportid">Support</a></li>
-            <div id="classImage">
-              <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
-            </div>
-          </ul>
+            <ul>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="" style="text-decoration: underline;">True 5G</a></li>
+                <li><a href="" id="plansid">Plans</a></li>
+                <li><a href="" id="supportid">Support</a></li>
+                <div id="classImage">
+                    <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
+                </div>
+            </ul>
         </nav>
-      </header>
+    </header>
 
-      <div class="carousel-container">
-        <div class="carousel">
-          <div class="carousel-slide">
-            <img src="../Images/g51.jpg" alt="Slide 1">
-          </div>
-          <div class="carousel-slide">
-            <img src="../Images/g52.jpg" alt="Slide 2">
-          </div>
-          <div class="carousel-slide">
-            <img src="../Images/g53.jpg" alt="Slide 3">
-          </div>
+    <div class="carousel-container container my-4">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../Images/g51.jpg" class="d-block w-100" alt="Slide 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="../Images/g52.jpg" class="d-block w-100" alt="Slide 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="../Images/g53.jpg" class="d-block w-100" alt="Slide 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-      </div>
-      
+    </div>
 
-      <div class="main-container">
-        
+    <div class="container">
         <section class="content">
-          <div class="plans-grid">
-            <div class="plan-card">
-            <div style="margin-bottom: 30px;">
-                <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-            </div>
-              <div class="plan-price">₹599</div>
-              <div class="plan-details">
-                <p>Validity: 28 Days</p>
-                <p>2 GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick=call()>Buy</button>
-            </div>
-
-            <div class="plan-card">
-                <div style="margin-bottom: 30px;">
-                    <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                </div>
-              <div class="plan-price">₹799</div>
-              <div class="plan-details">
-                <p>Validity: 56 Days</p>
-                <p>2.5 GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick=call()>Buy</button>
-            </div>
-
-            <div class="plan-card">
-                <div style="margin-bottom: 30px;">
-                    <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                </div>
-                <div class="plan-price">₹599</div>
-                <div class="plan-details">
-                  <p>Validity: 28 Days</p>
-                  <p>2 GB/Day</p>
-                </div>
-                <div class="ott-section">
-                  <div class="ott-title">Included OTT Subscriptions</div>
-                  <div class="ott-plans">
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎬</div>
-                          <div class="ott-name">Netflix</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">📺</div>
-                          <div class="ott-name">Disney+</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎥</div>
-                          <div class="ott-name">Prime</div>
-                      </div>
-                  </div>
-              </div>
-                    <button class="buy-btn" onclick=call()>Buy</button>
-              </div>
-
-              <div class="plan-card">
-                <div style="margin-bottom: 30px;">
-                    <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                </div>
-                <div class="plan-price">₹799</div>
-                <div class="plan-details">
-                  <p>Validity: 56 Days</p>
-                  <p>2.5 GB/Day</p>
-                </div>
-                <div class="ott-section">
-                  <div class="ott-title">Included OTT Subscriptions</div>
-                  <div class="ott-plans">
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎬</div>
-                          <div class="ott-name">Netflix</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">📺</div>
-                          <div class="ott-name">Disney+</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎥</div>
-                          <div class="ott-name">Prime</div>
-                      </div>
-                  </div>
-              </div>
-                    <button class="buy-btn" onclick=call()>Buy</button>
-              </div>
-
-              <div class="plan-card">
-                <div style="margin-bottom: 30px;">
-                    <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                </div>
-                  <div class="plan-price">₹599</div>
-                  <div class="plan-details">
-                    <p>Validity: 28 Days</p>
-                    <p>2 GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹599</div>
+                        <div class="plan-details">
+                            <p>Validity: 28 Days</p>
+                            <p>2 GB/Day</p> 
                         </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
                     </div>
-                </div>
-                  <button class="buy-btn" onclick=call()>Buy</button>
                 </div>
 
-
-                <div class="plan-card">
-                    <div style="margin-bottom: 30px;">
-                        <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                    </div>
-                  <div class="plan-price">₹799</div>
-                  <div class="plan-details">
-                    <p>Validity: 56 Days</p>
-                    <p>2.5 GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick=call()>Buy</button>
-                </div>
                 
-                <div class="plan-card">
-                    <div style="margin-bottom: 30px;">
-                        <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹799</div>
+                        <div class="plan-details">
+                            <p>Validity: 56 Days</p>
+                            <p>2.5 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
                     </div>
-                    <div class="plan-price">₹599</div>
-                    <div class="plan-details">
-                      <p>Validity: 28 Days</p>
-                      <p>2 GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                        <button class="buy-btn" onclick=call()>Buy</button>
-                  </div>
-
-                  <div class="plan-card">
-                    <div style="margin-bottom: 30px;">
-                        <p style=" color : white; font-style: italic; background-color: rgb(11, 76, 85); border-radius: 5px; width: 40%">True 5G</p>
-                    </div>
-                    <div class="plan-price">₹799</div>
-                    <div class="plan-details">
-                      <p>Validity: 56 Days</p>
-                      <p>2.5 GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                        <button class="buy-btn" onclick=call()>Buy</button>
                 </div>
-          </div>
 
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹599</div>
+                        <div class="plan-details">
+                            <p>Validity: 28 Days</p>
+                            <p>2 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹799</div>
+                        <div class="plan-details">
+                            <p>Validity: 56 Days</p>
+                            <p>2.5 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹599</div>
+                        <div class="plan-details">
+                            <p>Validity: 28 Days</p>
+                            <p>2 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹799</div>
+                        <div class="plan-details">
+                            <p>Validity: 56 Days</p>
+                            <p>2.5 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹599</div>
+                        <div class="plan-details">
+                            <p>Validity: 28 Days</p>
+                            <p>2 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="plan-card p-3 text-center">
+                        <div class="true-5g-label">True 5G</div>
+                        <div class="plan-price fs-2 fw-bold ">₹799</div>
+                        <div class="plan-details">
+                            <p>Validity: 56 Days</p>
+                            <p>2.5 GB/Day</p>
+                        </div>
+                        <div class="ott-section mt-3">
+                            <div class="ott-title fw-bold text-start">Included OTT Subscriptions</div>
+                            <div class="ott-plans row row-cols-3 g-2 mt-2">
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎬</div>
+                                        <div class="ott-name">Netflix</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">📺</div>
+                                        <div class="ott-name">Disney+</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="ott-platform p-2">
+                                        <div class="ott-icon">🎥</div>
+                                        <div class="ott-name">Prime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="buy-btn btn w-100 mt-3" onclick="call()">Buy</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
-    
 
-      <footer class="footer">
+    <footer class="footer">
         <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
-      </footer>
-</body>
+    </footer>
 
-<script>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var status = params.get("status");
 
-var params = new URLSearchParams(window.location.search);
-var status = params.get("status"); 
+        if (status === "false") {
+            document.getElementById("classImage").style.display = 'none';
+            document.getElementById("plansid").href = "page2.html?status=false";
+            document.getElementById("supportid").href = "support.html?status=false";
+        } else {
+            document.getElementById("plansid").href = "page2.html?status=true";
+            document.getElementById("supportid").href = "support.html?status=true";
+        }
 
-if(status === "false"){
-  document.getElementById("classImage").style.display='none';
-  document.getElementById("plansid").href="page2.html?status=false";
-  document.getElementById("supportid").href="support.html?status=false";
-}
-else{
-  document.getElementById("plansid").href="page2.html?status=true";
-  document.getElementById("supportid").href="support.html?status=true";
+        function call() {
+            Array.from(document.getElementsByClassName("buy-btn")).forEach((input) => {
+                input.onclick = function (event) {
+                    if (status == 'false') {
+                        window.location.href = "page1.html";
+                    } else {
+                        const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
+                        localStorage.setItem('price', value1);
+                        window.location.href = "page3.html?target=5g";
+                    }
+                };
+            });
+        }
 
-}
-
-function call(){
-Array.from(document.getElementsByClassName("buy-btn")).forEach((input) => {
-    input.onclick = function(event) {
-
-      if(status=='false'){
-        window.location.href = "page1.html";
-
-      }
-      else{
-        const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
-        localStorage.setItem('price' , value1);
-        window.location.href = "page3.html?target=5g";
-      }
-      
-
-    };
-});
-}
-
-let currentSlide = 0;
+        let currentSlide = 0;
 
 const totalSlides = document.querySelectorAll('.carousel-slide').length;
 const carousel = document.querySelector('.carousel');
@@ -581,5 +598,31 @@ updateCarousel();
 setInterval(() => {
   moveSlide(1);
 }, 3000); 
-</script>
+        // Hamburger menu functionality
+        function toggleMenu() {
+            const headerNav = document.querySelector('.header-nav');
+            headerNav.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const headerNav = document.querySelector('.header-nav');
+            const hamburgerIcon = document.querySelector('.hamburger-icon');
+
+            if (!headerNav.contains(event.target) && !hamburgerIcon.contains(event.target) && headerNav.classList.contains('active')) {
+                headerNav.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.header-nav a').forEach(link => {
+            link.addEventListener('click', function () {
+                const headerNav = document.querySelector('.header-nav');
+                headerNav.classList.remove('active');
+            });
+        });
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,71 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>Support</title>
-</head>
-<body>
     <style>
-     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-   body {
-    
-    text-align: center;
-    background-color: #bdeff7;
-    color: #333;
-  }
-  
-  .header {
-    
-    display: flex;
-    position: fixed;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #006666;
-    padding: 0.5rem 1rem;
-    width: 100%;
-    margin-top: -90px;
-   
-  }
-  
-   .header-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 40px;
-    margin-right: 1rem;
-  }
-  
-  .header-nav ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-  }
-  
-  .header-nav li {
-    margin: 0 1rem;
-    padding-top: 7px;
-  }
-  
-   .header-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .header-nav ul li a:hover {
-  background-color: rgb(183, 242, 240);
-  color: #005f5f;
-  padding:5px 0px;
-  border-radius: 3px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-  .faq-container {
+        body {
+            text-align: center;
+            background-color: #bdeff7;
+            color: #333;
+        }
+
+        .header {
+            display: flex;
+            position: fixed;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #006666;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            margin-top: -90px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        .header-nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .header-nav li {
+            margin: 0 1rem;
+            padding-top: 7px;
+        }
+
+        .header-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header-nav ul li a:hover {
+            background-color: rgb(183, 242, 240);
+            color: #005f5f;
+            padding: 5px 0px;
+            border-radius: 3px;
+        }
+
+        .faq-container {
             background-color: #ffffff;
             max-width: 800px;
             margin: 90px auto;
@@ -121,88 +115,169 @@
 
         .faq-answer.show {
             display: block;
-        }        
+        }
+
         .faq-container p {
-            
             font-size: 14px;
             color: #aaa;
             margin-top: 20px;
         }
 
-        button{
+        button {
             background-color: #067171;
-            padding: 20px; 
-            border-radius: 5px; 
-            border-style: none; 
-            font-size: 18px; 
-            color: white; 
+            padding: 20px;
+            border-radius: 5px;
+            border-style: none;
+            font-size: 18px;
+            color: white;
             font-weight: bold;
             cursor: pointer;
         }
-        button:hover{
+
+        button:hover {
             background-color: #005f5f;
         }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-.modal-content {
-    background: white;
-    padding: 20px;
-    width: 500px;
-    margin: 15% auto;
-    text-align: center;
-    border-radius: 8px;
-}
-.modal-content  p{
-    padding: 30px;
-}
-.close-btn {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-}
-   .footer {
-    text-align: center;
-    margin: 1rem;
-    color: #fefefe;
-    background-color: #005f5f;
-    height: 50px;
-    width: 100%;
-  }
-  
-  .footer p {
-    padding-top: 20px;
-  }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 500px;
+            margin: 15% auto;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .modal-content p {
+            padding: 30px;
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 1rem;
+            color: #fefefe;
+            background-color: #005f5f;
+            height: 50px;
+            width: 100%;
+        }
+
+        .footer p {
+            padding-top: 20px;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                margin-right: 20px;
+            }
+
+            .header-nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: #006666;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .header-nav ul.active {
+                display: flex;
+            }
+
+            .header-nav li {
+                margin: 0;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .header-nav a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .header-nav ul li a:hover {
+                background-color: rgb(183, 242, 240);
+                color: #005f5f;
+                padding: 5px 0px;
+                border-radius: 3px;
+            }
+
+            .faq-container {
+                margin: 120px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header{
+                margin-top: -140px;
+            }
+            .faq-container {
+                margin: 140px auto;
+            }
+        }
     </style>
-
+</head>
+<body>
     <header class="header">
         <div class="header-left">
-          <img src="/Images/logo2-removebg-preview.png" alt="Logo" height="20" class="logo">
+            <img src="/Images/logo2-removebg-preview.png" alt="Logo" height="20" class="logo">
         </div>
         <nav class="header-nav">
-          <ul>
-            <li><a href="page1.html">Home</a></li>
-            <li><a href="" id="true5G">True 5G</a></li>
-            <li><a href="" id="plans">Plans</a></li>
-            <li><a href="" style="text-decoration: underline;">Support</a></li>
-            <div id="classImage">
-                <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
-            </div>
-        </ul>
-       
+            <ul>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="" id="true5G">True 5G</a></li>
+                <li><a href="" id="plans">Plans</a></li>
+                <li><a href="" style="text-decoration: underline;">Support</a></li>
+                <div id="classImage">
+                    <a href="profile.html"><img src="../Images/user.png" alt="" height="25"></a>
+                </div>
+            </ul>
         </nav>
-      </header>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
 
-      <div class="faq-container">
+    <div class="faq-container">
         <h2>Frequently Asked Questions (FAQ)</h2><br><br>
 
         <div class="faq-item">
@@ -279,67 +354,63 @@
         </div>
     </div>
 
-      <footer class="footer">
+    <footer class="footer">
         <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
-      </footer>
+    </footer>
 
-</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            var pageStatus = params.get('status') === 'true';
 
-<script>
+            if(pageStatus === false){
+                document.getElementById("classImage").style.display='none';
+                document.getElementById("true5G").href="fivegplans.html?status=false";
+                document.getElementById("plans").href="page2.html?status=false";
+            }
+            else{
+                document.getElementById("true5G").href="fivegplans.html?status=true";
+                document.getElementById("plans").href="page2.html?status=true";
+            }
+        });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    var pageStatus = params.get('status') === 'true';
+        function toggleAnswer(index) {
+            const answer = document.getElementById("answer" + index);
+            const answerBlocks = document.getElementsByClassName("faq-answer");
 
-    if(pageStatus === false){
-        document.getElementById("classImage").style.display='none';
-        document.getElementById("true5G").href="fivegplans.html?status=false";
-        document.getElementById("plans").href="page2.html?status=false";
-    }
-    else{
-        document.getElementById("true5G").href="fivegplans.html?status=true";
-        document.getElementById("plans").href="page2.html?status=true";
-    }
-
-});
-
-    function toggleAnswer(index) {
-    const answer = document.getElementById("answer" + index);
-
-    const answerBlocks = document.getElementsByClassName("faq-answer");
-
-    for (let i = 0; i < answerBlocks.length; i++) {
-        if (answerBlocks[i] === answer && answer.style.display === "none") {
-            answer.style.display = "block"; 
-        } else {
-            answerBlocks[i].style.display = "none";
+            for (let i = 0; i < answerBlocks.length; i++) {
+                if (answerBlocks[i] === answer && answer.style.display === "none") {
+                    answer.style.display = "block"; 
+                } else {
+                    answerBlocks[i].style.display = "none";
+                }
+            }
         }
-    }
-}
 
+        const modal = document.getElementById("simpleModal");
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeModalBtn = document.querySelector(".close-btn");
 
-const modal = document.getElementById("simpleModal");
-const openModalBtn = document.getElementById("openModalBtn");
-const closeModalBtn = document.querySelector(".close-btn");
+        openModalBtn.onclick = () => {
+            const params = new URLSearchParams(window.location.search);
+            var pageStatus = params.get('status') === 'true';
 
-openModalBtn.onclick = () => {
-    const params = new URLSearchParams(window.location.search);
-    var pageStatus = params.get('status') === 'true';
+            if(pageStatus){
+                modal.style.display = "block";
+            }
+            else{
+                window.location.href = "page1.html"
+            }
+        };
 
-    if(pageStatus){
-        modal.style.display = "block";
-    }
-    else{
-        window.location.href = "page1.html"
-    }
-    
-};
+        closeModalBtn.onclick = () => {
+            modal.style.display = "none";
+        };
 
-closeModalBtn.onclick = () => {
-    modal.style.display = "none";
-};
-
-
-</script>
-
+        function toggleMenu() {
+            const navUl = document.querySelector('.header-nav ul');
+            navUl.classList.toggle('active');
+        }
+    </script>
+</body>
 </html>

@@ -1218,7 +1218,7 @@
 
             <div id="recharge-plans" class="section">
 
-                <h3>Plan Management</h3>
+            <h3>Plan Management</h3>
 
             <div style="display: flex;">
        
@@ -1254,124 +1254,27 @@
                         <button class="tab-button" onclick="openTab(event, '1gbplans')">1 GB/Day Plans</button>
                     </div>
         
+                    <div id="recommended" class="tab-content">
+                        <button class="add-button" onclick="openAddModal('Recommended Plans')">Add Recommended Plan</button>
+                        
+                        <table id="recommendedTable">
+                            <thead>
+                                <tr>
+                                    <th>Plan ID</th>
+                                    <th>Plan Price (₹)</th>
+                                    <th>Validity (Days)</th>
+                                    <th>Data/Day (GB)</th>
+                                    <th>OTT Plans</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
                   
-                  <div id="recommended" class="tab-content">
-                   
-                    <button class="add-button" onclick="openAddModal('recommended')">Add Recommended Plan</button>
-                    <table id="recommendedTable">
-                        <thead>
-                            <tr>
-                                <th>Plan ID</th>
-                                <th>Plan Price (₹)</th>
-                                <th>Validity (Days)</th>
-                                <th>Data/Day (GB)</th>
-                                <th>OTT Plans</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>599</td>
-                                <td>28</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('recommended', 1)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('recommended', 1)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>799</td>
-                                <td>56</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('recommended', 2)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('recommended', 2)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>3599</td>
-                                <td>305</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('recommended', 3)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('recommended', 3)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>399</td>
-                                <td>36</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('recommended', 4)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('recommended', 4)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                  
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                      
-                      
-                 </div>
             
                   <div id="trending" class="tab-content">
                    
@@ -1387,249 +1290,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>5</td>
-                                <td>3599</td>
-                                <td>365</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 5)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 5)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>2025</td>
-                                <td>200</td>
-                                <td>2.5</td>
-                                <td>
-                                    
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 6)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 6)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>999</td>
-                                <td>56</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 7)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 7)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                  
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>899</td>
-                                <td>28</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 8)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 8)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>2899</td>
-                                <td>180</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 9)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 9)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>9999</td>
-                                <td>365</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 10)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 10)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>3999</td>
-                                <td>305</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 11)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 11)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>3599</td>
-                                <td>305</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 12)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 12)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>13</td>
-                                <td>2025</td>
-                                <td>200</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 13)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 13)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                  
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td>399</td>
-                                <td>28</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('trending', 14)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('trending', 14)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                   
-                                </td>
-                            </tr>
+                        <tbody id="plans-recommended">
+                            
                         </tbody>
                     </table>
                       
@@ -1650,101 +1312,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>15</td>
-                                <td>199</td>
-                                <td>14</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2.5gb', 15)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2.5gb', 15)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>16</td>
-                                <td>399</td>
-                                <td>28</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2.5gb', 16)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2.5gb', 16)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>17</td>
-                                <td>499</td>
-                                <td>36</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2.5gb', 17)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2.5gb', 17)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>18</td>
-                                <td>738</td>
-                                <td>48</td>
-                                <td>2.5</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2.5gb', 18)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2.5gb', 18)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                       
@@ -1765,121 +1333,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>19</td>
-                                <td>149</td>
-                                <td>14</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2gb', 19)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2gb', 19)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>20</td>
-                                <td>249</td>
-                                <td>28</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2gb', 20)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2gb', 20)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>21</td>
-                                <td>399</td>
-                                <td>36</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2gb', 21)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2gb', 21)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>22</td>
-                                <td>529</td>
-                                <td>48</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2gb', 22)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2gb', 22)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>23</td>
-                                <td>799</td>
-                                <td>78</td>
-                                <td>2</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('2gb', 23)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-        
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('2gb', 23)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                            </tr>
+                            
                         </tbody>
                     </table>
                       
@@ -1900,54 +1354,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>24</td>
-                                <td>99</td>
-                                <td>14</td>
-                                <td>1</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('1gb', 24)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-                
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('1gb', 24)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>25</td>
-                                <td>149</td>
-                                <td>28</td>
-                                <td>1</td>
-                                <td>
-                                    <div class="ott-icons">
-                                        <div class="icons" title="Netflix"> 🎬 </div>
-                                        <div class="icons" title="Disney+"> 📺 </div>
-                                        <div class="icons" title="Amazon"> 🎥 </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="openEditModal('1gb', 25)">edit</span>
-                                        <span class="tooltip-text">Edit</span>
-                                    </button>
-                
-                                    <button class="tooltip">
-                                        <span class="material-icons" onclick="deletePlan('1gb', 25)">delete</span>
-                                        <span class="tooltip-text">Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                      
@@ -2743,6 +2150,276 @@
 </body>
 <script>
 
+async function loadRecommendedPlans() {
+    const apiUrl = "http://localhost:8080/api/plans/Recommended%20Plans"; // URL should match @PathVariable
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+        console.log("Fetched Plans:", plans); // Debugging
+
+        let tableBody = document.querySelector("#recommendedTable tbody");
+        tableBody.innerHTML = ""; 
+
+        plans.forEach(plan => {
+            let row = `
+                <tr>
+                    <td>${plan.planId}</td>
+                    <td>₹${plan.planPrice}</td>
+                    <td>${plan.validity} Days</td>
+                    <td>${plan.dataPerDay ? plan.dataPerDay + ' GB' : 'N/A'}</td>
+                    <td>
+                        <div class="ott-icons">
+                            ${generateOTTIcons(plan.ottPlans)}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="openEditModal('Recommended Plans', ${plan.planId})">edit</span>
+                            <span class="tooltip-text">Edit</span>
+                        </button>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="deletePlan('Recommended Plans', ${plan.planId})">delete</span>
+                            <span class="tooltip-text">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error("Error fetching recommended plans:", error);
+    }
+}
+
+function generateOTTIcons(ottPlans) {
+    if (!ottPlans) return "";
+    let ottMap = {
+        "Netflix": "🎬",
+        "Disney+": "📺",
+        "Amazon": "🎥"
+    };
+    return ottPlans.split(",").map(ott => `<div class="icons" title="${ott.trim()}">${ottMap[ott.trim()] || ''}</div>`).join("");
+}
+
+document.addEventListener("DOMContentLoaded", loadRecommendedPlans);
+
+
+async function loadTrendingPlans() {
+    const apiUrl = "http://localhost:8080/api/plans/Top%20Trending%205G%20Plans"; // Matches @PathVariable in Spring Boot
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+        console.log("Fetched Trending Plans:", plans); // Debugging
+
+        let tableBody = document.querySelector("#trendingTable tbody");
+        tableBody.innerHTML = ""; // Clear previous data
+
+        plans.forEach(plan => {
+            let row = `
+                <tr>
+                    <td>${plan.planId}</td>
+                    <td>₹${plan.planPrice}</td>
+                    <td>${plan.validity} Days</td>
+                    <td>${plan.dataPerDay ? plan.dataPerDay + ' GB' : 'N/A'}</td>
+                    <td>
+                        <div class="ott-icons">
+                            ${generateOTTIcons(plan.ottPlans)}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="openEditModal('Top Trending 5G Plans', ${plan.planId})">edit</span>
+                            <span class="tooltip-text">Edit</span>
+                        </button>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="deletePlan('Top Trending 5G Plans', ${plan.planId})">delete</span>
+                            <span class="tooltip-text">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error("Error fetching trending plans:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadTrendingPlans);
+
+
+async function load2_5GBPlans() {
+    const apiUrl = "http://localhost:8080/api/plans/2.5%20GB%20Plans"; // Matches @PathVariable in Spring Boot
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+        console.log("Fetched 2.5 GB Plans:", plans); 
+
+        let tableBody = document.getElementById("2.5gbTable").querySelector("tbody");
+        tableBody.innerHTML = ""; 
+
+        plans.forEach(plan => {
+            let row = `
+                <tr>
+                    <td>${plan.planId}</td>
+                    <td>₹${plan.planPrice}</td>
+                    <td>${plan.validity} Days</td>
+                    <td>${plan.dataPerDay ? plan.dataPerDay + ' GB' : 'N/A'}</td>
+                    <td>
+                        <div class="ott-icons">
+                            ${generateOTTIcons(plan.ottPlans)}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="openEditModal('2.5gb', ${plan.planId})">edit</span>
+                            <span class="tooltip-text">Edit</span>
+                        </button>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="deletePlan('2.5gb', ${plan.planId})">delete</span>
+                            <span class="tooltip-text">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error("Error fetching 2.5 GB plans:", error);
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", load2_5GBPlans);
+
+async function load2GBPlans() {
+    const apiUrl = "http://localhost:8080/api/plans/2%20GB%20Plans";
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+        console.log("Fetched 2 GB Plans:", plans); 
+
+        let table = document.getElementById("2gbTable"); 
+        let tableBody = table.querySelector("tbody"); 
+
+        tableBody.innerHTML = ""; 
+
+        plans.forEach(plan => {
+            let row = `
+                <tr>
+                    <td>${plan.planId}</td>
+                    <td>₹${plan.planPrice}</td>
+                    <td>${plan.validity} Days</td>
+                    <td>${plan.dataPerDay ? plan.dataPerDay + ' GB' : 'N/A'}</td>
+                    <td>
+                        <div class="ott-icons">
+                            ${generateOTTIcons(plan.ottPlans)}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="openEditModal('2gb', ${plan.planId})">edit</span>
+                            <span class="tooltip-text">Edit</span>
+                        </button>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="deletePlan('2gb', ${plan.planId})">delete</span>
+                            <span class="tooltip-text">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error("Error fetching 2 GB plans:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", load2GBPlans);
+
+document.addEventListener("DOMContentLoaded", load1GBPlans);
+
+async function load1GBPlans() {
+    const apiUrl = "http://localhost:8080/api/plans/1%20GB%20Plans";
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+        console.log("Fetched 1 GB Plans:", plans); 
+
+        let table = document.getElementById("1gbTable"); 
+        let tableBody = table.querySelector("tbody"); 
+
+        tableBody.innerHTML = ""; 
+
+        plans.forEach(plan => {
+            let row = `
+                <tr>
+                    <td>${plan.planId}</td>
+                    <td>₹${plan.planPrice}</td>
+                    <td>${plan.validity} Days</td>
+                    <td>${plan.dataPerDay ? plan.dataPerDay + ' GB' : 'N/A'}</td>
+                    <td>
+                        <div class="ott-icons">
+                            ${generateOTTIcons(plan.ottPlans)}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="openEditModal('1gb', ${plan.planId})">edit</span>
+                            <span class="tooltip-text">Edit</span>
+                        </button>
+                        <button class="tooltip">
+                            <span class="material-icons" onclick="deletePlan('1gb', ${plan.planId})">delete</span>
+                            <span class="tooltip-text">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+    } catch (error) {
+        console.error("Error fetching 1 GB plans:", error);
+    }
+}
+
+
+
+
 
 tabcontent = document.getElementsByClassName("tab-content");
 
@@ -2781,14 +2458,17 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
     document.getElementById("recharge-plans").style.display = 'none';
     document.getElementById("settings").style.display = 'none';
 
-    function changeContent(input) {
+    function changeContent(input) { 
         const sections = ["user-management", "recharge-history", "recharge-plans", "settings", "expiry-users"];
 
         sections.forEach((section, index) => {
+            
             document.getElementById(section).style.display = (index + 1 === input) ? 'block' : 'none';
 
         });
     }
+
+   
 
     document.addEventListener('DOMContentLoaded', function () {
         const transactionCtx = document.getElementById('transactionChart').getContext('2d');
@@ -3267,20 +2947,20 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
         function createPagination() {
             const style = document.createElement('style');
             style.textContent = `
-            .pagination-container {
+            .pagination-container1 {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 margin-top: 20px;
             }
-            .pagination-controls {
+            .pagination-controls1 {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 gap: 10px;
                 margin: 10px 0;
             }
-            .pagination-btn {
+            .pagination-btn1 {
                 padding: 8px 12px;
                 border: none;
                 background-color: #007bff;
@@ -3290,15 +2970,15 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
                 min-width: 40px;
                 text-align: center;
             }
-            .pagination-btn:disabled {
+            .pagination-btn1:disabled {
                 background-color: #ccc;
                 cursor: not-allowed;
             }
-            .pagination-btn.active {
+            .pagination-btn1.active {
                 background-color: #0056b3;
                 font-weight: bold;
             }
-            .pagination-info {
+            .pagination-info1 {
                 margin-top: 10px;
                 color: #666;
                 font-size: 0.9em;
@@ -3307,14 +2987,14 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             document.head.appendChild(style);
 
             const paginationContainer = document.createElement("div");
-            paginationContainer.className = "pagination-container";
+            paginationContainer.className = "pagination-container1";
 
             const paginationControls = document.createElement("div");
-            paginationControls.className = "pagination-controls";
+            paginationControls.className = "pagination-controls1";
 
             const prevButton = document.createElement("button");
             prevButton.innerText = "Previous";
-            prevButton.className = "pagination-btn prev-btn";
+            prevButton.className = "pagination-btn1 prev-btn1";
             prevButton.onclick = function () {
                 if (currentPage > 1) {
                     currentPage--;
@@ -3327,7 +3007,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             for (let i = 1; i <= totalPages; i++) {
                 const numberBtn = document.createElement("button");
                 numberBtn.innerText = i;
-                numberBtn.className = "pagination-btn number-btn";
+                numberBtn.className = "pagination-btn1 number-btn1";
                 if (i === currentPage) {
                     numberBtn.classList.add("active");
                 }
@@ -3341,7 +3021,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
 
             const nextButton = document.createElement("button");
             nextButton.innerText = "Next";
-            nextButton.className = "pagination-btn next-btn";
+            nextButton.className = "pagination-btn1 next-btn1";
             nextButton.onclick = function () {
                 if (currentPage < totalPages) {
                     currentPage++;
@@ -3352,7 +3032,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             paginationControls.appendChild(nextButton);
 
             const pageInfoDiv = document.createElement("div");
-            pageInfoDiv.className = "pagination-info";
+            pageInfoDiv.className = "pagination-info1";
             pageInfoDiv.innerText = `Page ${currentPage} of ${totalPages}`;
 
             paginationContainer.appendChild(paginationControls);
@@ -3362,12 +3042,12 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
         }
 
         function updatePagination() {
-            const prevButton = document.querySelector(".prev-btn");
-            const nextButton = document.querySelector(".next-btn");
+            const prevButton = document.querySelector(".prev-btn1");
+            const nextButton = document.querySelector(".next-btn1");
             prevButton.disabled = currentPage === 1;
             nextButton.disabled = currentPage === totalPages;
 
-            const numberButtons = document.querySelectorAll(".number-btn");
+            const numberButtons = document.querySelectorAll(".number-btn1");
             numberButtons.forEach((btn, index) => {
                 if (index + 1 === currentPage) {
                     btn.classList.add("active");
@@ -3376,7 +3056,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
                 }
             });
 
-            document.querySelector(".pagination-info").innerText = `Page ${currentPage} of ${totalPages}`;
+            document.querySelector(".pagination-info1").innerText = `Page ${currentPage} of ${totalPages}`;
         }
 
         displayPage(currentPage);
@@ -3403,20 +3083,20 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
         function createPagination() {
             const style = document.createElement('style');
             style.textContent = `
-            .pagination-container {
+            .pagination-container2 {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 margin-top: 20px;
             }
-            .pagination-controls {
+            .pagination-controls2 {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 gap: 10px;
                 margin: 10px 0;
             }
-            .pagination-btn {
+            .pagination-btn2 {
                 padding: 8px 12px;
                 border: none;
                 background-color: #007bff;
@@ -3426,15 +3106,15 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
                 min-width: 40px;
                 text-align: center;
             }
-            .pagination-btn:disabled {
+            .pagination-btn2:disabled {
                 background-color: #ccc;
                 cursor: not-allowed;
             }
-            .pagination-btn.active {
+            .pagination-btn2.active {
                 background-color: #0056b3;
                 font-weight: bold;
             }
-            .pagination-info {
+            .pagination-info2 {
                 margin-top: 10px;
                 color: #666;
                 font-size: 0.9em;
@@ -3443,14 +3123,14 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             document.head.appendChild(style);
 
             const paginationContainer = document.createElement("div");
-            paginationContainer.className = "pagination-container";
+            paginationContainer.className = "pagination-container2";
 
             const paginationControls = document.createElement("div");
-            paginationControls.className = "pagination-controls";
+            paginationControls.className = "pagination-controls2";
 
             const prevButton = document.createElement("button");
             prevButton.innerText = "Previous";
-            prevButton.className = "pagination-btn prev-btn";
+            prevButton.className = "pagination-btn2 prev-btn2";
             prevButton.onclick = function () {
                 if (currentPage > 1) {
                     currentPage--;
@@ -3463,7 +3143,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             for (let i = 1; i <= totalPages; i++) {
                 const numberBtn = document.createElement("button");
                 numberBtn.innerText = i;
-                numberBtn.className = "pagination-btn number-btn";
+                numberBtn.className = "pagination-btn2 number-btn2";
                 if (i === currentPage) {
                     numberBtn.classList.add("active");
                 }
@@ -3477,7 +3157,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
 
             const nextButton = document.createElement("button");
             nextButton.innerText = "Next";
-            nextButton.className = "pagination-btn next-btn";
+            nextButton.className = "pagination-btn2 next-btn2";
             nextButton.onclick = function () {
                 if (currentPage < totalPages) {
                     currentPage++;
@@ -3488,7 +3168,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
             paginationControls.appendChild(nextButton);
 
             const pageInfoDiv = document.createElement("div");
-            pageInfoDiv.className = "pagination-info";
+            pageInfoDiv.className = "pagination-info2";
             pageInfoDiv.innerText = `Page ${currentPage} of ${totalPages}`;
 
             paginationContainer.appendChild(paginationControls);
@@ -3498,12 +3178,12 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
         }
 
         function updatePagination() {
-            const prevButton = document.querySelector(".prev-btn");
-            const nextButton = document.querySelector(".next-btn");
+            const prevButton = document.querySelector(".prev-btn2");
+            const nextButton = document.querySelector(".next-btn2");
             prevButton.disabled = currentPage === 1;
             nextButton.disabled = currentPage === totalPages;
 
-            const numberButtons = document.querySelectorAll(".number-btn");
+            const numberButtons = document.querySelectorAll(".number-btn2");
             numberButtons.forEach((btn, index) => {
                 if (index + 1 === currentPage) {
                     btn.classList.add("active");
@@ -3512,7 +3192,7 @@ document.querySelectorAll(".sidebar li a").forEach(item => {
                 }
             });
 
-            document.querySelector(".pagination-info").innerText = `Page ${currentPage} of ${totalPages}`;
+            document.querySelector(".pagination-info2").innerText = `Page ${currentPage} of ${totalPages}`;
         }
 
         displayPage(currentPage);

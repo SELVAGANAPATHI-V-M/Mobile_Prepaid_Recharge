@@ -328,14 +328,208 @@ body {
   font-weight: 600;
 }
 
+.hamburger-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
 
+}
 
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+
+}
+
+@media screen and (max-width: 992px) {
+  .plans-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .tab-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .tab-buttons button {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .sidebar-menu li a.active {
+    background-color: #005f5f;
+    color: #ffffff;
+}
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger-icon {
+    display: flex;
+    position: absolute; 
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+  }
+  
+  .header {
+    position: relative;
+  }
+  
+  .header-nav ul {
+        display: none; /* Hide the navigation list */
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        width: 100%;
+        background-color: #006666;
+        flex-direction: column;
+        padding-left:20px;
+      }
+
+  
+  .header-nav.active ul {
+    right: 0;
+    display: flex;
+  }
+  
+  .header-nav li {
+    margin: 0;
+    width: 100%;
+  }
+  
+  .header-nav li a {
+    display: block;
+    /* padding: 15px 25px; */
+    width: 100%;
+  }
+  
+  /* User icon and dropdown positioning */
+  .header-nav div {
+    margin: 15px 5px;
+  }
+  
+  .dropdown-menu {
+    /* position: relative; */
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  
+  /* Layout adjustments */
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .plans-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .tab-buttons button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .sidebar-menu li a.active {
+    background-color: #005f5f;
+    color: #ffffff;
+}
+}
+
+@media screen and (max-width: 576px) {
+  
+  .plans-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+  
+  .plan-card {
+    max-width: 100%;
+  }
+  
+  .tab-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .tab-buttons button {
+    width: 100%;
+  }
+  
+  .header {
+    padding: 0.5rem;
+  }
+  
+  .logo {
+    height: 30px;
+  }
+  
+  .ott-plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sidebar-menu li a.active {
+    background-color: #005f5f;
+    color: #ffffff;
+}
+}
+
+@media screen and (max-width: 400px) {
+  .hamburger-icon {
+    display: flex;
+    margin-right: 20px;
+  }
+  .ott-plans {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  
+  .ott-platform {
+    padding: 5px;
+  }
+  
+  .ott-name {
+    font-size: 10px;
+  }
+  
+  .plan-price {
+    font-size: 1.2rem;
+  }
+  
+  .plan-details p {
+    font-size: 0.8rem;
+  }
+  
+  .section-heading h2 {
+    font-size: 1rem;
+  }
+
+  .sidebar-menu li a.active {
+    background-color: #005f5f;
+    color: #ffffff;
+}
+}
 </style>
 <body>
     <header class="header">
         <div class="header-left">
           <img src="../Images/logo2-removebg-preview.png" alt="Logo" height="20" class="logo">
         </div>
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        
         <nav class="header-nav" style="padding-right: 50px; padding-top: 2px;">
           <ul>
             <li><a href="page1.html">Home</a></li>
@@ -353,6 +547,8 @@ body {
           </ul>
         </nav>
       </header>
+
+      
     
       <div class="main-container">
     
@@ -392,7 +588,7 @@ body {
           <div id="recommended" class="tab-content">
            
            
-              <div class="plans-grid">
+              <div class="plans-grid" id="plans-recommended">
                 <div class="plan-card">
                   <div class="plan-price">₹599</div>
                   <div class="plan-details">
@@ -1509,6 +1705,15 @@ body {
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const headerNav = document.querySelector('.header-nav');
+
+    hamburgerIcon.addEventListener('click', function() {
+      headerNav.classList.toggle('active');
+    });
+  });
 
 
    
