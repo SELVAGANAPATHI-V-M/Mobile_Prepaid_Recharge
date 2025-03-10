@@ -5,240 +5,359 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #006666;
+            padding: 0.5rem 0.5rem;
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 7px; 
+            display: inline-block;
+            border-radius: 3px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: rgb(183, 242, 240);
+            color: #005f5f;
+        }
+
+        .hamburger {
+            display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            padding-left: 190px;
+            padding-top: 40px; 
+            min-height: calc(100vh - 140px); 
+            background-image: url(../Images/bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .recharge-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 400px;
+            height: 310px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .recharge-box h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .recharge-box p {
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .button-group button {
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .resend-btn {
+            background-color: #008080;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        .button-group .active {
+            background: #027373;
+        }
+
+        .recharge-box input {
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .fixed-text {
+            background-color: #e0e0e0;
+            padding: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .continue-btn {
+            background: #008080;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            opacity: 50%; 
+            cursor: no-drop;
+        }
+
+        .mobile-input {
+            font-size: 15px;
+        }
+
+        .otpp input {
+            height: 40px;
+            width: 35px;
+            font-size: 17px;
+        }
+        
+
+       
+        .continue-btn:hover {
+            background: #005f5f;
+        }
+        .footer {
+            background: #006666;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        #resendBtn {
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            width: 23%;
+        }
+
+        .column h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .column ul li {
+            margin: 8px 0;
+        }
+
+        .column ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .column ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .social-icons img {
+            vertical-align: middle;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .main-container {
+                padding-left: 0;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                min-height: 40px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            nav {
+                position: absolute;
+                top: 40px;
+                right: -100%;
+                background-color: #006666;
+                width: 100%;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+                padding: 20px 0;
+            }
+            
+            .navbar ul li {
+                margin: 10px 20px;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+            }
+            
+            .column {
+                width: 100%;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-container {
+                flex-direction: column;
+                padding-top: 60px;
+            }
+            
+            .recharge-box {
+                width: 90%;
+                margin: 10px auto;
+            }
+            
+            .otpp{
+                margin-left: 0px;
+
+                width: 50%;
+            }
+            
+            
+            .otpp input {
+                .otpp input {
+            height: 40px;
+            width: 10px;
+            font-size: 9px;
+        }
+        
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .logo img {
+                height: 30px;
+            }
+            
+            .recharge-box h2 {
+                font-size: 20px;
+            }
+            
+            .recharge-box p {
+                font-size: 14px;
+            }
+            
+            .continue-btn, .otp-button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .social-icons a {
+                margin: 0 5px;
+            }
+            
+            .social-icons img {
+                width: 25px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-<style>
-*{
-  margin: 0;
-  padding: 0;
-}
-
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f5f8fa;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #006666;
-    padding: 0.5rem 0.5rem;
-    position: fixed;
-    width: 100%;
-    height: 40px;
-}
-
-.navbar .logo img {
-    height: 40px;
-    margin-right: 1rem;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-}
-
-.navbar ul li {
-    margin: 0 15px;
-}
-
-.navbar ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 5px 7px; 
-  display: inline-block;
-  border-radius: 3px;
-}
-
-.navbar ul li a:hover {
-  background-color: rgb(183, 242, 240);
-  color: #005f5f;
-}
-
-.main-container {
-    display: flex;
-    align-items: center;
-    padding-left: 190px;
-    height: 600px;
-    background-image: url(../Images/bg.png);
-    background-repeat: no-repeat;
-}
-
-.recharge-box {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    width: 350px;
-    height: 260px;
-}
-
-.recharge-box h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-.recharge-box p{
-  margin-bottom: 20px;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    margin: 15px 0;
-}
-
-.button-group button {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.resend-btn {
-    background-color: #008080;
-    border: none;
-    border-radius: 5px;
-    margin: 20px;
-}
-
-.button-group .active {
-    background: #027373;
-}
-
-.recharge-box input {
-    width: 93%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.fixed-text {
-    background-color: #e0e0e0;
-    padding: 10px;
-    color: #333;
-    font-weight: bold;
-}
-
-.continue-btn {
-    background: #008080;
-    color: white;
-    padding: 12px;
-    border: none;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 16px;
-    opacity: 50%; 
-    cursor:no-drop;
-}
-
-.mobile-input {
-    font-size: 15px;
-}
-
-.otpp input {
-    height: 20px;
-    text-align: center;
-    font-size: larger;
-}
-
-.otp-button {
-    background: #008080;
-    color: white;
-    padding: 12px;
-    border: none;
-    width: 40%;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    height: 40px;
-    margin-left: 20px;
-}
-
-.otp-button:hover {
-    background: #005f5f;
-}
-
-.continue-btn:hover {
-    background: #005f5f;
-}
-
-.footer {
-    background: #006666;
-    color: white;
-    padding: 30px 20px;
-}
-
-#resendBtn {
-    background-color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.footer-columns {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.column {
-    width: 23%;
-}
-
-.column h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.column ul li {
-    margin: 8px 0;
-}
-
-.column ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.column ul li a:hover {
-    text-decoration: underline;
-}
-
-.social-icons a {
-    color: white;
-    font-size: 22px;
-    margin: 0 10px;
-}
-
-.social-icons a:hover {
-    color: #ffcc00;
-}
-
-.copyright {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-    </style>
     <header class="navbar">
         <div class="logo">
             <img src="../Images/logo2-removebg-preview.png" alt="Logo">
         </div>
-        <nav style="padding-right: 40px;">
+        <div class="hamburger" id="hamburger-menu" >
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu" style="padding-right: 40px;">
             <ul>
                 <li><a href="" style="text-decoration: underline;">Home</a></li>
                 <li><a href="page2.html?status=false">Plans</a></li>
@@ -253,26 +372,27 @@ body{
             <h2>Mobile Recharge</h2>
             <p>Enter your details to find the best prepaid plans</p>
             <div style="align-items: center;">
-                <input type="text" placeholder="Phone Number" maxlength="10" class="mobile-input"><br><br>
-                <button class="continue-btn" onclick="changeContent()" id="generate-otp"  disabled>Generate OTP</button>
+                <input type="text" placeholder="Phone Number" maxlength="10" class="mobile-input">
+                <span style="color: red; font-size: small;" id="notexists"></span><br><br>
+                <button class="continue-btn" onclick="changeContent()" id="generate-otp" disabled>Generate OTP</button>
             </div>
         </div>
 
         <div class="recharge-box" id="otp-container" style="display: none;">
             <div style="text-align: left; margin-bottom: 1px; margin-bottom: 20px">
-                <button onclick = "changeContents()" id="backBtn" style="background: none;border: none; cursor: pointer;"><img src="/Images/previous.png" alt="" height="20px"></button>
+                <button onclick="changeContents()" id="backBtn" style="background: none;border: none; cursor: pointer;"><img src="../Images/previous.png" alt="" height="20px"></button>
             </div>
             <div style="text-align: left; margin-top: 0px;">
                 <h2 style="font-weight: bolder;">Verify phone number</h2>
                 <p>The OTP has been sent to <span id="phone-number"></span></p>
             </div>
             <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 5px; width: 300px; margin-left: 30px; margin-bottom: 10px;" class="otpp">
-                <input type="text" style="width: 10px;" id="otpInput1" maxlength="1" class="otp" required>
-                <input type="text" style="width: 10px;" id="otpInput2" maxlength="1" class="otp" required disabled>
-                <input type="text" style="width: 10px;" id="otpInput3" maxlength="1" class="otp" required disabled>
-                <input type="text" style="width: 10px;" id="otpInput4" maxlength="1" class="otp" required disabled>
-                <input type="text" style="width: 10px;" id="otpInput5" maxlength="1" class="otp" required disabled>
-                <input type="text" style="width: 10px;" id="otpInput6" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput1" maxlength="1" class="otp" required>
+                <input type="text" id="otpInput2" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput3" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput4" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput5" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput6" maxlength="1" class="otp" required disabled>
             </div>
             <div style="text-align: right;">
                 <button id="resendBtn" disabled>Resend OTP (10s)</button>            
@@ -294,7 +414,6 @@ body{
             <div class="column">
                 <h3>Support</h3>
                 <ul>
-                    
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
@@ -309,95 +428,130 @@ body{
             <div class="column">
                 <h3>Connect with Us</h3>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com"><img class="prof" src="../Images/facebook.png" width="34px" ></a>
-                    <a href="https://www.twitter.com"><img  class="prof" src="../Images/twitter.png"  width="33px"></a>
-                    <a href="https://www.instagram.com"><img class="prof" src="../Images/instagram.png"  width="35px"></a>
-                    <a href="https://www.linkedin.com"><img  class="prof" src="../Images/linkedin.png"  width="35px"></a>
-                    <a href="https://www.youtube.com"><img class="prof" src="../Images/youtube.png"  width="35px"></a>
+                    <a href="https://www.facebook.com"><img class="prof" src="../Images/facebook.png" width="34px"></a>
+                    <a href="https://www.twitter.com"><img class="prof" src="../Images/twitter.png" width="33px"></a>
+                    <a href="https://www.instagram.com"><img class="prof" src="../Images/instagram.png" width="35px"></a>
+                    <a href="https://www.linkedin.com"><img class="prof" src="../Images/linkedin.png" width="35px"></a>
+                    <a href="https://www.youtube.com"><img class="prof" src="../Images/youtube.png" width="35px"></a>
                 </div>
             </div>
         </div>
         <p class="copyright">&copy; 2010-2025 My Tech. All rights reserved.</p>
     </footer>
-</body>
 
-<script>
+    <script>
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            
+            const spans = this.querySelectorAll('span');
+            spans.forEach(span => {
+                span.classList.toggle('active');
+            });
+        });
 
-   
-    function moveNext(){
-        window.location.href = "page2.html?status=true";
-    }
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav-menu');
+            const hamburger = document.getElementById('hamburger-menu');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
 
-    function changeContent(){
-    document.getElementById('recharge-box').style.display = 'none';
-    document.getElementById('otp-container').style.display = 'block';
-    startOtpTimer();
-    insertPhoneNumber();
-    }
-
-    function changeContents(){
-    clearOtp();
-    document.getElementById('otp-container').style.display = 'none';
-    document.getElementById('recharge-box').style.display = 'block';
-    document.getElementById('resendBtn').disabled = true;
-    stopOtpTimer();
-    }
-
-
-    function startOtpTimer(){
-    let seconds = 10;
-    const resendBtn = document.getElementById('resendBtn');
-
-    resendBtn.disabled = true;
-    resendBtn.cursor = 'no-drop';
-
-    otpTimer = setInterval(() => {
-        resendBtn.textContent = `Resend OTP (${--seconds}s)`;
-
-        if (seconds < 0) {
-            clearInterval(otpTimer);
-            resendBtn.textContent = 'Resend OTP';
-            resendBtn.disabled = false;
-            resendBtn.cursor = 'pointer';
+        function moveNext() {
+            window.location.href = "page2.html?status=true";
         }
 
-    },1000);
-}     
+        async function changeContent() {
+            document.getElementById("notexists").textContent = "";
+
+            let phoneNumber = document.querySelector(".mobile-input").value; // Ensure correct input selection
     
-    document.getElementById('resendBtn').addEventListener('click', changeContent);
-
-    function stopOtpTimer(){
-        clearInterval(otpTimer);
-         
+    try {
+        let isValid=false;
+        let response = await fetch(`http://localhost:8080/Subscribers/phonenumbers/${phoneNumber}`);
+        isValid = await response.json(); // Wait for JSON response
+        
+        if (isValid) {
+            document.getElementById('recharge-box').style.display = 'none';
+            document.getElementById('otp-container').style.display = 'block';
+            startOtpTimer();
+            insertPhoneNumber();
+        }
+            else {
+            document.getElementById("notexists").textContent = "Invalid Mobicomm Number";
+        }
+    } 
+    catch (error) {
+        console.error('Error:', error);
     }
+        }
 
-    const mbnum = document.getElementsByClassName("mobile-input")[0];
-    localStorage.setItem("phonenumber", mbnum.value);
+ function changeContents() {
+    
+            clearOtp();
+            document.getElementById('otp-container').style.display = 'none';
+            document.getElementById('recharge-box').style.display = 'block';
+            document.getElementById('resendBtn').disabled = true;
+            stopOtpTimer();
+        
+}
 
-    mbnum.addEventListener('input', () => {
-    if(mbnum.value.length == 10){
-        document.getElementById("generate-otp").disabled = false;
-        document.getElementById("generate-otp").style.opacity = '100%';
-        document.getElementById("generate-otp").style.cursor = 'pointer';
-        localStorage.setItem("phonenumber", mbnum.value);
-    }
 
-    if(mbnum.value.length != 10){
-        document.getElementById("generate-otp").disabled = true;
-        document.getElementById("generate-otp").style.opacity = '50%';
-        document.getElementById("generate-otp").style.cursor = 'no-drop';
-    }
+        function startOtpTimer() {
+            let seconds = 10;
+            const resendBtn = document.getElementById('resendBtn');
 
-    if (mbnum.value.match(/^\d+$/) === null) {
-        mbnum.value = mbnum.value.replace(/\D/g, '');
-    }
-    });
-    function insertPhoneNumber(){
-        var phonenumber = mbnum.value;
-        document.getElementById('phone-number').innerHTML = `+91 ${phonenumber.substring(0,3)}*****${phonenumber.substring(8)}`;
-    }
+            resendBtn.disabled = true;
+            resendBtn.style.cursor = 'no-drop';
 
-    const otpInputs = document.querySelectorAll('.otp');
+            otpTimer = setInterval(() => {
+                resendBtn.textContent = `Resend OTP (${--seconds}s)`;
+
+                if (seconds <= 0) {
+                    clearInterval(otpTimer);
+                    resendBtn.textContent = 'Resend OTP';
+                    resendBtn.disabled = false;
+                    resendBtn.style.cursor = 'pointer';
+                }
+            }, 1000);
+        }
+        
+        document.getElementById('resendBtn').addEventListener('click', changeContent);
+
+        function stopOtpTimer() {
+            clearInterval(otpTimer);
+        }
+
+        const mbnum = document.getElementsByClassName("mobile-input")[0];
+        
+        mbnum.addEventListener('input', () => {
+            document.getElementById("notexists").textContent = "";
+
+            if (mbnum.value.length == 10) {
+                document.getElementById("generate-otp").disabled = false;
+                document.getElementById("generate-otp").style.opacity = '100%';
+                document.getElementById("generate-otp").style.cursor = 'pointer';
+                localStorage.setItem("phonenumber", mbnum.value);
+            }
+
+            if (mbnum.value.length != 10) {
+                document.getElementById("generate-otp").disabled = true;
+                document.getElementById("generate-otp").style.opacity = '50%';
+                document.getElementById("generate-otp").style.cursor = 'no-drop';
+            }
+
+            if (mbnum.value.match(/^\d+$/) === null) {
+                mbnum.value = mbnum.value.replace(/\D/g, '');
+            }
+        });
+
+        function insertPhoneNumber() {
+            var phonenumber = mbnum.value;
+            document.getElementById('phone-number').innerHTML = `+91 ${phonenumber.substring(0,3)}*****${phonenumber.substring(8)}`;
+        }
+
+        const otpInputs = document.querySelectorAll('.otp');
     otpInputs.forEach((input, index) => {
         input.addEventListener('input', () => {
             if (input.value.match(/^\d+$/) === null) {
@@ -426,18 +580,19 @@ body{
             }
         });
     });
+        function clearOtp() {
+            const otpInputs = document.querySelectorAll('.otp');
+            document.getElementById("continue-btn-otp").disabled = true;
+            otpInputs.forEach((input, index) => {
+                input.value = "";
+                if (index != 0) otpInputs[index].disabled = true;
+                document.getElementById("continue-btn-otp").style.opacity = '50%';
+                document.getElementById("continue-btn-otp").style.cursor = 'no-drop';
+            });
+        }
 
-    function clearOtp(){
-        const otpInputs = document.querySelectorAll('.otp');
-        document.getElementById("continue-btn-otp").disabled = true;
-        otpInputs.forEach((input, index) =>{
-        input.value="";
-        if(index!=0) otpInputs[index].disabled=true;
-        document.getElementById("continue-btn-otp").style.opacity = '50%';
-        document.getElementById("continue-btn-otp").style.cursor = 'no-drop';
-    })
-    }
+       
 
-
-</script>
+    </script>
+</body>
 </html>
