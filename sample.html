@@ -3,824 +3,567 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telecom Plan Management</title>
-    <style>
-        /* Basic CSS styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
-        
-        h1 {
-            margin: 0;
-        }
-        
-        /* Tabs styling */
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-        
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-        
-        .tab button:hover {
-            background-color: #ddd;
-        }
-        
-        .tab button.active {
-            background-color: #ccc;
-        }
-        
-        .tabcontent {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: none;
-            background-color: white;
-        }
-        
-        /* Table styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        /* Button styling */
-        .add-button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 20px 0;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        
-        .action-btn {
-            padding: 6px 10px;
-            margin: 2px;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        
-        .edit-btn {
-            background-color: #2196F3;
-            color: white;
-        }
-        
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-        }
-        
-        /* Modal styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-            border-radius: 5px;
-        }
-        
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        
-        .form-group input[type="text"],
-        .form-group input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        
-        .save-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .save-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg">
+    <title>Login</title>
 </head>
+<style>
+    /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #006666;
+    padding: 0.5rem 0.5rem;
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+}
+
+.navbar .logo img {
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 7px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.navbar ul li a:hover {
+    background-color: rgb(183, 242, 240);
+    color: #005f5f;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    padding-top: 60px;
+    min-height: calc(100vh - 140px);
+    background-image: url(../Images/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Recharge Box and OTP Container */
+.recharge-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 400px;
+    height: 310px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recharge-box h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.recharge-box p {
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.button-group button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button-group .active {
+    background: #027373;
+}
+
+.recharge-box input {
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.continue-btn {
+    background: #008080;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background: #005f5f;
+}
+
+.otpp {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    width: 300px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.otpp input {
+    height: 40px;
+    width: 35px;
+    font-size: 17px;
+}
+
+/* Footer */
+.footer {
+    background: #006666;
+    color: white;
+    padding: 30px 20px;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column {
+    width: 23%;
+}
+
+.column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.column ul li {
+    margin: 8px 0;
+}
+
+.column ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.column ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 22px;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.social-icons img {
+    vertical-align: middle;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .main-container {
+        padding-left: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        min-height: 40px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav {
+        position: absolute;
+        top: 40px;
+        right: -100%;
+        background-color: #006666;
+        width: 100%;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .navbar ul li {
+        margin: 10px 20px;
+    }
+
+    .footer-columns {
+        flex-direction: column;
+    }
+
+    .column {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        flex-direction: column;
+        padding-top: 60px;
+    }
+
+    .recharge-box {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .otpp {
+        grid-template-columns: repeat(6, 1fr);
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .otpp input {
+        height: 40px;
+        width: 35px;
+        font-size: 17px;
+    }
+
+    .continue-btn, .otp-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .social-icons a {
+        margin: 0 5px;
+    }
+
+    .social-icons img {
+        width: 25px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar .logo img {
+        height: 30px;
+    }
+
+    .recharge-box h2 {
+        font-size: 20px;
+    }
+
+    .recharge-box p {
+        font-size: 14px;
+    }
+}
+
+</style>
 <body>
-    <header>
-        <h1>Telecom Plan Management</h1>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="../Images/logo2-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="" style="text-decoration: underline;">Home</a></li>
+                <li><a href="fivegplans.html?status=false">True 5G</a></li>
+                <li><a href="page2.html?status=false">Plans</a></li>
+                <li><a href="support.html?status=false">Support</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <div class="container">
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'DataPlans')">Data Plans</button>
-            <button class="tablinks" onclick="openTab(event, 'SpecialServicePlans')">Special Service Plans</button>
-        </div>
-        
-        <div id="DataPlans" class="tabcontent">
-            <h2>Data Plans</h2>
-            <button class="add-button" onclick="openAddModal()">+ Add Plan</button>
-            
-            <table id="data-plans-table">
-                <thead>
-                    <tr>
-                        <th>Plan Price</th>
-                        <th>Validity</th>
-                        <th>Data/Day</th>
-                        <th>OTT Services</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data plans will be displayed here dynamically -->
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="SpecialServicePlans" class="tabcontent">
-            <h2>Special Service Plans</h2>
-            <button class="add-button" onclick="openAddSSModal()">+ Add Plan</button>
-            
-            <table id="special-service-plans-table">
-                <thead>
-                    <tr>
-                        <th>Plan Price</th>
-                        <th>Validity</th>
-                        <th>Talktime</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Special service plans will be displayed here dynamically -->
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- Data Plan Modals -->
-        <div id="addModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeAddModal()">&times;</span>
-                <h2>Add New Plan</h2>
-                <div class="form-group">
-                    <label for="planPrice">Plan Price (₹):</label>
-                    <input type="number" id="planPrice" name="planPrice">
-                </div>
-                <div class="form-group">
-                    <label for="validity">Validity (Days):</label>
-                    <input type="number" id="validity" name="validity">
-                </div>
-                <div class="form-group">
-                    <label for="dataPerDay">Data/Day (GB):</label>
-                    <input type="number" id="dataPerDay" name="dataPerDay" step="0.1">
-                </div>
-                <div class="form-group">
-                    <label>OTT Plans:</label><br>
-                    <input type="checkbox" id="netflix" name="ott" value="Netflix">
-                    <label for="netflix">Netflix</label><br>
-                    <input type="checkbox" id="disney" name="ott" value="Disney+">
-                    <label for="disney">Disney+</label><br>
-                    <input type="checkbox" id="prime" name="ott" value="Prime">
-                    <label for="prime">Prime</label>
-                </div>
-                <button class="save-btn" onclick="addPlan()">Add Plan</button>
+
+    <div class="main-container">
+        <div class="recharge-box" id="recharge-box">
+            <h2>Mobile Recharge</h2>
+            <p>Enter your details to find the best prepaid plans</p>
+            <div>
+                <input type="text" placeholder="Phone Number" maxlength="10" class="mobile-input">
+                <span style="color: red; font-size: small;" id="notexists"></span><br><br>
+                <button class="continue-btn" onclick="changeContent()" id="generate-otp" disabled>Generate OTP</button>
             </div>
         </div>
-        
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeEditModal()">&times;</span>
-                <h2>Edit Plan</h2>
-                <input type="hidden" id="editPlanId">
-                <div class="form-group">
-                    <label for="editPlanPrice">Plan Price (₹):</label>
-                    <input type="number" id="editPlanPrice" name="editPlanPrice">
-                </div>
-                <div class="form-group">
-                    <label for="editValidity">Validity (Days):</label>
-                    <input type="number" id="editValidity" name="editValidity">
-                </div>
-                <div class="form-group">
-                    <label for="editDataPerDay">Data/Day (GB):</label>
-                    <input type="number" id="editDataPerDay" name="editDataPerDay" step="0.1">
-                </div>
-                <div class="form-group">
-                    <label>OTT Plans:</label><br>
-                    <input type="checkbox" id="editNetflix" name="editOtt" value="Netflix">
-                    <label for="editNetflix">Netflix</label><br>
-                    <input type="checkbox" id="editDisney" name="editOtt" value="Disney+">
-                    <label for="editDisney">Disney+</label><br>
-                    <input type="checkbox" id="editPrime" name="editOtt" value="Prime">
-                    <label for="editPrime">Prime</label>
-                </div>
-                <button class="save-btn" onclick="savePlan()">Save Changes</button>
+
+        <div class="recharge-box" id="otp-container" style="display: none;">
+            <div style="text-align: left; margin-bottom: 20px">
+                <button onclick="changeContents()" id="backBtn" style="background: none;border: none; cursor: pointer;"><img src="../Images/previous.png" alt="" height="20px"></button>
             </div>
-        </div>
-        
-        <div id="deleteModal" class="modal">
-            <div class="modal-content">
-                <h2>Delete Plan</h2>
-                <p>Are you sure you want to delete this plan?</p>
-                <button class="save-btn" onclick="confirmDelete()">Yes</button>
-                <button class="add-button" onclick="closeDeleteModal()">No</button>
+            <div style="text-align: left;">
+                <h2 style="font-weight: bolder;">Verify phone number</h2>
+                <p>The OTP has been sent to <span id="phone-number"></span></p>
             </div>
-        </div>
-        
-        <!-- Special Service Plan Modals -->
-        <div id="addSSModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('addSSModal')">&times;</span>
-                <h2>Add Special Service Plan</h2>
-                <div class="form-group">
-                    <label for="addPrice">Plan Price (₹):</label>
-                    <input type="number" id="addPrice">
-                </div>
-                <div class="form-group">
-                    <label for="addValidity">Validity (Days):</label>
-                    <input type="text" id="addValidity">
-                </div>
-                <div class="form-group">
-                    <label for="addTalktime">Talktime (₹):</label>
-                    <input type="number" id="addTalktime">
-                </div>
-                <button class="save-btn" onclick="addSSPlan()">Add</button>
+            <div class="otpp">
+                <input type="text" id="otpInput1" maxlength="1" class="otp" required>
+                <input type="text" id="otpInput2" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput3" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput4" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput5" maxlength="1" class="otp" required disabled>
+                <input type="text" id="otpInput6" maxlength="1" class="otp" required disabled>
             </div>
-        </div>
-        
-        <div id="editSSModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('editSSModal')">&times;</span>
-                <h2>Edit Special Service Plan</h2>
-                <input type="hidden" id="editSSPlanId">
-                <div class="form-group">
-                    <label for="editPrice">Plan Price (₹):</label>
-                    <input type="number" id="editPrice">
-                </div>
-                <div class="form-group">
-                    <label for="editValidity1">Validity (Days):</label>
-                    <input type="text" id="editValidity1">
-                </div>
-                <div class="form-group">
-                    <label for="editTalktime">Talktime (₹):</label>
-                    <input type="number" id="editTalktime">
-                </div>
-                <button class="save-btn" onclick="saveSSPlan()">Save</button>
+            <div style="text-align: right;">
+                <button id="resendBtn" disabled>Resend OTP (10s)</button>
             </div>
+            <br>
+            <button class="continue-btn" onclick="moveNext()" id="continue-btn-otp" disabled>Continue</button>
         </div>
     </div>
-    
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="column">
+                <h3>Our Offerings</h3>
+                <ul>
+                    <li><a href="#">Prepaid</a></li>
+                    <li><a href="#">5G Network</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Our Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">TechLife</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Connect with Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com"><img class="prof" src="../Images/facebook.png" width="34px"></a>
+                    <a href="https://www.twitter.com"><img class="prof" src="../Images/twitter.png" width="33px"></a>
+                    <a href="https://www.instagram.com"><img class="prof" src="../Images/instagram.png" width="35px"></a>
+                    <a href="https://www.linkedin.com"><img class="prof" src="../Images/linkedin.png" width="35px"></a>
+                    <a href="https://www.youtube.com"><img class="prof" src="../Images/youtube.png" width="35px"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2010-2025 My Tech. All rights reserved.</p>
+    </footer>
+
     <script>
-        // JavaScript for Plan Management System
-let dataPlans = [];
-let specialServicePlans = [];
-let currentPlanId = null;
-let currentSSPlanId = null;
+document.getElementById('hamburger-menu').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('active');
 
-// Load plans when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    loadDataPlans();
-    loadSpecialServicePlans();
+    const spans = this.querySelectorAll('span');
+    spans.forEach(span => {
+        span.classList.toggle('active');
+    });
 });
 
-// ===================== DATA PLANS FUNCTIONS =====================
+document.addEventListener('click', function(event) {
+    const nav = document.getElementById('nav-menu');
+    const hamburger = document.getElementById('hamburger-menu');
 
-// Fetch all data plans from the backend
-async function loadDataPlans() {
-    try {
-        const response = await fetch('http://localhost:8080/api/plans');
-       
-        dataPlans = await response.json();
-        displayDataPlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to load data plans. Please try again later.');
-    }
-}
-
-// Display data plans in the table
-function displayDataPlans() {
-    const dataPlansTable = document.getElementById('data-plans-table');
-    if (!dataPlansTable) {
-        console.error('Data plans table element not found');
-        return;
-    }
-    
-    let tableBody = dataPlansTable.querySelector('tbody');
-    if (!tableBody) {
-        tableBody = document.createElement('tbody');
-        dataPlansTable.appendChild(tableBody);
-    } else {
-        tableBody.innerHTML = '';
-    }
-    
-    dataPlans.forEach(plan => {
-        const row = document.createElement('tr');
-        
-        // Get OTT services as a comma-separated string
-        const ottServices = plan.ottServices.map(ott => ott.serviceName).join(', ');
-        
-        row.innerHTML = `
-            <td>₹${plan.planPrice}</td>
-            <td>${plan.validityDays} days</td>
-            <td>${plan.dataPerDay} GB</td>
-            <td>${ottServices || 'None'}</td>
-            <td>
-                <button class="action-btn edit-btn" onclick="openEditModal(${plan.id})">Edit</button>
-                <button class="action-btn delete-btn" onclick="openDeleteModal(${plan.id})">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Open the add plan modal
-function openAddModal() {
-    document.getElementById('addModal').style.display = 'block';
-}
-
-// Close the add plan modal
-function closeAddModal() {
-    document.getElementById('addModal').style.display = 'none';
-    clearAddModalInputs();
-}
-
-// Clear the inputs in the add plan modal
-function clearAddModalInputs() {
-    document.getElementById('planPrice').value = '';
-    document.getElementById('validity').value = '';
-    document.getElementById('dataPerDay').value = '';
-    
-    // Clear OTT checkboxes
-    const ottCheckboxes = document.querySelectorAll('#addModal input[name="ott"]');
-    ottCheckboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-}
-
-// Add a new data plan
-async function addPlan() {
-    const planPrice = document.getElementById('planPrice').value;
-    const validityDays = document.getElementById('validity').value;
-    const dataPerDay = document.getElementById('dataPerDay').value;
-    
-    // Get selected OTT services
-    const ottCheckboxes = document.querySelectorAll('#addModal input[name="ott"]:checked');
-    const ottServices = Array.from(ottCheckboxes).map(checkbox => checkbox.value);
-    
-    if (!planPrice || !validityDays || !dataPerDay) {
-        alert('Please fill all required fields');
-        return;
-    }
-    
-    const newPlan = {
-        planPrice: parseFloat(planPrice),
-        validityDays: parseInt(validityDays),
-        dataPerDay: parseFloat(dataPerDay),
-        ottServices: ottServices
-    };
-    
-    try {
-        const response = await fetch('http://localhost:8080/api/plans', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newPlan)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error adding plan');
-        }
-        
-        closeAddModal();
-        loadDataPlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add plan. Please try again.');
-    }
-}
-
-// Open the edit plan modal
-function openEditModal(planId) {
-    const plan = dataPlans.find(p => p.id == planId);
-    if (!plan) {
-        alert('Plan not found');
-        return;
-    }
-    
-    currentPlanId = planId;
-    
-    document.getElementById('editPlanId').value = planId;
-    document.getElementById('editPlanPrice').value = plan.planPrice;
-    document.getElementById('editValidity').value = plan.validityDays;
-    document.getElementById('editDataPerDay').value = plan.dataPerDay;
-    
-    // Set OTT checkboxes
-    const ottCheckboxes = document.querySelectorAll('#editModal input[name="editOtt"]');
-    ottCheckboxes.forEach(checkbox => {
-        checkbox.checked = plan.ottServices.some(ott => ott.serviceName === checkbox.value);
-    });
-    
-    document.getElementById('editModal').style.display = 'block';
-}
-
-// Close the edit plan modal
-function closeEditModal() {
-    document.getElementById('editModal').style.display = 'none';
-    currentPlanId = null;
-}
-
-// Save changes to a data plan
-async function savePlan() {
-    const planId = currentPlanId;
-    if (!planId) {
-        alert('No plan selected');
-        return;
-    }
-    
-    const planPrice = document.getElementById('editPlanPrice').value;
-    const validityDays = document.getElementById('editValidity').value;
-    const dataPerDay = document.getElementById('editDataPerDay').value;
-    
-    // Get selected OTT services
-    const ottCheckboxes = document.querySelectorAll('#editModal input[name="editOtt"]:checked');
-    const ottServices = Array.from(ottCheckboxes).map(checkbox => checkbox.value);
-    
-    if (!planPrice || !validityDays || !dataPerDay) {
-        alert('Please fill all required fields');
-        return;
-    }
-    
-    const updatedPlan = {
-        planPrice: parseFloat(planPrice),
-        validityDays: parseInt(validityDays),
-        dataPerDay: parseFloat(dataPerDay),
-        ottServices: ottServices
-    };
-    
-    try {
-        const response = await fetch(`http://localhost:8080/api/plans/${planId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedPlan)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error updating plan');
-        }
-        
-        closeEditModal();
-        loadDataPlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to update plan. Please try again.');
-    }
-}
-
-// Open the delete plan modal
-function openDeleteModal(planId) {
-    currentPlanId = planId;
-    document.getElementById('deleteModal').style.display = 'block';
-}
-
-// Close the delete plan modal
-function closeDeleteModal() {
-    document.getElementById('deleteModal').style.display = 'none';
-    currentPlanId = null;
-}
-
-// Delete a data plan
-async function confirmDelete() {
-    const planId = currentPlanId;
-    if (!planId) {
-        alert('No plan selected');
-        return;
-    }
-    
-    try {
-        const response = await fetch(`http://localhost:8080/api/data-plans/${planId}`, {
-            method: 'DELETE'
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error deleting plan');
-        }
-        
-        closeDeleteModal();
-        loadDataPlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to delete plan. Please try again.');
-    }
-}
-
-// ===================== SPECIAL SERVICE PLANS FUNCTIONS =====================
-
-// Fetch all special service plans from the backend
-async function loadSpecialServicePlans() {
-    try {
-        const response = await fetch('http://localhost:8080/api/plans');
-        if (!response.ok) {
-            throw new Error('Error fetching special service plans');
-        }
-        specialServicePlans = await response.json();
-        displaySpecialServicePlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to load special service plans. Please try again later.');
-    }
-}
-
-// Display special service plans in the table
-function displaySpecialServicePlans() {
-    const ssPlansTable = document.getElementById('special-service-plans-table');
-    if (!ssPlansTable) {
-        console.error('Special service plans table element not found');
-        return;
-    }
-    
-    let tableBody = ssPlansTable.querySelector('tbody');
-    if (!tableBody) {
-        tableBody = document.createElement('tbody');
-        ssPlansTable.appendChild(tableBody);
-    } else {
-        tableBody.innerHTML = '';
-    }
-    
-    specialServicePlans.forEach(plan => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>₹${plan.planPrice}</td>
-            <td>${plan.validityDays} days</td>
-            <td>₹${plan.talktimeAmount}</td>
-            <td>
-                <button class="action-btn edit-btn" onclick="openEditSSModal(${plan.id})">Edit</button>
-                <button class="action-btn delete-btn" onclick="openDeleteSSModal(${plan.id})">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Open the add special service plan modal
-function openAddSSModal() {
-    document.getElementById('addSSModal').style.display = 'block';
-}
-
-// Close a modal by ID
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
-// Add a new special service plan
-async function addSSPlan() {
-    const planPrice = document.getElementById('addPrice').value;
-    const validityDays = document.getElementById('addValidity').value;
-    const talktimeAmount = document.getElementById('addTalktime').value;
-    
-    if (!planPrice || !validityDays || !talktimeAmount) {
-        alert('Please fill all required fields');
-        return;
-    }
-    
-    const newPlan = {
-        planPrice: parseFloat(planPrice),
-        validityDays: parseInt(validityDays),
-        talktimeAmount: parseFloat(talktimeAmount)
-    };
-    
-    try {
-        const response = await fetch('http://localhost:8080/api/special-service-plans', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newPlan)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error adding special service plan');
-        }
-        
-        closeModal('addSSModal');
-        loadSpecialServicePlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to add special service plan. Please try again.');
-    }
-}
-
-// Open the edit special service plan modal
-function openEditSSModal(planId) {
-    const plan = specialServicePlans.find(p => p.id == planId);
-    if (!plan) {
-        alert('Plan not found');
-        return;
-    }
-    
-    currentSSPlanId = planId;
-    
-    document.getElementById('editPlanId').value = planId;
-    document.getElementById('editPrice').value = plan.planPrice;
-    document.getElementById('editValidity1').value = plan.validityDays;
-    document.getElementById('editTalktime').value = plan.talktimeAmount;
-    
-    document.getElementById('editSSModal').style.display = 'block';
-}
-
-// Close the edit special service plan modal
-function closeEditSSModal() {
-    document.getElementById('editSSModal').style.display = 'none';
-    currentSSPlanId = null;
-}
-
-// Save changes to a special service plan
-async function saveSSPlan() {
-    const planId = currentSSPlanId;
-    if (!planId) {
-        alert('No plan selected');
-        return;
-    }
-    
-    const planPrice = document.getElementById('editPrice').value;
-    const validityDays = document.getElementById('editValidity1').value;
-    const talktimeAmount = document.getElementById('editTalktime').value;
-    
-    if (!planPrice || !validityDays || !talktimeAmount) {
-        alert('Please fill all required fields');
-        return;
-    }
-    
-    const updatedPlan = {
-        planPrice: parseFloat(planPrice),
-        validityDays: parseInt(validityDays),
-        talktimeAmount: parseFloat(talktimeAmount)
-    };
-    
-    try {
-        const response = await fetch(`http://localhost:8080/api/special-service-plans/${planId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedPlan)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error updating special service plan');
-        }
-        
-        closeEditSSModal();
-        loadSpecialServicePlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to update special service plan. Please try again.');
-    }
-}
-
-// Open the delete special service plan modal
-function openDeleteSSModal(planId) {
-    currentSSPlanId = planId;
-    document.getElementById('deleteModal').style.display = 'block';
-}
-
-// Delete a special service plan
-async function deleteSSPlan() {
-    const planId = currentSSPlanId;
-    if (!planId) {
-        alert('No plan selected');
-        return;
-    }
-    
-    try {
-        const response = await fetch(`http://localhost:8080/api/special-service-plans/${planId}`, {
-            method: 'DELETE'
-        });
-        
-        if (!response.ok) {
-            throw new Error('Error deleting special service plan');
-        }
-        
-        closeDeleteModal();
-        loadSpecialServicePlans();
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to delete special service plan. Please try again.');
-    }
-}
-
-// ===================== TAB NAVIGATION FUNCTIONS =====================
-
-// Function to switch between tabs
-function openTab(evt, tabName) {
-    const tabcontent = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    
-    const tablinks = document.getElementsByClassName("tablinks");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-// Show the first tab by default
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the first tab button and click it to open the default tab
-    const defaultTab = document.getElementsByClassName("tablinks")[0];
-    if (defaultTab) {
-        defaultTab.click();
+    if (!nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
     }
 });
+
+function moveNext() {
+    window.location.href = "page2.html?status=true";
+}
+
+async function changeContent() {
+    document.getElementById("notexists").textContent = "";
+
+    let phoneNumber = document.querySelector(".mobile-input").value;
+
+    try {
+        let isValid = false;
+        let response = await fetch(`http://localhost:8080/Subscribers/phonenumbers/${phoneNumber}`);
+        isValid = await response.json();
+
+        if (isValid) {
+            document.getElementById('recharge-box').style.display = 'none';
+            document.getElementById('otp-container').style.display = 'block';
+            startOtpTimer();
+            insertPhoneNumber();
+        } else {
+            document.getElementById("notexists").textContent = "Invalid Mobicomm Number";
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function changeContents() {
+    clearOtp();
+    document.getElementById('otp-container').style.display = 'none';
+    document.getElementById('recharge-box').style.display = 'block';
+    document.getElementById('resendBtn').disabled = true;
+    stopOtpTimer();
+}
+
+function startOtpTimer() {
+    let seconds = 10;
+    const resendBtn = document.getElementById('resendBtn');
+
+    resendBtn.disabled = true;
+    resendBtn.style.cursor = 'no-drop';
+
+    otpTimer = setInterval(() => {
+        resendBtn.textContent = `Resend OTP (${--seconds}s)`;
+
+        if (seconds <= 0) {
+            clearInterval(otpTimer);
+            resendBtn.textContent = 'Resend OTP';
+            resendBtn.disabled = false;
+            resendBtn.style.cursor = 'pointer';
+        }
+    }, 1000);
+}
+
+document.getElementById('resendBtn').addEventListener('click', changeContent);
+
+function stopOtpTimer() {
+    clearInterval(otpTimer);
+}
+
+const mbnum = document.getElementsByClassName("mobile-input")[0];
+
+mbnum.addEventListener('input', () => {
+    if (mbnum.value.length === 10) {
+        document.getElementById('generate-otp').disabled = false;
+        document.getElementById('generate-otp').style.opacity = 1;
+        document.getElementById('generate-otp').style.cursor = 'pointer';
+    } else {
+        document.getElementById('generate-otp').disabled = true;
+        document.getElementById('generate-otp').style.opacity = 0.5;
+        document.getElementById('generate-otp').style.cursor = 'no-drop';
+    }
+});
+
+// Add this function to handle OTP input fields
+document.getElementById('otpInput1').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('otpInput2').disabled = false;
+        document.getElementById('otpInput2').focus();
+    }
+});
+
+document.getElementById('otpInput2').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('otpInput3').disabled = false;
+        document.getElementById('otpInput3').focus();
+    }
+});
+
+document.getElementById('otpInput3').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('otpInput4').disabled = false;
+        document.getElementById('otpInput4').focus();
+    }
+});
+
+document.getElementById('otpInput4').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('otpInput5').disabled = false;
+        document.getElementById('otpInput5').focus();
+    }
+});
+
+document.getElementById('otpInput5').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('otpInput6').disabled = false;
+        document.getElementById('otpInput6').focus();
+    }
+});
+
+// Enable continue button when all OTP fields are filled
+document.getElementById('otpInput6').addEventListener('input', function() {
+    if (this.value.length === 1) {
+        document.getElementById('continue-btn-otp').disabled = false;
+        document.getElementById('continue-btn-otp').style.opacity = 1;
+        document.getElementById('continue-btn-otp').style.cursor = 'pointer';
+    }
+});
+
     </script>
 </body>
 </html>

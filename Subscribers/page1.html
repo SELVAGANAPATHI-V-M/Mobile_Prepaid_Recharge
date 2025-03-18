@@ -28,7 +28,7 @@
             padding: 0.5rem 0.5rem;
             position: fixed;
             width: 100%;
-            height: 70px;
+            height: 60px;
             z-index: 1000;
         }
 
@@ -98,7 +98,7 @@
             border-radius: 12px;
             text-align: center;
             width: 400px;
-            height: 310px;
+            height: 330px;
             margin: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -360,8 +360,8 @@
         <nav id="nav-menu" style="padding-right: 40px;">
             <ul>
                 <li><a href="" style="text-decoration: underline;">Home</a></li>
-                <li><a href="page2.html?status=false">Plans</a></li>
                 <li><a href="fivegplans.html?status=false">True 5G</a></li>
+                <li><a href="page2.html?status=false">Plans</a></li>
                 <li><a href="support.html?status=false">Support</a></li>
             </ul>
         </nav>
@@ -399,6 +399,7 @@
             </div>
             <br>
             <button class="continue-btn" onclick="moveNext()" id="continue-btn-otp" disabled>Continue</button>
+            <span id="invalidOTP" style="color: red;">Invalid OTP!</span>
         </div>
     </div>
 
@@ -440,6 +441,12 @@
     </footer>
 
     <script>
+
+document.getElementById("invalidOTP").style.display = "none";
+
+
+let phoneNumber ;
+
         document.getElementById('hamburger-menu').addEventListener('click', function() {
             document.getElementById('nav-menu').classList.toggle('active');
             
@@ -458,23 +465,62 @@
             }
         });
 
-        function moveNext() {
-            window.location.href = "page2.html?status=true";
+        async function moveNext() {
+            let otp="" ;
+            otpInputs.forEach((input) =>{
+                otp += input.value;
+            });
+            console.log(otp);
+            
+            let response = await fetch(`http://localhost:8080/api/otp/verify?phoneNumber=+91${phoneNumber.trim()}&otp=${otp}`,{
+                method:"POST",
+                headers : {"Content-Type" : "application/json"},
+            });
+            if(response.ok){
+                window.location.href = "page2.html?status=true";
+            }
+            else{
+                document.getElementById("invalidOTP").style.display = "block";
+            }
+        }
+
+       async function sentOtp(){
+
+        try {
+        const response = await fetch(`http://localhost:8080/api/otp/send?phoneNumber=+91${phoneNumber.trim()}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        });
+
+
+        if (response.ok) {
+            alert("OTP sent successfully!");
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error("Error sending OTP:", error);
+        alert("Failed to send OTP");
+    }
         }
 
         async function changeContent() {
+         phoneNumber = document.querySelector(".mobile-input").value;
+
+
             document.getElementById("notexists").textContent = "";
 
-            let phoneNumber = document.querySelector(".mobile-input").value; // Ensure correct input selection
+
     
     try {
         let isValid=false;
-        let response = await fetch(`http://localhost:8080/Subscribers/phonenumbers/${phoneNumber}`);
-        isValid = await response.json(); // Wait for JSON response
+        let response = await fetch(`http://localhost:8080/api/subscribers/phonenumbers/${phoneNumber}`);
+        isValid = await response.json(); 
         
         if (isValid) {
             document.getElementById('recharge-box').style.display = 'none';
             document.getElementById('otp-container').style.display = 'block';
+            await sentOtp();
             startOtpTimer();
             insertPhoneNumber();
         }
@@ -554,6 +600,9 @@
         const otpInputs = document.querySelectorAll('.otp');
     otpInputs.forEach((input, index) => {
         input.addEventListener('input', () => {
+
+            document.getElementById("invalidOTP").style.display = "none";
+
             if (input.value.match(/^\d+$/) === null) {
                 input.value = input.value.replace(/\D/g, '');
             }
@@ -590,9 +639,6 @@
                 document.getElementById("continue-btn-otp").style.cursor = 'no-drop';
             });
         }
-
-       
-
     </script>
 </body>
 </html>

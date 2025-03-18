@@ -817,6 +817,62 @@ tbody tr:hover {
 .page-btn:hover:not(.active) {
   background-color: var(--light-gray);
 }
+.modal-content {
+  width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+}
+
+.save-btn {
+  width: 100%;
+  background: #288b7c;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background:  #007c7c;
+}
+
 
 @media (max-width: 1200px) {
   .stats-container {
@@ -856,6 +912,8 @@ tbody tr:hover {
       grid-template-columns: 1fr;
   }
 }
+
+
 
 /* For screens smaller than 992px (e.g., smaller tablets) */
 @media (max-width: 992px) {
@@ -927,4 +985,43 @@ tbody tr:hover {
   .card p {
       font-size: 20px;
   }
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.pagination-btn {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 40px;
+  text-align: center;
+}
+.pagination-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.pagination-btn.active {
+  background-color: #0056b3;
+  font-weight: bold;
+}
+.pagination-info {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9em;
 }

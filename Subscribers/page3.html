@@ -418,7 +418,7 @@ button#close{
                 </div>
             </div>
           </div>
-          <button onclick = "waitPlease()" class="proceed-btn" id="paymentbutton" disabled>Proceed to Payment</button>
+          <button onclick = "waitPlease('upi')" class="proceed-btn" id="paymentbutton" disabled>Proceed to Payment</button>
           </div>
           </div>
           </div>
@@ -453,7 +453,7 @@ button#close{
                   <span style="color: red; font-size: small;" id="name-error"></span>
                 </div>
     
-                <button onclick = "waitPlease()" class="proceed-btn" id="paymentsbutton" disabled>Proceed to Payment</button>
+                <button onclick = "waitPlease('credit_debit_card')" class="proceed-btn" id="paymentsbutton" disabled>Proceed to Payment</button>
     
             </div>
           </div>
@@ -491,18 +491,59 @@ document.getElementById("paymentsbutton").style.opacity = '50%';
 function processPayment() {
     document.getElementById("paymentprocessModal").style.display = "block";
 
-    setTimeout(() => {
-        openPaymentModal();
-    }, 4000);
-
 }
-function moveNext(){
 
-  const params = new URLSearchParams(window.location.search);
 
-  var pageStatus = params.get('target') === '5g'; 
-  window.location.href = pageStatus ? "fivegplans.html?status=true":"page2.html?status=true";
+async function moveNext() {
+    let phonenumber = localStorage.getItem("phonenumber");
+    let planId = localStorage.getItem("id");
+    const params = new URLSearchParams(window.location.search);
+
+    var pageStatus = params.get('target') === '5g';
+
+    try {
+        // Fetch user and plan details
+        let userDetailsResponse = await fetch(`http://localhost:8080/api/subscribers/phone/${phonenumber}`);
+        let planDetailsResponse = await fetch(`http://localhost:8080/api/plans/${planId}`);
+
+        if (!userDetailsResponse.ok || !planDetailsResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        let userDetails = await userDetailsResponse.json();
+        let planDetails = await planDetailsResponse.json();
+
+        // Construct transaction data
+        const transactionData = {
+            user: { userId: userDetails.userId }, // Reference to User entity
+            plan: { planId: Number(planId) }, // Reference to Plan entity
+            transactionMode:"empty", // Set based on user choice
+            transactionStatus: "failure" // Default status
+        };
+
+        // Post transaction data
+        let transactionResponse = await fetch("http://localhost:8080/api/transactions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(transactionData)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+
+        window.location.href = pageStatus ? "fivegplans.html?status=true" : "page2.html?status=true";
+
+    } catch (error) {
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction. Please try again.");
+    }
 }
+
+
 
 document.getElementById("price-payment").textContent = localStorage.getItem('price')
 
@@ -514,7 +555,40 @@ function openPaymentModal() {
     document.getElementById("paymentModal").style.display = "flex";
 }
 
-function closePaymentModal() {
+let planDetails
+let userDetails;
+let transactionResult;
+async function closePaymentModal() {
+
+  
+  try {
+        let userPlan = {
+            user: { userId: userDetails.userId },
+            plan: { planId: planDetails.planId },
+            transaction: { transactionId: transactionResult.transactionId },
+            dataUsage: 0,
+        };
+
+        let response = await fetch("http://localhost:8080/api/currentPlan/saveOrUpdate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userPlan)
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Plan update error:", errorText);
+            throw new Error("Failed to update user current plan details");
+        }
+
+        let result = await response.json();
+        alert("Plan updated successfully!");
+    } catch (error) {
+        console.error("Error:", error);
+    }
+        
+
+
   const params = new URLSearchParams(window.location.search);
 
 var pageStatus = params.get('target') === '5g'; 
@@ -689,12 +763,76 @@ upiId.addEventListener('input', () => {
     }
   });
 
-  function waitPlease() {
-    
-    document.getElementById("paymentprocessModal").style.display = "block";
+ 
+  async function waitPlease(paymentway) {
 
-    processPayment();
+processPayment();
+
+    try {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+        openPaymentModal();
+
+        const phonenumber = localStorage.getItem("phonenumber");
+        let planId = localStorage.getItem("id");
+        const is5GPage = new URLSearchParams(window.location.search).get('target') === '5g';
+
+        // Convert planId properly
+        let planID = Number(planId);
+
+        if (!phonenumber || !planId || isNaN(planID)) {
+            console.error("Invalid values:", { phonenumber, planId, planID });
+            throw new Error("Missing or invalid phone number/plan ID");
+        }
+
+        const [userResponse, planResponse] = await Promise.all([
+            fetch(`http://localhost:8080/api/subscribers/phone/${phonenumber}`),
+            fetch(`http://localhost:8080/api/plans/${planID}`)
+        ]);
+
+        if (!userResponse.ok || !planResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        userDetails = await userResponse.json();
+        planDetails = await planResponse.json();
+
+        if (!userDetails || !userDetails.userId) {
+            throw new Error("Invalid user details received");
+        }
+
+        const transaction = {
+            user: { userId: userDetails.userId },
+            plan: { planId: planDetails.planId },
+            transactionMode: paymentway,
+            transactionStatus: "success"
+        };
+
+        let transactionResponse = await fetch("http://localhost:8080/api/transactions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(transaction)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+        transactionResult = await transactionResponse.json();
+
+        console.log("User ID:", userDetails.userId);
+        console.log("Plan ID:", planDetails.planId);
+        console.log("Transaction ID:", transactionResult.transactionId);
+
+
+    } catch (error) {
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction: " + error.message);
+    } finally {
+        document.getElementById("paymentprocessModal").style.display = "none";
+    }
 }
+
 
 </script>
 

@@ -181,6 +181,7 @@ body {
 .plan-details p {
     margin: 0.2rem 0;
     font-size: 0.9rem;
+    padding-bottom: 10px;
 }
 
 .buy-btn {
@@ -542,6 +543,7 @@ body {
              <div id="dropdownMenu" class="dropdown-menu">
               <a href="" id="account">My Account</a>
               <a href="" onclick="logout(this)">Logout</a>
+             </div>
           </div>
         </div>
           </ul>
@@ -563,1095 +565,108 @@ body {
           
           <br>
           <ul class="sidebar-menu">
-            <li><a id="box" onclick = "givedetails(1)" style="cursor:pointer;">Popular plans</a></li>
-            <li><a onclick = "givedetails(2)" style="cursor:pointer;">5G Unlimited Plans</a></li>
-            <li><a onclick = "givedetails(3)" style="cursor:pointer;">Data Plans</a></li>
-            <li><a onclick = "givedetails(4)" style="cursor:pointer;">Top-up</a></li>
-            <li><a onclick = "givedetails(5)" style="cursor:pointer;">Voice only plans</a></li>
-            <li><a onclick = "givedetails(6)" style="cursor:pointer;">Annual Plans</a></li>
+            <li><a id="box" data-category="PopularPlans" style="cursor:pointer;">Popular plans</a></li>
+            <li><a data-category="5GUnlimitedPlans" style="cursor:pointer;">5G Unlimited Plans</a></li>
+            <li><a data-category="DataPlans" style="cursor:pointer;">Data Plans</a></li>
+            <li><a data-category="TopupPlans" style="cursor:pointer;">Top-up</a></li>
+            <li><a data-category="VoiceOnlyPlans" style="cursor:pointer;">Voice only plans</a></li>
+            <li><a data-category="AnnualPlans" style="cursor:pointer;">Annual Plans</a></li>
           </ul>
         </aside>
+
     
-        <section class="content" id="1">
+        <section class="content" id="PopularPlans">
 
             <h2 style="padding-bottom: 25px;">Popular Plans</h2>
 
             <div class="tab-buttons">
-                <button class="tab-button active" onclick="openTab(event, 'recommended')">Recommended</button>
-                <button class="tab-button" onclick="openTab(event, 'trending')">Top Trending True 5G Unlimited Plans</button>
-                <button class="tab-button" onclick="openTab(event, '2.5gbplans')">2.5 GB/Day Plans</button>
-                <button class="tab-button" onclick="openTab(event, '2gbplans')">2 GB/Day Plans</button>
-                <button class="tab-button" onclick="openTab(event, '1gbplans')">1 GB/Day Plans</button>
+                <button class="tab-button active" onclick="openTab(event, 'RecommendedPlans')">Recommended</button>
+                <button class="tab-button" onclick="openTab(event, 'TrendingPlans')">Top Trending True 5G Unlimited Plans</button>
+                <button class="tab-button" onclick="openTab(event, '2_5GBPlans')">2.5 GB/Day Plans</button>
+                <button class="tab-button" onclick="openTab(event, '2GBPlans')">2 GB/Day Plans</button>
+                <button class="tab-button" onclick="openTab(event, '1GBPlans')">1 GB/Day Plans</button>
             </div>
 
           
-          <div id="recommended" class="tab-content">
+          <div id="RecommendedPlans" class="tab-content">
            
            
-              <div class="plans-grid" id="plans-recommended">
-                <div class="plan-card">
-                  <div class="plan-price">₹599</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>2</b> GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹799</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 56 Days</p>
-                    <p><b> 2.5</b> GB/Day</p>
-                  </div>
-
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-
-                
-                <div class="plan-card">
-                    <div class="plan-price">₹3599</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 305 Days</p>
-                      <p><b>2.5 </b>GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
-
-                  <div class="plan-card">
-                    <div class="plan-price">₹399</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 36 Days</p>
-                      <p><b>2 </b> GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
+              <div class="plans-grid" id="RecommendedPlansgrid">
 
                   
               </div>
               
             </div>
     
-          <div id="trending" class="tab-content">
+          <div id="TrendingPlans" class="tab-content">
            
            
-              <div class="plans-grid">
-                <div class="plan-card">
-                  <div class="plan-price">₹3599</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 365 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹2025</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 200 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹999</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 56 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                       
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹899</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹2899</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 180 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                  </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹9999</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 365 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹3999</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 305 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                       
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹3599</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 305 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹2025</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 200 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹399</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
+              <div class="plans-grid" id="TrendingPlansgrid">
+                
               </div>
             </div>
     
-          <div  id="2.5gbplans" class="tab-content">
+          <div  id="2_5GBPlans" class="tab-content">
           
            
-              <div class="plans-grid">
-                <div class="plan-card">
-                  <div class="plan-price">₹199</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 14 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹399</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>2.5 </b>GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-price">₹499</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 36 Days</p>
-                      <p><b>2.5 </b>GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                         
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
-                  <div class="plan-card">
-                    <div class="plan-price">₹738</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 48 Days</p>
-                      <p><b>2.5 </b>GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
+              <div class="plans-grid" id="2_5GBPlansgrid">
+                
               </div>
             </div>
     
-          <div id="2gbplans" class="tab-content">
+          <div id="2GBPlans" class="tab-content">
            
            
-              <div class="plans-grid">
-                <div class="plan-card">
-                  <div class="plan-price">₹149</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 14 Days</p>
-                    <p><b>2 </b> GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹249</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>2 </b> GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-price">₹399</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 36 Days</p>
-                      <p><b>2 </b> GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
-                  <div class="plan-card">
-                    <div class="plan-price">₹529</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 48 Days</p>
-                      <p><b>2 </b> GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">📺</div>
-                              <div class="ott-name">Disney+</div>
-                          </div>
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎥</div>
-                              <div class="ott-name">Prime</div>
-                          </div>
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
-                  <div class="plan-card">
-                    <div class="plan-price">₹799</div>
-                    <div class="plan-details">
-                      <p>Validity:<span class="validityId"> 78 Days</p>
-                      <p><b>2 </b> GB/Day</p>
-                    </div>
-                    <div class="ott-section">
-                      <div class="ott-title">Included OTT Subscriptions</div>
-                      <div class="ott-plans">
-                          <div class="ott-platform">
-                              <div class="ott-icon">🎬</div>
-                              <div class="ott-name">Netflix</div>
-                          </div>
-                          
-                      </div>
-                  </div>
-                    <button class="buy-btn" onclick="payment()">Buy</button>
-                  </div>
+              <div class="plans-grid" id="2GBPlansgrid">
+                
+                  
               </div>
             </div>
     
-          <div id="1gbplans" class="tab-content">
-          
+          <div id="1GBPlans" class="tab-content">
            
-              <div class="plans-grid">
-                <div class="plan-card">
-                  <div class="plan-price">₹99</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 14 Days</p>
-                    <p><b>1 </b> GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
-                <div class="plan-card">
-                  <div class="plan-price">₹149</div>
-                  <div class="plan-details">
-                    <p>Validity:<span class="validityId"> 28 Days</p>
-                    <p><b>1 </b> GB/Day</p>
-                  </div>
-                  <div class="ott-section">
-                    <div class="ott-title">Included OTT Subscriptions</div>
-                    <div class="ott-plans">
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎬</div>
-                            <div class="ott-name">Netflix</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">📺</div>
-                            <div class="ott-name">Disney+</div>
-                        </div>
-                        <div class="ott-platform">
-                            <div class="ott-icon">🎥</div>
-                            <div class="ott-name">Prime</div>
-                        </div>
-                    </div>
-                </div>
-                  <button class="buy-btn" onclick="payment()">Buy</button>
-                </div>
+              <div class="plans-grid" id="1GBPlansgrid">
+                
               </div>
             </div>
         </section>
         
 
 
-        <section class="content" id="2">
+        <section class="content" id="5GUnlimitedPlans">
 
           <h2 style="padding-bottom: 25px;">5G Unlimited Plans</h2>
-          <div class="plans-grid">
-            <div class="plan-card">
-              <div class="plan-price">₹3999</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 365 Days</p>
-                <p><b>2.5 </b>GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹2025</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 200 Days</p>
-                <p><b>2.5 </b>GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹3599</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 365 Days</p>
-                <p><b>2.5 </b>GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹1049</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 84 Days</p>
-                <p><b>2 </b> GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹1029</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 84 Days</p>
-                <p><b>2 </b> GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-          
-
-          <div class="plan-card">
-            <div class="plan-price">₹449</div>
-            <div class="plan-details">
-              <p>Validity:<span class="validityId"> 28 Days</p>
-              <p><b>3 </b> GB/Day</p>
-            </div>
-            <div class="ott-section">
-              <div class="ott-title">Included OTT Subscriptions</div>
-              <div class="ott-plans">
-                  <div class="ott-platform">
-                      <div class="ott-icon">🎬</div>
-                      <div class="ott-name">Netflix</div>
-                  </div>
-                  <div class="ott-platform">
-                      <div class="ott-icon">📺</div>
-                      <div class="ott-name">Disney+</div>
-                  </div>
-                  <div class="ott-platform">
-                      <div class="ott-icon">🎥</div>
-                      <div class="ott-name">Prime</div>
-                  </div>
-              </div>
-          </div>
-            <button class="buy-btn" onclick="payment()">Buy</button>
-          </div>
-
-          <div class="plan-card">
-            <div class="plan-price">₹198</div>
-            <div class="plan-details">
-              <p>Validity:<span class="validityId"> 14 Days</p>
-              <p><b>2 </b> GB/Day</p>
-            </div>
-            <div class="ott-section">
-              <div class="ott-title">Included OTT Subscriptions</div>
-              <div class="ott-plans">
-                  <div class="ott-platform">
-                      <div class="ott-icon">🎬</div>
-                      <div class="ott-name">Netflix</div>
-                  </div>
-                  <div class="ott-platform">
-                      <div class="ott-icon">📺</div>
-                      <div class="ott-name">Disney+</div>
-                  </div>
-                  <div class="ott-platform">
-                      <div class="ott-icon">🎥</div>
-                      <div class="ott-name">Prime</div>
-                  </div>
-              </div>
-          </div>
-            <button class="buy-btn" onclick="payment()">Buy</button>
-          </div>
-        </div>
+          <div class="plans-grid" id="5GUnlimitedPlansgrid">
+            
+           </div>
 
         </section>
 
-        <section class="content" id="3">
+        <section class="content" id="DataPlans">
           <h2 style="padding-bottom: 25px;">Data Plans</h2>
-          <div class="plans-grid">
-            <div class="plan-card">
-              <div class="plan-price">₹19</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 1 Day</p>
-                <p><b>1 </b> GB</p>
-                <div class="ott-section">
-                  <div class="ott-title">Included OTT Subscriptions</div>
-                  <div class="ott-plans">
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎬</div>
-                          <div class="ott-name">Netflix</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">📺</div>
-                          <div class="ott-name">Disney+</div>
-                      </div>
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎥</div>
-                          <div class="ott-name">Prime</div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹175</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 28 Days</p>
-                <p><b>1 </b> GB</p>
-                <div class="ott-section">
-                  <div class="ott-title">Included OTT Subscriptions</div>
-                  <div class="ott-plans">
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎬</div>
-                          <div class="ott-name">Netflix</div>
-                      </div>
-                    
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎥</div>
-                          <div class="ott-name">Prime</div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹11</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 1 hour</p>
-                <p><b>1 </b> GB/Day</p>
-                <div class="ott-section">
-                  <div class="ott-title">Included OTT Subscriptions</div>
-                  <div class="ott-plans">
-                      
-                      <div class="ott-platform">
-                          <div class="ott-icon">🎥</div>
-                          <div class="ott-name">Prime</div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹219</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 30 Days</p>
-                <p><b>3 </b> GB</p>
-              </div>
-              
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-
-            <div class="plan-card">
-              <div class="plan-price">₹289</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 30 Days</p>
-                <p><b>40</b> GB</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹359</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 30 Days</p>
-                <p><b>50</b> GB</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
+          <div class="plans-grid" id="DataPlansgrid">
+            
           </div>
         </section>
 
-        <section class="content" id="4">
+        <section class="content" id="TopupPlans">
           <h2 style="padding-bottom: 25px;">Top-up</h2>
-          <div class="plans-grid">
-            <div class="plan-card">
-              <div class="plan-price">₹1000</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> Unlimited</p>
-                <p><b>₹844.46</b></p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹500</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> Unlimited</p>
-                <p><b>₹420.73</b></p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹100</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> Unlimited</p>
-                <p><b>₹81.75</b></p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-price">₹50</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> Unlimited</p>
-                <p><b>₹39.37</b></p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-
+          <div class="plans-grid" id="TopupPlansgrid">
+            
           </div>
         </section>
 
-        <section class="content" id="5">
+        <section class="content" id="VoiceOnlyPlans">
           <h2 style="padding-bottom: 25px;">Voice only Plans</h2>
-          <div class="plans-grid">
-            <div class="plan-card">
-              <div class="plan-price">₹1748</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 336 Days</p>
-                <p>Unlimited Voice</p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹448</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId">84 Days</p>
-                <p>Unlimited Voice</p>
-              </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
+          <div class="plans-grid" id="VoiceOnlyPlansgrid">
+            
           </div>
         </section>
 
-        <section class="content" id="6">
+        <section class="content" id="AnnualPlans">
           <h2 style="padding-bottom: 25px;">Annual Plans</h2>
-          <div class="plans-grid">
-            <div class="plan-card">
-              <div class="plan-price">₹3999</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 365 Days</p>
-                <p><b>2.5 </b>GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
-            <div class="plan-card">
-              <div class="plan-price">₹3599</div>
-              <div class="plan-details">
-                <p>Validity:<span class="validityId"> 365 Days</p>
-                <p><b>2.5 </b>GB/Day</p>
-              </div>
-              <div class="ott-section">
-                <div class="ott-title">Included OTT Subscriptions</div>
-                <div class="ott-plans">
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎬</div>
-                        <div class="ott-name">Netflix</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">📺</div>
-                        <div class="ott-name">Disney+</div>
-                    </div>
-                    <div class="ott-platform">
-                        <div class="ott-icon">🎥</div>
-                        <div class="ott-name">Prime</div>
-                    </div>
-                </div>
-            </div>
-              <button class="buy-btn" onclick="payment()">Buy</button>
-            </div>
+          <div class="plans-grid" id="AnnualPlansgrid">
+
           </div>
         </section>
       </div>
@@ -1664,6 +679,126 @@ body {
 </body>
 
 <script>
+
+
+let arr = ["PopularPlans" , "5GUnlimitedPlans",'DataPlans','TopupPlans' , 'VoiceOnlyPlans' , 'AnnualPlans'];
+
+
+
+async function loadPlans(category) {
+    const apiUrl = `http://localhost:8080/api/plans/category/${category}`; 
+
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const plans = await response.json();
+
+        let container = document.getElementById(`${category}grid`);
+        if (!container) {
+            console.warn(`Container '${category}grid' not found.`);
+            return;
+        }
+        container.innerHTML = ""; 
+
+        plans.forEach(plan => {
+          let planCard= "";
+
+            if (category === "DataPlans") {
+                planCard = `
+                <div class="plan-card">
+                    <div class="plan-price">₹${plan.planPrice}</div>
+                    
+                    <div class="plan-details">
+                        <p>Validity: <span class="validityId">${plan.planValidityInDays} Days</span></p>
+                        <p><b>${plan.planOverallData ? plan.planOverallData + ' GB' : 'N/A'}</b> GB/Day</p>
+                    </div>
+                    <button class="buy-btn" onclick="payment(${plan.planId} , ${plan.planPrice})">Buy</button>
+                </div>
+                `;
+            }
+            else if (category === "TopupPlans") {
+                planCard = `
+                    <div class="plan-card">
+                    <div class="plan-price">₹${plan.planPrice}</div>
+                    
+                    <div class="plan-details">
+                      <p>Validity: <span class="validityId">${plan.planValidityInDays != 0 ?plan.planValidityInDays + "Days":"Unlimited"} </span></p>
+                      <p>Talktime: <span class="validityId">₹${plan.planTalkTime} </span></p>
+                    </div>
+                    <button class="buy-btn" onclick="payment(${plan.planId} , ${plan.planPrice})">Buy</button>
+                </div>
+                `;
+            }
+            else if ( category === "VoiceOnlyPlans") {
+                planCard = `
+                    <div class="plan-card">
+                    <div class="plan-price">₹${plan.planPrice}</div>
+                    
+                    <div class="plan-details">
+                        <p>Validity: <span class="validityId">${plan.planValidityInDays} Days</span></p>
+                        <p>Voice : <b>Unlimited</b></p>
+                        <p>Messages: <b>${plan.planSmsValidity == null ? 0 :plan.planSmsValidity}</b> SMS/Day</p>
+                    </div>
+                    <button class="buy-btn" onclick="payment(${plan.planId} , ${plan.planPrice})">Buy</button>
+                </div>
+                `;
+            }
+            else{
+            let ottSection =((plan.planOttOffers))
+                ? `<div class="ott-section">
+                        <div class="ott-title">Included OTT Subscriptions</div>
+                        <div class="ott-plans">
+                            ${generateOTTIcons(plan.planOttOffers)}
+                        </div>
+                   </div>`
+                : '';
+
+            planCard = `
+                <div class="plan-card">
+                    <div class="plan-price">₹${plan.planPrice}</div>
+                    
+                    <div class="plan-details">
+                        <p>Validity: <span class="validityId">${plan.planValidityInDays} Days</span></p>
+                        <p><b>${plan.planDataPerDay ? plan.planDataPerDay + ' GB' : 'N/A'}</b> GB/Day</p>
+                        <p>Messages: <b>${plan.planSmsValidity == null ? 0 :plan.planSmsValidity}</b> SMS/Day</p>
+                        <p>Voice : <b>Unlimited</b></p>
+                    </div>
+                    ${ottSection}
+                    <button class="buy-btn" onclick="payment(${plan.planId} , ${plan.planPrice})">Buy</button>
+                </div>
+            `;
+              }
+
+            container.innerHTML += planCard;
+        });
+
+    } catch (error) {
+        console.error("Error fetching plans:", error);
+    }
+}
+
+
+function generateOTTIcons(ottPlans) {
+    if (!ottPlans) return "";
+    let ottMap = {
+        "Netflix": "🎬",
+        "Disney+": "📺",
+        "Prime": "🎥"
+    };
+    return ottPlans.split(",").map(ott => `
+        <div class="ott-platform">
+            <div class="ott-icon">${ottMap[ott.trim()]}</div>
+            <div class="ott-name">${ott.trim()}</div>
+        </div>
+    `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", loadPlans("RecommendedPlans"));
+
     tabcontent = document.getElementsByClassName("tab-content");
 
      for (i = 1; i < tabcontent.length; i++) {
@@ -1671,12 +806,12 @@ body {
      }
 
    document.getElementById("box").classList.add("active")
-
-   for (i = 2; i <=6; i++) {
-    document.getElementById(i).style.display = 'none'
-      
-    }
-
+  
+document.addEventListener("DOMContentLoaded" , () =>{
+  for (let i = 1; i < 6; i++) {
+    document.getElementById(arr[i]).style.display =  'none';
+}
+});
    function openTab(evt, tabName) {
             var i, tabcontent, tabbuttons;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -1689,6 +824,7 @@ body {
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
+            loadPlans(tabName);
         }
 
    document.addEventListener("DOMContentLoaded", function() {
@@ -1735,8 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         this.classList.add("active");
 
-
-        const id = this.getAttribute("onclick").match(/\d+/)[0]; 
+        const id = this.dataset.category; 
 
         givedetails(id);
     });
@@ -1761,9 +896,13 @@ checkboxes.forEach((checkbox) => {
 });
 
 function givedetails(inputValue) {
-    for (let i = 1; i <= 6; i++) {
-        document.getElementById(i).style.display = (i == inputValue) ? 'block' : 'none';
-    }  
+    let arr = ["PopularPlans", "5GUnlimitedPlans", "DataPlans", "TopupPlans", "VoiceOnlyPlans", "AnnualPlans"];
+
+    arr.forEach(category => {
+        document.getElementById(category).style.display = (category == inputValue) ? 'block' : 'none';
+    });
+
+    loadPlans(inputValue);
 }
 
 function toggleDropdown() {
@@ -1783,20 +922,19 @@ function toggleDropdown() {
 function logout(clicked) {
     var confirmLogout = confirm("Are you sure you want to log out?");
     if (confirmLogout) {
-      console.log("vndgjd");
         clicked.href="page1.html";
     }
 }
 
 
-function payment(){
+function payment(id , price){
 
   const params = new URLSearchParams(window.location.search);
 
   var pageStatus = params.get('status') === 'true'; 
 
-const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
-      localStorage.setItem('price' , value1);
+      localStorage.setItem('price' , price);
+      localStorage.setItem('id' , id);
 
 if(pageStatus){
   window.location.href = "page3.html";

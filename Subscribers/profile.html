@@ -33,6 +33,38 @@
             color: var(--text-dark);
             line-height: 1.6;
         }
+
+        
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 150px;
+    margin-top: 12px;
+
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu a:hover {
+    background: #f1f1f1;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
        
         .header {
             display: flex;
@@ -408,6 +440,45 @@
             gap: 10px;
         }
         
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.pagination-btn {
+    margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 40px;
+  text-align: center;
+}
+.pagination-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.pagination-btn.active {
+  background-color: #0056b3;
+  font-weight: bold;
+}
+.pagination-info {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9em;
+}
+        
         @media (max-width: 768px) {
             .header {
                 padding: 0.5rem 1rem;
@@ -456,6 +527,15 @@
                 <li><a href="fivegplans.html?status=true"> True 5G</a></li>
                 <li><a href="page2.html?status=true"> Plans</a></li>
                 <li><a href="support.html?status=true"> Support</a></li>
+                <li>
+                    <div>
+                        <img style="cursor:pointer; margin-top: 1px;" src="../Images/user.png" onclick="toggleDropdown()" alt="" height="25">
+                        <div id="dropdownMenu" class="dropdown-menu">
+                         <a href="" style="color:black">My Account</a>
+                         <a href="" style="color: black;" onclick="logout(this)">Logout</a>
+                        </div>
+                     </div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -470,12 +550,12 @@
                     <img src="../Images/bg1.png" alt="Profile Picture" class="profile-photo">
                 </div>
                 <div class="profile-details">
-                    <h2 class="profile-name" id="name">Selva</h2>
+                    <h2 class="profile-name" id="name"></h2>
                     <div class="profile-info">
                         <div>
                             <div class="info-item">
                                 <i class="fas fa-envelope"></i>
-                                <span>Email: <span id="email">Selva@example.com</span></span>
+                                <span>Email: <span id="email"></span></span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-phone"></i>
@@ -483,26 +563,26 @@
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-phone-alt"></i>
-                                <span>Alternate Phone: <span id="altphonenumber">Not provided</span></span>
+                                <span>Alternate Phone: <span id="altphonenumber"></span></span>
                             </div>
                         </div>
                         <div>
                             <div class="info-item">
                                 <i class="fas fa-birthday-cake"></i>
-                                <span>Date of Birth: <span id="dob">15-02-1990</span></span>
+                                <span>Date of Birth: <span id="dob"></span></span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Address: <span id="address">123 Main Street Bangalore Karnataka 560001</span></span>
+                                <span>Address: <span id="address"></span></span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-user-shield"></i>
-                                <span>Account Status: <span style="color: green; font-weight: bold;">Active</span></span>
+                                <span>Account Status:<span id="status"></span></span>
                             </div>
                         </div>
                     </div>
                     <div class="button-group">
-                        <button class="btn" onclick="openModal('profileModal')">
+                        <button class="btn" onclick="openModal()">
                             <i class="fas fa-user-edit"></i> Edit Profile
                         </button>
                         
@@ -511,18 +591,19 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" >
             <h2 class="section-title">Current Plan</h2>
-            <p><strong>Plan:</strong> Unlimited 5G Premium</p>
-            <p><strong>Subscription:</strong> ₹599/month</p>
-            <p><strong>Validity:</strong> 30 Days (1 GB/Day)</p>
-            <p><strong>Plan Expiry Date:</strong> March 10, 2025</p>
-            <h3 style="margin-top: 20px;">Data Usage</h3>
-            <p>Data Remaining: <strong> 239 MB</strong></p>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 80%;">80%</div>
-            </div>
+            <div id="currentPlandetails">
+            <p><strong>Plan Price : </strong> ₹<span id="planPrice"></span> / month</p>
+            <p><strong>Validity : </strong> <span id="planValidity"></span> Days (<span id="planData"></span> GB / Day)</p>
+            <p><strong>Plan Expiry Date : </strong> <span id="planExpiry"> </span></p>
             
+            <h3 style="margin-top: 20px;">Data Usage</h3>
+            <p>Data Remaining : <strong><span id="dataRemaining"></span> MB</strong></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+            </div>
+        </div>
         </div>
 
         <div class="card">
@@ -539,87 +620,8 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>2025-02-10 23:12:23</td>
-                        <td>TXN123456789</td>
-                        <td>Unlimited 5G Premium</td>
-                        <td>₹599</td>
-                        <td>
-                            <div class="payment-mode">
-                              <i class="fab fa-google-pay payment-icon"></i> 
-                              Google Pay
-                            </div>
-                        </td>
-                        <td><span class="status-badge status-success">Success</span></td>
-                        <td>
-                            <div class="invoice-action">
-                                <button class="btn" onclick="downloadInvoice('TXN123456789')">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2025-01-10 02:02:23</td>
-                        <td>TXN123456788</td>
-                        <td>Unlimited 5G Premium</td>
-                        <td>₹599</td>
-                        <td>
-                            <div class="payment-mode">
-                              <i class="fab fa-google-pay payment-icon"></i> 
-                              Google Pay
-                            </div>
-                        </td>
-                        <td><span class="status-badge status-success">Success</span></td>
-                        <td>
-                            <div class="invoice-action">
-                                <button class="btn" onclick="downloadInvoice('TXN123456788')">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-09-10 03:02:23</td>
-                        <td>TXN123456787</td>
-                        <td>Unlimited 5G Premium</td>
-                        <td>₹599</td>
-                        <td>
-                            <div class="payment-mode">
-                                <i class="fab fa-google-pay payment-icon"></i> 
-                                Google Pay
-                            </div>
-                        </td>
-                        <td><span class="status-badge status-success">Success</span></td>
-                        <td>
-                            <div class="invoice-action">
-                                <button class="btn" onclick="downloadInvoice('TXN123456787')">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-02-01 23:12:23</td>
-                        <td>TXN123456786</td>
-                        <td>Unlimited 5G Premium</td>
-                        <td>₹599</td>
-                        <td>
-                            <div class="payment-mode">
-                              <i class="fab fa-google-pay payment-icon"></i> 
-                              Google Pay
-                            </div>
-                        </td>
-                        <td><span class="status-badge status-pending">Pending</span></td>
-                        <td>
-                            <div class="invoice-action">
-                                <button class="btn btn-secondary" disabled>
-                                    <i class="fas fa-clock"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                <tbody id="transaction-body">
+                   
                 </tbody>
             </table>
         </div>
@@ -629,155 +631,220 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">Edit Profile</h2>
-                <span class="close-btn" onclick="closeModal('profileModal')">&times;</span>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
             </div>
             
             <div class="form-grid">
                 <div class="form-group">
-                    <label for="modalName">Full Name</label>
-                    <input type="text" id="modalName" class="input-field">
+                    <label for="modalFname">First Name</label>
+                    <input type="text" id="modalFname" class="input-field">
                 </div>
-                
+    
                 <div class="form-group">
-                    <label for="modalEmail">Email</label>
-                    <input type="email" id="modalEmail" class="input-field">
+                    <label for="modalLname">Last Name</label>
+                    <input type="text" id="modalLname" class="input-field">
                 </div>
-                
-                <div class="form-group">
-                    <label for="modalPhone">Phone Number</label>
-                    <input type="tel" id="modalPhone" class="input-field">
-                </div>
-                
-                <div class="form-group">
-                    <label for="modalAltPhone">Alternate Phone</label>
-                    <input type="tel" id="modalAltPhone" class="input-field">
-                </div>
-                
-                <div class="form-group">
-                    <label for="modalDob">Date of Birth</label>
-                    <input type="date" id="modalDob" class="input-field">
-                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="modalEmail">Email</label>
+                <input type="email" id="modalEmail" class="input-field">
+            </div>
+    
+            <div class="form-group">
+                <label for="modalPhone">Phone Number</label>
+                <input type="tel" id="modalPhone" class="input-field" disabled>
             </div>
 
             <div class="form-group">
-              <label for="modalStreet">Street Address</label>
-              <input type="text" id="modalStreet" class="input-field">
-          </div>
-          
-          <div class="form-grid">
-              <div class="form-group">
-                  <label for="modalCity">City</label>
-                  <input type="text" id="modalCity" class="input-field">
-              </div>
-              
-              <div class="form-group">
-                  <label for="modalState">State</label>
-                  <input type="text" id="modalState" class="input-field">
-              </div>
-              
-              <div class="form-group">
-                  <label for="modalPincode">Pincode</label>
-                  <input type="text" id="modalPincode" class="input-field">
-              </div>
-          </div>
+                <label for="modalPhone">Alternate Phone Number</label>
+                <input type="tel" id="modalAlternatePhone" class="input-field">
+            </div>
+    
+            <div class="form-group">
+                <label for="modalDob">Date of Birth</label>
+                <input type="date" id="modalDob" class="input-field">
+            </div>
+    
+            <div class="form-group">
+                <label for="modalAddress">Address</label>
+                <input type="text" id="modalAddress" class="input-field">
+            </div>
+    
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="modalState">State</label>
+                    <input type="text" id="modalState" class="input-field">
+                </div>
+    
+                <div class="form-group">
+                    <label for="modalDistrict">District</label>
+                    <input type="text" id="modalDistrict" class="input-field">
+                </div>
+    
+                <div class="form-group">
+                    <label for="modalPincode">Pincode</label>
+                    <input type="text" id="modalPincode" class="input-field">
+                </div>
+            </div>
             
             <button class="save-btn" onclick="saveProfileChanges()">Save Changes</button>
         </div>
     </div>
     
     
+    
     <script>
-        window.onload = function() {
-            document.getElementById("phonenumber").textContent = localStorage.getItem("phonenumber") || "9876543210";
-            document.getElementById("name").textContent = localStorage.getItem("name") || "Selva";
-            document.getElementById("email").textContent = localStorage.getItem("email") || "Selva@example.com";
-            document.getElementById("altphonenumber").textContent = localStorage.getItem("altphonenumber") || "Not provided";
-            document.getElementById("dob").textContent = localStorage.getItem("dob") || "15 Jan 1990";
-            document.getElementById("address").textContent = localStorage.getItem("address") || "123 Main Street, Bangalore 560001";
-        };
+    const phoneNumber = localStorage.getItem("phonenumber");
+    let userid;
+    window.onload = function () {
+        fetchUserDetails();
+    }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            
-            if (modalId === 'profileModal') {
-                document.getElementById("modalName").value = document.getElementById("name").innerText;
-                document.getElementById("modalEmail").value = document.getElementById("email").innerText;
-                document.getElementById("modalPhone").value = document.getElementById("phonenumber").innerText;
-                document.getElementById("modalAltPhone").value = document.getElementById("altphonenumber").innerText !== "Not provided" ? document.getElementById("altphonenumber").innerText : "";
-              
+    function toggleDropdown() {
 
-                
-                const storedDob = document.getElementById("dob").innerText;
-                const dobDate = new Date(storedDob);
-                if (!isNaN(dobDate.getTime())) {
-                    const year = dobDate.getFullYear();
-                    const month = String(dobDate.getMonth() + 1).padStart(2, '0');
-                    const day = String(dobDate.getDate()).padStart(2, '0');
-                    document.getElementById("modalDob").value = `${year}-${month}-${day}`;
-               
-                const fullAddress = document.getElementById("address").textContent;
-                const addressParts = fullAddress.split(', ');
-                console.log(addressParts);
-                if (addressParts.length >= 2) {
-                    document.getElementById("modalStreet").value = addressParts[0];
-                    
-                        document.getElementById("modalCity").value = addressParts[1];
-                        document.getElementById("modalState").value = addressParts[2]; 
-                        document.getElementById("modalPincode").value = addressParts[3];
-                    
-                }
-            }
-          }
+  var dropdown = document.getElementById("dropdownMenu");
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+
+}
+
+    function logout(clicked) {
+    var confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+        clicked.href="page1.html";
+    }
+}
+
+    async function fetchCurrentPlan(userId) {
+    try {
+        let response = await fetch(`http://localhost:8080/api/currentPlan/${userId}`);
+        if (!response.ok) {
+
+            document.getElementById("currentPlandetails").textContent = "No Current Plan Details Found"
+
         }
+        let data = await response.json();
+     
+        
+        document.getElementById("planPrice").textContent = data.currentPlanPrice;
+        document.getElementById("planValidity").textContent = data.validity;
+        document.getElementById("planData").textContent = data.data/data.validity;
+        document.getElementById("planExpiry").textContent = data.planExpiryDate;
+        
+        let usage = calculateUsage() ;
+        let remainingData =(((100 - usage )/100) * (1024) ).toFixed(2);
+        document.getElementById("dataRemaining").textContent = (remainingData); 
+        
+        let usagePercentage = ((remainingData / data.data) * 100).toFixed(1);    
+        document.getElementById("progressFill").style.width = usage+ "%";
+        document.getElementById("progressFill").textContent = usage + "% Used";
+        
+    } catch (error) {
+        console.error("Error fetching current plan:", error);
+    }
+}
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
+function calculateUsage(){
+    let now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
 
-        function saveProfileChanges() {
-            const name = document.getElementById("modalName").value;
-            const email = document.getElementById("modalEmail").value;
-            const phone = document.getElementById("modalPhone").value;
-            const altPhone = document.getElementById("modalAltPhone").value;
-            
-            const dobInput = document.getElementById("modalDob").value;
-            let formattedDob = "Not provided";
-            
-            if (dobInput) {
-                const dobDate = new Date(dobInput);
-                const options = { day: 'numeric', month: 'short', year: 'numeric' };
-                formattedDob = dobDate.toLocaleDateString('en-US', options);
+    let sum = hours + minutes + seconds;
+    let percentage = ((sum / 141) * 100).toFixed(2); 
+    return percentage;
+}
+async function fetchUserDetails(){
+    if (!phoneNumber) {
+        console.error("phonenumber not found in");
+        return;
+    }
+
+    await fetch(`http://localhost:8080/api/subscribers/phone/${phoneNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch user details.");
             }
-            
-            document.getElementById("name").innerText = name;
-            document.getElementById("email").innerText = email;
-            document.getElementById("phonenumber").innerText = phone;
-            document.getElementById("altphonenumber").innerText = altPhone || "Not provided";
-            document.getElementById("dob").innerText = formattedDob;
-            
-            localStorage.setItem("name", name);
-            localStorage.setItem("email", email);
-            localStorage.setItem("phonenumber", phone);
-            localStorage.setItem("altphonenumber", altPhone || "Not provided");
-            localStorage.setItem("dob", formattedDob);
-      
-            const street = document.getElementById("modalStreet").value;
-            const city = document.getElementById("modalCity").value;
-            const state = document.getElementById("modalState").value;
-            const pincode = document.getElementById("modalPincode").value;
-            
-            const formattedAddress = `${street}, ${city}, ${state}, ${pincode}`;
-            
-            document.getElementById("address").innerText = formattedAddress;
-            
-            localStorage.setItem("address", formattedAddress);
-            
-            closeModal('profileModal');
-            
-            alert("Profile updated successfully!");
-        }            
+            return response.json();
+        })
+        .then(user => {
+            userid=user.userId;
+            document.getElementById("phonenumber").textContent = user.userPhonenumber;
+            document.getElementById("name").textContent = `${user.userFname} ${user.userLname}`;
+            document.getElementById("email").textContent = user.userEmail;
+            document.getElementById("altphonenumber").textContent = user.userAlternatePhonenumber;
+            document.getElementById("dob").textContent = user.userDateOfBirth;
+            document.getElementById("address").textContent = `${user.userAddress} ${user.userDistrict} ${user.userState} ${user.userPincode}`;
+            document.getElementById("status").innerHTML = user.userAccountStatus == "ACTIVE" ?  "<span style='color: green; font-weight: bold;'>Active</span>" :  "<span style='color: orange; font-weight: bold;'>Inactive</span>";
+        }) 
+        .catch(error => {
+            console.error("Error fetching user details:", error);
+        });
+        fetchCurrentPlan(userid);
 
-      
+        fetchUserTransactions(userid);
+
+};
+
+// Function to open the modal and fetch user details
+function openModal() {
+    fetch(`http://localhost:8080/api/subscribers/phone/${phoneNumber}`)
+        .then(response => response.json())
+        .then(user => {
+            document.getElementById("modalFname").value = user.userFname;
+            document.getElementById("modalLname").value = user.userLname;
+            document.getElementById("modalEmail").value = user.userEmail;
+            document.getElementById("modalPhone").value = user.userPhonenumber;
+            document.getElementById("modalAlternatePhone").value =  user.userAlternatePhonenumber;
+            document.getElementById("modalDob").value = user.userDateOfBirth;
+            document.getElementById("modalAddress").value = user.userAddress;
+            document.getElementById("modalState").value = user.userState;
+            document.getElementById("modalDistrict").value = user.userDistrict;
+            document.getElementById("modalPincode").value = user.userPincode;
+
+            document.getElementById("profileModal").style.display = "block";
+        })
+        .catch(error => console.error("Error fetching user details:", error));
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById("profileModal").style.display = "none";
+}
+
+// Function to save profile changes
+function saveProfileChanges() {
+
+    const updatedUser = {
+        userFname: document.getElementById("modalFname").value,
+        userLname: document.getElementById("modalLname").value,
+        userEmail: document.getElementById("modalEmail").value,
+        userPhonenumber: document.getElementById("modalPhone").value,
+        userAlternatePhonenumber : document.getElementById("modalAlternatePhone").value,
+        userDateOfBirth: document.getElementById("modalDob").value,
+        userAddress: document.getElementById("modalAddress").value,
+        userState: document.getElementById("modalState").value,
+        userDistrict: document.getElementById("modalDistrict").value,
+        userPincode: document.getElementById("modalPincode").value
+    };
+
+    fetch(`http://localhost:8080/api/subscribers/${userid}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedUser)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Profile updated successfully!");
+        closeModal('profileModal');
+        fetchUserDetails(); // Refresh the profile display after update
+    })
+    .catch(error => console.error("Error updating profile:", error));
+}
+
+
 
     function downloadInvoice(tId) {
         const { jsPDF } = window.jspdf;
@@ -811,6 +878,196 @@
                 event.target.style.display = "none";
             }
         };
+
+
+async function fetchUserTransactions(userId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/transactions/user/${userId}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const transactions = await response.json();
+        const tableBody = document.getElementById("transaction-body");
+
+        if (!tableBody) {
+            console.error("Table body not found!");
+            return;
+        }
+
+        tableBody.innerHTML = ""; 
+
+        transactions.forEach(transaction => {
+            const row = document.createElement("tr");
+
+            // Format date
+            const formattedDate = transaction.transactionDate 
+                ? new Date(transaction.transactionDate).toLocaleString() 
+                : "N/A";
+
+            // Get Payment Mode Icon
+            const paymentModeIcon = getPaymentModeIcon(transaction.transactionMode);
+
+            // Get Status Badge Class
+            const statusBadgeClass = getStatusClass(transaction.transactionStatus);
+
+            // Create Table Row
+            row.innerHTML = `
+                <td>${formattedDate}</td>
+                <td>${transaction.transactionId}</td>
+                <td>${transaction.plan?.planId ?? "N/A"}</td>
+                <td>₹${transaction.plan?.planPrice ?? "N/A"}</td>
+                <td>
+                    <div class="payment-mode">
+                        <i class="${paymentModeIcon} payment-icon"></i> 
+                        ${transaction.transactionMode}
+                    </div>
+                </td>
+                <td><span class="status-badge ${statusBadgeClass}">${transaction.transactionStatus}</span></td>
+                <td>
+                    <div class="invoice-action">
+                        <button class="btn ${transaction.transactionStatus === 'success' ? '' : 'btn-secondary'}" 
+                                ${transaction.transactionStatus === 'success' ? `onclick="downloadInvoice('${transaction.transactionId}')"` : 'disabled'}>
+                            <i class="fas ${transaction.transactionStatus === 'success' ? 'fa-download' : 'fa-clock'}"></i>
+                        </button>
+                    </div>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+
+        initializePagination("transaction-table", "pagination-container-history");
+
+
+    } catch (error) {
+        console.error('Error fetching transactions:', error);
+    }
+}
+
+// Function to get appropriate payment mode icon
+function getPaymentModeIcon(mode) {
+    switch (mode.toLowerCase()) {
+        case "google pay": return "fab fa-google-pay";
+        case "credit/debit card": return "fas fa-credit-card";
+        case "upi": return "fas fa-mobile-alt";
+        default: return "fas fa-money-bill-wave";
+    }
+}
+
+// Function to get status badge class
+function getStatusClass(status) {
+    return status === "success" ? "status-success" 
+         : status === "pending" ? "status-pending" 
+         : status === "failure" ? "status-failure" 
+         : "";
+}
+async function initializePagination(tableId, containerClass) {
+    const rowsPerPage = 5;
+    const table = document.getElementsByClassName(tableId)[0];
+    if (!table) return;
+
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.getElementsByTagName("tr"));
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    let currentPage = 1;
+    const maxVisiblePages = 5; // Limit visible page numbers
+
+    if (totalPages === 0) return;
+
+    function displayPage(page) {
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        
+        rows.forEach((row, index) => {
+            row.style.display = index >= start && index < end ? "table-row" : "none";
+        });
+    }
+
+    function createPagination() {
+        const existingContainer = document.querySelector(`.${containerClass}`);
+        if (existingContainer) existingContainer.remove();
+
+        const paginationContainer = document.createElement("div");
+        paginationContainer.className = containerClass;
+
+        const paginationControls = document.createElement("div");
+        paginationControls.className = "pagination-controls";
+
+        // Previous Button
+        const prevButton = createButton("Previous", () => changePage(currentPage - 1));
+        prevButton.id = `${containerClass}-prev`;
+        paginationControls.appendChild(prevButton);
+
+        // Page Numbers (Initially Limited)
+        const pageNumberContainer = document.createElement("div");
+        pageNumberContainer.className = "page-number-container";
+        paginationControls.appendChild(pageNumberContainer);
+
+        // Next Button
+        const nextButton = createButton("Next", () => changePage(currentPage + 1));
+        nextButton.id = `${containerClass}-next`;
+        paginationControls.appendChild(nextButton);
+
+        // Page Info
+        const pageInfoDiv = document.createElement("div");
+        pageInfoDiv.className = "pagination-info";
+        paginationContainer.appendChild(paginationControls);
+        paginationContainer.appendChild(pageInfoDiv);
+
+        table.parentElement.appendChild(paginationContainer);
+        updatePagination();
+    }
+
+    function createButton(text, onClick) {
+        const button = document.createElement("button");
+        button.innerText = text;
+        button.className = "pagination-btn";
+        button.onclick = onClick;
+        return button;
+    }
+
+    function updatePagination() {
+        const pageNumberContainer = document.querySelector(`.${containerClass} .page-number-container`);
+        pageNumberContainer.innerHTML = "";
+
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const numberBtn = createButton(i, () => changePage(i));
+            numberBtn.dataset.page = i;
+            numberBtn.classList.toggle("active", i === currentPage);
+            pageNumberContainer.appendChild(numberBtn);
+        }
+
+        // Update page info
+        const pageInfo = document.querySelector(`.${containerClass} .pagination-info`);
+        if (pageInfo) pageInfo.innerText = `Page ${currentPage} of ${totalPages}`;
+
+        // Enable/Disable Previous & Next buttons
+        document.getElementById(`${containerClass}-prev`).disabled = currentPage === 1;
+        document.getElementById(`${containerClass}-next`).disabled = currentPage === totalPages;
+    }
+
+    function changePage(page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        displayPage(currentPage);
+        updatePagination();
+    }
+
+    displayPage(currentPage);
+    createPagination();
+}
+
+
     </script>
 </body>
 </html>
