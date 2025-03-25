@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>Recharge</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <style>
     * {
     margin: 0;
-    padding: 0;
+    padding: 0px 2px;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
@@ -71,7 +74,7 @@ body {
 }
 
 .sidebar {
-    width: 240px;
+    width: 300px;
     background-color: #9ecfd0;
     border-radius: 6px;
     padding: 1rem;
@@ -295,36 +298,6 @@ body {
     padding-top: 20px;
 }
 
-.tab-buttons {
-            display: flex;
-            gap: 8px;
-            padding: 10px;
-            border-bottom: 2px solid #ddd;
-        }
-
-        .tab-buttons button {
-            background: #ffffff;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-
-            transition: all 0.3s ease-in-out;
-        }
-
-        .tab-buttons button:hover {
-            background: #f0f0f0;
-            border-color: #bbb;
-        }
-
-        .tab-buttons button.active {
-            background: #187f76;
-            color: white;
-            border-color: #187f76;
-        }
-
         .validityId{
   font-weight: 600;
 }
@@ -519,6 +492,12 @@ body {
     color: #ffffff;
 }
 }
+
+svg {
+    width: 100% !important;
+    height: auto !important;
+}
+
 </style>
 <body>
     <header class="header">
@@ -542,7 +521,7 @@ body {
              <img style="cursor:pointer; margin-top: 10px;" src="../Images/user.png"  onclick = "toggleDropdown()" alt="" height="25">
              <div id="dropdownMenu" class="dropdown-menu">
               <a href="" id="account">My Account</a>
-              <a href="" onclick="logout(this)">Logout</a>
+              <a href="" onclick="logout()">Logout</a>
              </div>
           </div>
         </div>
@@ -565,131 +544,106 @@ body {
           
           <br>
           <ul class="sidebar-menu">
-            <li><a id="box" data-category="PopularPlans" style="cursor:pointer;">Popular plans</a></li>
-            <li><a data-category="5GUnlimitedPlans" style="cursor:pointer;">5G Unlimited Plans</a></li>
-            <li><a data-category="DataPlans" style="cursor:pointer;">Data Plans</a></li>
-            <li><a data-category="TopupPlans" style="cursor:pointer;">Top-up</a></li>
-            <li><a data-category="VoiceOnlyPlans" style="cursor:pointer;">Voice only plans</a></li>
-            <li><a data-category="AnnualPlans" style="cursor:pointer;">Annual Plans</a></li>
+            
           </ul>
+
+
         </aside>
 
-    
-        <section class="content" id="PopularPlans">
-
-            <h2 style="padding-bottom: 25px;">Popular Plans</h2>
-
-            <div class="tab-buttons">
-                <button class="tab-button active" onclick="openTab(event, 'RecommendedPlans')">Recommended</button>
-                <button class="tab-button" onclick="openTab(event, 'TrendingPlans')">Top Trending True 5G Unlimited Plans</button>
-                <button class="tab-button" onclick="openTab(event, '2_5GBPlans')">2.5 GB/Day Plans</button>
-                <button class="tab-button" onclick="openTab(event, '2GBPlans')">2 GB/Day Plans</button>
-                <button class="tab-button" onclick="openTab(event, '1GBPlans')">1 GB/Day Plans</button>
-            </div>
-
-          
-          <div id="RecommendedPlans" class="tab-content">
-           
-           
-              <div class="plans-grid" id="RecommendedPlansgrid">
-
-                  
-              </div>
-              
-            </div>
-    
-          <div id="TrendingPlans" class="tab-content">
-           
-           
-              <div class="plans-grid" id="TrendingPlansgrid">
-                
-              </div>
-            </div>
-    
-          <div  id="2_5GBPlans" class="tab-content">
-          
-           
-              <div class="plans-grid" id="2_5GBPlansgrid">
-                
-              </div>
-            </div>
-    
-          <div id="2GBPlans" class="tab-content">
-           
-           
-              <div class="plans-grid" id="2GBPlansgrid">
-                
-                  
-              </div>
-            </div>
-    
-          <div id="1GBPlans" class="tab-content">
-           
-              <div class="plans-grid" id="1GBPlansgrid">
-                
-              </div>
-            </div>
-        </section>
-        
-
-
-        <section class="content" id="5GUnlimitedPlans">
-
-          <h2 style="padding-bottom: 25px;">5G Unlimited Plans</h2>
-          <div class="plans-grid" id="5GUnlimitedPlansgrid">
-            
-           </div>
-
-        </section>
-
-        <section class="content" id="DataPlans">
-          <h2 style="padding-bottom: 25px;">Data Plans</h2>
-          <div class="plans-grid" id="DataPlansgrid">
-            
-          </div>
-        </section>
-
-        <section class="content" id="TopupPlans">
-          <h2 style="padding-bottom: 25px;">Top-up</h2>
-          <div class="plans-grid" id="TopupPlansgrid">
-            
-          </div>
-        </section>
-
-        <section class="content" id="VoiceOnlyPlans">
-          <h2 style="padding-bottom: 25px;">Voice only Plans</h2>
-          <div class="plans-grid" id="VoiceOnlyPlansgrid">
-            
-          </div>
-        </section>
-
-        <section class="content" id="AnnualPlans">
-          <h2 style="padding-bottom: 25px;">Annual Plans</h2>
-          <div class="plans-grid" id="AnnualPlansgrid">
-
-          </div>
-        </section>
+        <div style="width:100%" id="plan-container">
+                   
+        </div>
       </div>
-      
-    
+
       <footer class="footer">
         <p>Copyright © 2010-2025 My Tech. All rights reserved.</p>
       </footer>
-</div>
+
 </body>
 
 <script>
 
 
-let arr = ["PopularPlans" , "5GUnlimitedPlans",'DataPlans','TopupPlans' , 'VoiceOnlyPlans' , 'AnnualPlans'];
+let arr=[]
 
+document.addEventListener("DOMContentLoaded" , renderCategory);
+
+async function renderCategory(){
+
+  let container = document.getElementsByClassName("sidebar-menu")[0];
+  let token = localStorage.getItem("accessToken");
+console.log(token);
+  try{
+    const response = await fetch("http://localhost:8080/api/both/Category/getCategory",{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+        if (!response.ok) {
+            throw new Error("Failed to fetch categories");
+        }
+
+        const categories = await response.json();
+
+        container.innerHTML = "";  
+
+        categories.forEach(category => {
+          arr.push(category.categoryName);
+           
+                let sectionHTML = `
+                    <li><a onclick="requestPlans('${category.categoryName}' , this)" style="cursor:pointer;">${category.categoryDisplayName}</a></li>
+                `;
+                container.innerHTML += sectionHTML;
+            
+    
+        });
+        document.querySelector(".sidebar-menu li a").classList.add("active");
+
+
+        container = document.getElementById("plan-container");
+
+        categories.forEach(category => {
+           
+           let sectionHTML = `
+        <section class="content" id="${category.categoryName}">
+          <h2 style="padding-bottom: 25px;">${category.categoryDisplayName}</h2>
+          <div class="plans-grid" id="${category.categoryName}grid">
+            
+          </div>
+        </section>
+           `;
+           container.innerHTML += sectionHTML;
+       
+
+        });
+
+        tabcontent = document.getElementsByClassName("content");
+
+
+        for (i = 1; i < tabcontent.length; i++) {
+       tabcontent[i].style.display = "none";
+   }
+
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+    }
+    loadPlans("RecommendedPlans");
+}
 
 
 async function loadPlans(category) {
-    const apiUrl = `http://localhost:8080/api/plans/category/${category}`; 
+  let token = localStorage.getItem("accessToken");
+
+    const apiUrl = `http://localhost:8080/api/both/plans/category/${category}`; 
 
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl,{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            });
         
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -796,38 +750,10 @@ function generateOTTIcons(ottPlans) {
         </div>
     `).join("");
 }
-
-document.addEventListener("DOMContentLoaded", loadPlans("RecommendedPlans"));
-
-    tabcontent = document.getElementsByClassName("tab-content");
-
-     for (i = 1; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-     }
-
-   document.getElementById("box").classList.add("active")
   
-document.addEventListener("DOMContentLoaded" , () =>{
-  for (let i = 1; i < 6; i++) {
-    document.getElementById(arr[i]).style.display =  'none';
-}
-});
-   function openTab(evt, tabName) {
-            var i, tabcontent, tabbuttons;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tabbuttons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tabbuttons.length; i++) {
-                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-            loadPlans(tabName);
-        }
-
+  
    document.addEventListener("DOMContentLoaded", function() {
+
     const params = new URLSearchParams(window.location.search);
     var pageStatus = params.get('status') === 'true';
 
@@ -859,51 +785,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
    function insertPhoneNumber(){
+
+
         var phonenumber = mbnum.value;
         document.getElementById('phone-number').innerHTML = `+91 ${phonenumber.substring(0,3)}*****${phonenumber.substring(8)}`;
     }
 
+   function requestPlans(category , pointers) {
+
     document.querySelectorAll(".sidebar-menu li a").forEach(item => {
-    item.addEventListener("click", function() {
-        document.querySelectorAll(".sidebar-menu li a").forEach(link => {
-            link.classList.remove("active");
-        });
-
-        this.classList.add("active");
-
-        const id = this.dataset.category; 
-
-        givedetails(id);
+        item.classList.remove("active");
     });
-});
+
+        let data = document.getElementsByClassName("content");
+        for(let i=0;i<data.length;i++){
+            data[i].style.display='none';
+        }
+
+        pointers.classList.add("active");
+
+        document.getElementById(category).style.display =  'block' ;
+        loadPlans(category);
+
+    }
+
     document.getElementById("recharge-number").textContent = localStorage.getItem("phonenumber");
-
-
-
     document.getElementById("account").addEventListener("click", function(event) {
-    
     this.href = "profile.html";
-});
-
-const checkboxes = document.querySelectorAll(".tab-content input");
-
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener("change", function () {
-    checkboxes.forEach((cb) => {
-      if (cb !== this) cb.checked = false;
-    });
-  });
-});
-
-function givedetails(inputValue) {
-    let arr = ["PopularPlans", "5GUnlimitedPlans", "DataPlans", "TopupPlans", "VoiceOnlyPlans", "AnnualPlans"];
-
-    arr.forEach(category => {
-        document.getElementById(category).style.display = (category == inputValue) ? 'block' : 'none';
     });
 
-    loadPlans(inputValue);
-}
+
+
 
 function toggleDropdown() {
 
@@ -919,12 +831,63 @@ function toggleDropdown() {
   }  
 }
 
-function logout(clicked) {
-    var confirmLogout = confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-        clicked.href="page1.html";
+async function logout() {
+    let confirmLogout = confirm("Are you sure you want to log out?");
+    if (!confirmLogout) return;
+
+    let token = localStorage.getItem("accessToken");
+    let rtoken = localStorage.getItem("refreshToken");
+
+    if (!token || !rtoken) {
+        alert("Session expired or user not logged in.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:8080/auth/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${token}`
+            },
+            body: JSON.stringify({ refreshToken : rtoken })
+        });
+
+        alert(response.status);
+        console.log("Response:", response);
+        console.log("Response Status:", response.status);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Logout failed:", errorText);
+            alert("Logout failed. Try again.");
+            return;
+        }
+
+        
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+
+        // Show toast message
+        Toastify({
+            text: "Logged out Successfully",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+        }).showToast();
+
+        // Redirect after toast duration
+        setTimeout(() => {
+            console.log("Redirecting to page1.html...");
+            window.location.href = "page1.html";
+        }, 3000);
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Something went wrong: " + error.message);
     }
 }
+
 
 
 function payment(id , price){
@@ -937,11 +900,270 @@ function payment(id , price){
       localStorage.setItem('id' , id);
 
 if(pageStatus){
-  window.location.href = "page3.html";
+    startPayment();
 }
 else{
   window.location.href = "page1.html";
 }
 } 
+
+let planDetails
+let userDetails;
+let transactionResult; 
+
+async function startPayment() {
+  let token = localStorage.getItem("accessToken");
+
+    try {
+        let response = await fetch(`http://localhost:8080/api/customer/payments/create?amount=${localStorage.getItem('price')}`, { 
+          method: "POST" ,
+          headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            
+        });
+        let order = await response.json();
+
+        var options = {
+            "key": "rzp_test_HohQOoI3083uX1",
+            "amount": localStorage.getItem('price') * 100,
+            "currency": "INR",
+            "name": "MobiComm Recharge",
+            "description": "Mobile Recharge Payment",
+            "order_id": order.id, // Order ID from backend
+            "handler": async function (response) {
+              
+              let details = await getPaymentDetails(response.razorpay_payment_id);
+
+                await waitPlease(details.method == "card" ? "credit_debit_card": "upi");
+
+                await saveTransaction();
+
+                const payload = {
+            razorpay_payment_id: response.razorpay_payment_id,
+            email: localStorage.getItem("email"),
+            name: localStorage.getItem("username"),
+            amount: localStorage.getItem('price')
+        };
+        let token = localStorage.getItem("accessToken");
+        console.log(token);
+
+        await fetch("http://localhost:8080/api/customer/success/sendEmail", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", 
+                      "Authorization" : `Bearer ${token}`
+                     },
+            body: JSON.stringify(payload)
+        });
+            },
+            "prefill": {
+                "name": "User",
+                "email": localStorage.getItem("email"),
+                "contact": localStorage.getItem("phonenumber")
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+
+        rzp.on('payment.failed', async function (response) {
+            alert("Payment failed! Reason: " + response.error.description);
+
+            await moveNext();
+        });
+
+    } catch (error) {
+        console.error("Error initiating payment:", error);
+        await moveNext();
+    }
+}
+
+async function getPaymentDetails(paymentId) {
+  let token = localStorage.getItem("accessToken");
+
+    const response = await fetch(`http://localhost:8080/api/customer/getPaymentDetails?payment_id=${paymentId}`, {
+      method: "GET" ,
+          headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+    });
+    const data = await response.json();
+    console.log("Payment Method:", data.method);
+    return data;
+}
+
+
+async function moveNext() {
+    let phonenumber = localStorage.getItem("phonenumber");
+    let planId = localStorage.getItem("id");
+
+    let token = localStorage.getItem("accessToken");
+
+
+    try {
+        // Fetch user and plan details
+        let userDetailsResponse = await fetch(`http://localhost:8080/api/customer/phone/${phonenumber}`,{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+        let planDetailsResponse = await fetch(`http://localhost:8080/api/both/plans/${planId}`,{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+
+        if (!userDetailsResponse.ok || !planDetailsResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        let userDetails = await userDetailsResponse.json();
+        let planDetails = await planDetailsResponse.json();
+        
+
+        // Construct transaction data
+        const transactionData = {
+            user: { userId: userDetails.userId }, // Reference to User entity
+            plan: { planId: Number(planId) }, // Reference to Plan entity
+            transactionMode:"empty", // Set based on user choice
+            transactionStatus: "failure" // Default status
+        };
+        let token = localStorage.getItem("accessToken");
+
+        // Post transaction data
+        let transactionResponse = await fetch("http://localhost:8080/api/customer/transactions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+
+            },
+            body: JSON.stringify(transactionData)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+    } catch (error) {
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction. Please try again.");
+    }
+}
+
+async function saveTransaction() {
+
+  let token = localStorage.getItem("accessToken");
+
+try {
+      let userPlan = {
+          user: { userId: userDetails.userId },
+          plan: { planId: planDetails.planId },
+          transaction: { transactionId: transactionResult.transactionId },
+          dataUsage: 0,
+      };
+
+      let response = await fetch("http://localhost:8080/api/customer/currentPlan/saveOrUpdate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json","Authorization" : `Bearer ${token}`
+        },
+          body: JSON.stringify(userPlan)
+      });
+
+      if (!response.ok) {
+          const errorText = await response.text();
+          console.error("Plan update error:", errorText);
+          throw new Error("Failed to update user current plan details");
+      }
+
+      let result = await response.json();
+  } catch (error) {
+      console.error("Error:", error);
+  }
+}
+
+
+async function waitPlease(paymentway) {
+
+
+    try {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+
+        const phonenumber = localStorage.getItem("phonenumber");
+        let planId = localStorage.getItem("id");
+        const is5GPage = new URLSearchParams(window.location.search).get('target') === '5g';
+
+        // Convert planId properly
+        let planID = Number(planId);
+
+        if (!phonenumber || !planId || isNaN(planID)) {
+            console.error("Invalid values:", { phonenumber, planId, planID });
+            throw new Error("Missing or invalid phone number/plan ID");
+        }
+        let token = localStorage.getItem("accessToken");
+
+        const [userResponse, planResponse] = await Promise.all([
+            fetch(`http://localhost:8080/api/customer/phone/${phonenumber}`,{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            }),
+            fetch(`http://localhost:8080/api/both/plans/${planID}`,{
+            method:"GET",
+            headers : {
+                "Authorization" : `Bearer ${token}`
+            }
+            })
+        ]);
+
+        if (!userResponse.ok || !planResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        userDetails = await userResponse.json();
+        planDetails = await planResponse.json();
+
+        localStorage.setItem("email" , userDetails.userEmail);
+        localStorage.setItem("username" , userDetails.userFname+ " " +userDetails.userLname);
+
+        if (!userDetails || !userDetails.userId) {
+            throw new Error("Invalid user details received");
+        }
+
+        const transaction = {
+            user: { userId: userDetails.userId },
+            plan: { planId: planDetails.planId },
+            transactionMode: paymentway,
+            transactionStatus: "success"
+        };
+
+        let transactionResponse = await fetch("http://localhost:8080/api/customer/transactions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" , "Authorization" : `Bearer ${token}`
+          },
+            body: JSON.stringify(transaction)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+        transactionResult = await transactionResponse.json();
+
+    } catch (error) {
+      
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction: " + error.message);
+    } finally {
+    }
+}
 </script>
 </html>

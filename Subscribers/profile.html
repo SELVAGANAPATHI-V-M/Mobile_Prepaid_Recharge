@@ -7,7 +7,8 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     
     <style>
         :root {
@@ -707,17 +708,71 @@
   dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 
 }
+async function logout(clicked) {
+    let confirmLogout = confirm("Are you sure you want to log out?");
+    if (!confirmLogout) return; // If the user cancels, do nothing
 
-    function logout(clicked) {
-    var confirmLogout = confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-        clicked.href="page1.html";
+    let token = localStorage.getItem("accessToken");
+    let refreshtoken = localStorage.getItem("refreshToken");
+
+    if (!token) {
+        alert("User is not logged in.");
+        return;
+    }
+
+    let tokens = { refreshToken: refreshtoken };
+
+    try {
+        const response = await fetch("http://localhost:8080/auth/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(tokens) // Prevent null issues
+        });
+
+        console.log(response);
+
+        if (!response.ok) {
+            alert("Logout failed. Please try again.");
+        } else {
+            // Clear tokens
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
+
+            // Show toast message
+            Toastify({
+                text: "Logged out Successfully",
+                duration: 3000,  // Toast visible for 3 seconds
+                gravity: "top",
+                position: "right",
+                backgroundColor: "green",
+            }).showToast();
+
+            // Delay navigation until toast is finished
+            setTimeout(() => {
+                window.location.href = "page1.html"; 
+            }, 3000); // Wait for the toast to finish before redirecting
+        }
+    } catch (error) {
+        console.error( error.message);
+        alert("Something went wrong. Try again.");
     }
 }
 
+
     async function fetchCurrentPlan(userId) {
+        const token = localStorage.getItem("accessToken");
+
     try {
-        let response = await fetch(`http://localhost:8080/api/currentPlan/${userId}`);
+        let response = await fetch(`http://localhost:8080/api/both/currentPlan/${userId}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            });
         if (!response.ok) {
 
             document.getElementById("currentPlandetails").textContent = "No Current Plan Details Found"
@@ -759,8 +814,15 @@ async function fetchUserDetails(){
         console.error("phonenumber not found in");
         return;
     }
+    const token = localStorage.getItem("accessToken");
 
-    await fetch(`http://localhost:8080/api/subscribers/phone/${phoneNumber}`)
+    await fetch(`http://localhost:8080/api/customer/phone/${phoneNumber}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            })
         .then(response => {
             if (!response.ok) {
                 throw new Error("Failed to fetch user details.");
@@ -788,7 +850,15 @@ async function fetchUserDetails(){
 
 // Function to open the modal and fetch user details
 function openModal() {
-    fetch(`http://localhost:8080/api/subscribers/phone/${phoneNumber}`)
+    const token = localStorage.getItem("accessToken");
+
+    fetch(`http://localhost:8080/api/customer/phone/${phoneNumber}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            })
         .then(response => response.json())
         .then(user => {
             document.getElementById("modalFname").value = user.userFname;
@@ -828,51 +898,146 @@ function saveProfileChanges() {
         userPincode: document.getElementById("modalPincode").value
     };
 
-    fetch(`http://localhost:8080/api/subscribers/${userid}`, {
+    const token = localStorage.getItem("accessToken");
+
+    fetch(`http://localhost:8080/api/both/${userid}`, {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization" : `Bearer ${token}`
+
         },
         body: JSON.stringify(updatedUser)
     })
     .then(response => response.json())
     .then(data => {
-        alert("Profile updated successfully!");
+
+        Toastify({
+            text: "Profile Updated Successfully",
+            duration: 3000,
+            gravity: "top", // `top`, `bottom`
+            position: "right", // `left`, `center`, `right`
+            backgroundColor: "green",
+        }).showToast();
+
+        setTimeout(() =>{
+
+        } , 4000);
+
         closeModal('profileModal');
         fetchUserDetails(); // Refresh the profile display after update
     })
     .catch(error => console.error("Error updating profile:", error));
 }
+async function downloadInvoice(transactionId) {
+    const token = localStorage.getItem("accessToken");
 
+    try {
+        // Fetch transaction details from API
+        const response = await fetch(`http://localhost:8080/api/customer/transactions/${transactionId}` ,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+        if (!response.ok) {
+            throw new Error(`Error fetching transaction: ${response.statusText}`);
+        }
+        const transactionDetails = await response.json();
 
-
-    function downloadInvoice(tId) {
+        // Import jsPDF
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        doc.setFontSize(18);
-        doc.text("Invoice", 90, 20);
+        // Invoice Title
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("Invoice", 85, 20);
 
+        // Company Details
         doc.setFontSize(12);
-        doc.text("Mobi com", 10, 30);
-        doc.text("123, Main Road, Chennai, India", 10, 40);
-        doc.text("GSTIN: 33AAAAA0000A1Z5", 10, 50);
+        doc.setFont("helvetica", "normal");
+        doc.text("MobiComm", 10, 35);
+        doc.text("123, Main Road, Chennai, India", 10, 42);
 
-        let transactionId = tId;
-        doc.text("Transaction ID: " + transactionId, 10, 70);
-        doc.text("Invoice Date: 23-02-2025 12:23:24", 10, 80);
-        doc.text("Customer Name: John Doe", 10, 90);
-        doc.text("Email: johndoe@example.com", 10, 100);
-        doc.text("Phone: 9876543210", 10, 110);
-        
-        doc.text("Plan: Unlimited 5G - ₹599/month", 10, 130);
-        doc.text("Amount Paid: ₹599", 10, 140);
-        doc.text("Status: Success", 10, 150);
+        // Separator Line
+        doc.line(10, 55, 200, 55);
 
-        doc.text("Thank you for choosing our service!", 50, 170);
+        // Transaction Details
+        doc.setFont("helvetica", "bold");
+        doc.text("Transaction Details", 10, 65);
+        doc.setFont("helvetica", "normal");
+        doc.text(`Transaction ID: ${transactionDetails.transactionId}`, 10, 75);
+        doc.text(`Invoice Date: ${transactionDetails.transactionDate}`, 10, 85);
 
-        doc.save("Invoice_" + transactionId + ".pdf");
+        doc.line(10, 90, 200, 90);
+
+        // Customer Details
+        doc.setFont("helvetica", "bold");
+        doc.text("Customer Details", 10, 100);
+        doc.setFont("helvetica", "normal");
+        doc.text(`Name: ${transactionDetails.user?.userFname} ${transactionDetails.user?.userLname}`, 10, 110);
+        doc.text(`Email: ${transactionDetails.user?.userEmail}`, 10, 120);
+        doc.text(`Phone: ${transactionDetails.user?.userPhonenumber}`, 10, 130);
+
+        doc.line(10, 135, 200, 135);
+
+        // Plan & Payment Details
+        const startY = 145;
+        doc.setFont("helvetica", "bold");
+        doc.text("Plan & Payment Details", 10, startY);
+
+        // Table Data
+
+// Set starting position
+let yPosition = startY + 10;
+doc.setFont("helvetica", "normal");
+
+// Add Plan & Payment Details one by one
+doc.text("Plan Id:", 10, yPosition);
+doc.text(transactionDetails.plan?.planId + "" || "N/A", 70, yPosition);
+yPosition += 10;
+
+doc.text("Amount Paid (in rupees):", 10, yPosition);
+doc.text(transactionDetails.plan?.planPrice.toString(), 70, yPosition);
+yPosition += 10;
+
+doc.text("Status:", 10, yPosition);
+doc.setTextColor(0, 128, 0); 
+doc.setFont("helvetica", "bold");
+doc.text(transactionDetails.transactionStatus || "N/A", 70, yPosition);
+yPosition += 10;
+doc.setTextColor(0, 0, 0); // Reset to default color (black)
+doc.setFont("helvetica", "normal");
+
+
+doc.text("Payment Mode:", 10, yPosition);
+doc.text(transactionDetails.transactionMode || "N/A", 70, yPosition);
+
+
+        doc.line(10, 200, 200, 200);
+
+        // Footer Message (Green Text)
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(0, 128, 0); // Green color (RGB: 0, 128, 0)
+        doc.text("Thank you for choosing our service!", 50, yPosition + 25);
+
+        // Save as PDF
+        doc.save(`Invoice_${transactionDetails.transactionId}.pdf`);
+    } catch (error) {
+        console.error("Error generating invoice:", error.message);
+        Toastify({
+            text: "Failed to generate invoice. Please try again.",
+            duration: 3000,
+            gravity: "top", // `top`, `bottom`
+            position: "right", // `left`, `center`, `right`
+            backgroundColor: "red",
+        }).showToast();
     }
+}
+
+
         window.onclick = function(event) {
             if (event.target.className === 'modal') {
                 event.target.style.display = "none";
@@ -881,8 +1046,16 @@ function saveProfileChanges() {
 
 
 async function fetchUserTransactions(userId) {
+    const token = localStorage.getItem("accessToken");
+
     try {
-        const response = await fetch(`http://localhost:8080/api/transactions/user/${userId}`);
+        const response = await fetch(`http://localhost:8080/api/customer/transactions/user/${userId}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            });
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -928,7 +1101,7 @@ async function fetchUserTransactions(userId) {
                 <td>
                     <div class="invoice-action">
                         <button class="btn ${transaction.transactionStatus === 'success' ? '' : 'btn-secondary'}" 
-                                ${transaction.transactionStatus === 'success' ? `onclick="downloadInvoice('${transaction.transactionId}')"` : 'disabled'}>
+                                ${transaction.transactionStatus === 'success' ? `onclick="downloadInvoice(${transaction.transactionId})"` : 'disabled'}>
                             <i class="fas ${transaction.transactionStatus === 'success' ? 'fa-download' : 'fa-clock'}"></i>
                         </button>
                     </div>

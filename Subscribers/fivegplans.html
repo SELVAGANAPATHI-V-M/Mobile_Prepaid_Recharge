@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>FiveGPlans</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -276,8 +277,16 @@
     <script>
 
 document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("accessToken");
+
     try {
-        let response = await fetch("http://localhost:8080/api/plans/category/5GUnlimitedPlans"); 
+        let response = await fetch("http://localhost:8080/api/both/plans/category/5GUnlimitedPlans" ,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            }); 
         let plans = await response.json();
         let plansContainer = document.getElementById("5GUnlimitedPlansgrid");
         plansContainer.innerHTML = "";
@@ -304,7 +313,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <p>Voice: <b>Unlimited</b></p>
                         </div>
                         ${ottSection}
-                        <button class="buy-btn btn w-100 mt-3" onclick="payment()">Buy</button>
+                        <button class="buy-btn btn w-100 mt-3" onclick="payment(${plan.planPrice})">Buy</button>
                     </div>
                 </div>
             `;
@@ -347,14 +356,13 @@ function generateOTTIcons(ottPlans) {
             document.getElementById("supportid").href = "support.html?status=true";
         }
 
-        function payment() {
+        function payment(val) {
             
                     if (status == 'false') {
                         window.location.href = "page1.html";
                     } else {
-                        const value1 = event.target.closest(".plan-card").querySelector(".plan-price").textContent;
-                        localStorage.setItem('price', value1);
-                        window.location.href = "page3.html?target=5g";
+                        localStorage.setItem('price', val);
+                        startPayment();
                     }
                 
            
@@ -402,6 +410,234 @@ setInterval(() => {
                 headerNav.classList.remove('active');
             });
         });
+
+        
+
+        let planDetails
+let userDetails;
+let transactionResult; 
+
+async function startPayment() {
+  let token = localStorage.getItem("accessToken");
+
+    try {
+        let response = await fetch(`http://localhost:8080/api/customer/payments/create?amount= ${localStorage.getItem('price')}`, { 
+          method: "POST" ,
+          headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            
+        });
+        let order = await response.json();
+
+        var options = {
+            "key": "rzp_test_HohQOoI3083uX1",
+            "amount": localStorage.getItem('price') * 100,
+            "currency": "INR",
+            "name": "MobiComm Recharge",
+            "description": "Mobile Recharge Payment",
+            "order_id": order.id, // Order ID from backend
+            "handler": async function (response) {
+                alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+
+                await waitPlease();
+
+                await saveTransaction();
+            },
+            "prefill": {
+                "name": "User",
+                "email": "user@example.com",
+                "contact": localStorage.getItem("phonenumber")
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+
+        rzp.on('payment.failed', async function (response) {
+            alert("Payment failed! Reason: " + response.error.description);
+
+            await moveNext();
+        });
+
+    } catch (error) {
+        console.error("Error initiating payment:", error);
+        await moveNext();
+    }
+}
+
+
+async function moveNext() {
+    let phonenumber = localStorage.getItem("phonenumber");
+    let planId = localStorage.getItem("id");
+
+    let token = localStorage.getItem("accessToken");
+
+
+    try {
+        // Fetch user and plan details
+        let userDetailsResponse = await fetch(`http://localhost:8080/api/customer/phone/${phonenumber}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+        let planDetailsResponse = await fetch(`http://localhost:8080/api/both/plans/${planId}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            });
+
+        if (!userDetailsResponse.ok || !planDetailsResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        let userDetails = await userDetailsResponse.json();
+        let planDetails = await planDetailsResponse.json();
+
+        // Construct transaction data
+        const transactionData = {
+            user: { userId: userDetails.userId }, // Reference to User entity
+            plan: { planId: Number(planId) }, // Reference to Plan entity
+            transactionMode:"empty", // Set based on user choice
+            transactionStatus: "failure" // Default status
+        };
+        let token = localStorage.getItem("accessToken");
+
+        // Post transaction data
+        let transactionResponse = await fetch("http://localhost:8080/api/customer/transactions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+
+            },
+            body: JSON.stringify(transactionData)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+    } catch (error) {
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction. Please try again.");
+    }
+}
+
+async function saveTransaction() {
+
+  let token = localStorage.getItem("accessToken");
+
+try {
+      let userPlan = {
+          user: { userId: userDetails.userId },
+          plan: { planId: planDetails.planId },
+          transaction: { transactionId: transactionResult.transactionId },
+          dataUsage: 0,
+      };
+
+      let response = await fetch("http://localhost:8080/api/customer/currentPlan/saveOrUpdate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json","Authorization" : `Bearer ${token}`
+        },
+          body: JSON.stringify(userPlan)
+      });
+
+      if (!response.ok) {
+          const errorText = await response.text();
+          console.error("Plan update error:", errorText);
+          throw new Error("Failed to update user current plan details");
+      }
+
+      let result = await response.json();
+  } catch (error) {
+      console.error("Error:", error);
+  }
+}
+
+
+async function waitPlease() {
+
+
+    try {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+
+        const phonenumber = localStorage.getItem("phonenumber");
+        let planId = localStorage.getItem("id");
+        const is5GPage = new URLSearchParams(window.location.search).get('target') === '5g';
+
+        // Convert planId properly
+        let planID = Number(planId);
+
+        if (!phonenumber || !planId || isNaN(planID)) {
+            console.error("Invalid values:", { phonenumber, planId, planID });
+            throw new Error("Missing or invalid phone number/plan ID");
+        }
+        let token = localStorage.getItem("accessToken");
+
+        const [userResponse, planResponse] = await Promise.all([
+            fetch(`http://localhost:8080/api/customer/phone/${phonenumber}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            }),
+            fetch(`http://localhost:8080/api/both/plans/${planID}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
+            }
+            })
+        ]);
+
+        if (!userResponse.ok || !planResponse.ok) {
+            throw new Error("Failed to fetch user or plan details.");
+        }
+
+        userDetails = await userResponse.json();
+        planDetails = await planResponse.json();
+
+        if (!userDetails || !userDetails.userId) {
+            throw new Error("Invalid user details received");
+        }
+
+        const transaction = {
+            user: { userId: userDetails.userId },
+            plan: { planId: planDetails.planId },
+            transactionMode: 'upi',
+            transactionStatus: "success"
+        };
+
+        let transactionResponse = await fetch("http://localhost:8080/api/customer/transactions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" , "Authorization" : `Bearer ${token}`
+          },
+            body: JSON.stringify(transaction)
+        });
+
+        if (!transactionResponse.ok) {
+            throw new Error("Failed to add transaction");
+        }
+
+        transactionResult = await transactionResponse.json();
+
+    } catch (error) {
+        console.error("Error during transaction processing:", error);
+        alert("Failed to process transaction: " + error.message);
+    } finally {
+    }
+}
     </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
