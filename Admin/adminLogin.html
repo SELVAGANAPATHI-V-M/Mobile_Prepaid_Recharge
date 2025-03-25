@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
     <title>AdminLogin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
 </head>
 <style>
       
@@ -159,33 +162,48 @@
         return; 
     }
 
-    try {
-        let response = await fetch('http://localhost:8080/api/subscribers/admin');
+   let credentials = {
+     username : username,
+     password : password
+   }
+        try {
+        const response = await fetch("http://localhost:8080/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        });
 
         if (!response.ok) {
-            throw new Error("Failed to fetch user details.");
+            throw new Error("Login failed. Please check your credentials.");
         }
+        
 
-        let credentials = await response.json();
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
 
-        let user = credentials.find(data => data.username === username && data.password === password);
-
-        if (user) {
-            loginMessage.style.color = "green";
-            loginMessage.textContent = "Login successful!";
+        loginMessage.style.color = "green";
+            // loginMessage.textContent = "Login successful!";
+            
+            Toastify({
+            text: "logged in successfully!",
+            duration: 3000,
+            gravity: "top", // `top`, `bottom`
+            position: "right", // `left`, `center`, `right`
+            backgroundColor: "green",
+        }).showToast();
 
             setTimeout(() => {
                 window.location.href = "MobicommAdmin.html";
-            }, 1000);
-        } else {
-            loginMessage.style.color = "red";
-            loginMessage.textContent = "Invalid username or password.";
-        }
-
-    } catch (error) {
-        loginMessage.style.color = "red";
-        loginMessage.textContent = "Error fetching data. Please try again.";
+            }, 4000);
+        } 
+    
+    catch (error) {
+        console.error("Error during login:", error);
     }
+    
 }
 
 </Script>

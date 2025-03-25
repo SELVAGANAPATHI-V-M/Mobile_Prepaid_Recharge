@@ -3,567 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../Images/favicon.jpg">
-    <title>Login</title>
+    <link rel="icon" type="image/png" href="../Images/favicon.jpg"> 
+    <title>Recharge</title>
+    <!-- Your existing CSS would go here -->
 </head>
-<style>
-    /* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f8fa;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-/* Navigation Bar */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #006666;
-    padding: 0.5rem 0.5rem;
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    z-index: 1000;
-}
-
-.navbar .logo img {
-    height: 40px;
-    margin-right: 1rem;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-}
-
-.navbar ul li {
-    margin: 0 15px;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 7px;
-    display: inline-block;
-    border-radius: 3px;
-}
-
-.navbar ul li a:hover {
-    background-color: rgb(183, 242, 240);
-    color: #005f5f;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.hamburger span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-/* Main Container */
-.main-container {
-    display: flex;
-    align-items: center;
-    padding-left: 0;
-    padding-top: 60px;
-    min-height: calc(100vh - 140px);
-    background-image: url(../Images/bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* Recharge Box and OTP Container */
-.recharge-box {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    width: 400px;
-    height: 310px;
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.recharge-box h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-.recharge-box p {
-    margin-bottom: 20px;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    margin: 15px 0;
-}
-
-.button-group button {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.button-group .active {
-    background: #027373;
-}
-
-.recharge-box input {
-    width: 93%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.continue-btn {
-    background: #008080;
-    color: white;
-    padding: 12px;
-    border: none;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.continue-btn:hover {
-    background: #005f5f;
-}
-
-.otpp {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5px;
-    width: 300px;
-    margin-left: 30px;
-    margin-bottom: 10px;
-}
-
-.otpp input {
-    height: 40px;
-    width: 35px;
-    font-size: 17px;
-}
-
-/* Footer */
-.footer {
-    background: #006666;
-    color: white;
-    padding: 30px 20px;
-}
-
-.footer-columns {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.column {
-    width: 23%;
-}
-
-.column h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.column ul li {
-    margin: 8px 0;
-}
-
-.column ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.column ul li a:hover {
-    text-decoration: underline;
-}
-
-.social-icons a {
-    color: white;
-    font-size: 22px;
-    margin: 0 10px;
-    display: inline-block;
-}
-
-.social-icons img {
-    vertical-align: middle;
-}
-
-.copyright {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-/* Media Queries */
-@media (max-width: 992px) {
-    .main-container {
-        padding-left: 0;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        height: auto;
-        min-height: 40px;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    nav {
-        position: absolute;
-        top: 40px;
-        right: -100%;
-        background-color: #006666;
-        width: 100%;
-    }
-
-    nav.active {
-        right: 0;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        padding: 20px 0;
-    }
-
-    .navbar ul li {
-        margin: 10px 20px;
-    }
-
-    .footer-columns {
-        flex-direction: column;
-    }
-
-    .column {
-        width: 100%;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 576px) {
-    .main-container {
-        flex-direction: column;
-        padding-top: 60px;
-    }
-
-    .recharge-box {
-        width: 90%;
-        margin: 10px auto;
-    }
-
-    .otpp {
-        grid-template-columns: repeat(6, 1fr);
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .otpp input {
-        height: 40px;
-        width: 35px;
-        font-size: 17px;
-    }
-
-    .continue-btn, .otp-button {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .social-icons a {
-        margin: 0 5px;
-    }
-
-    .social-icons img {
-        width: 25px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar .logo img {
-        height: 30px;
-    }
-
-    .recharge-box h2 {
-        font-size: 20px;
-    }
-
-    .recharge-box p {
-        font-size: 14px;
-    }
-}
-
-</style>
 <body>
-
-    <header class="navbar">
-        <div class="logo">
-            <img src="../Images/logo2-removebg-preview.png" alt="Logo">
-        </div>
-        <div class="hamburger" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="" style="text-decoration: underline;">Home</a></li>
-                <li><a href="fivegplans.html?status=false">True 5G</a></li>
-                <li><a href="page2.html?status=false">Plans</a></li>
-                <li><a href="support.html?status=false">Support</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="main-container">
-        <div class="recharge-box" id="recharge-box">
-            <h2>Mobile Recharge</h2>
-            <p>Enter your details to find the best prepaid plans</p>
-            <div>
-                <input type="text" placeholder="Phone Number" maxlength="10" class="mobile-input">
-                <span style="color: red; font-size: small;" id="notexists"></span><br><br>
-                <button class="continue-btn" onclick="changeContent()" id="generate-otp" disabled>Generate OTP</button>
-            </div>
-        </div>
-
-        <div class="recharge-box" id="otp-container" style="display: none;">
-            <div style="text-align: left; margin-bottom: 20px">
-                <button onclick="changeContents()" id="backBtn" style="background: none;border: none; cursor: pointer;"><img src="../Images/previous.png" alt="" height="20px"></button>
-            </div>
-            <div style="text-align: left;">
-                <h2 style="font-weight: bolder;">Verify phone number</h2>
-                <p>The OTP has been sent to <span id="phone-number"></span></p>
-            </div>
-            <div class="otpp">
-                <input type="text" id="otpInput1" maxlength="1" class="otp" required>
-                <input type="text" id="otpInput2" maxlength="1" class="otp" required disabled>
-                <input type="text" id="otpInput3" maxlength="1" class="otp" required disabled>
-                <input type="text" id="otpInput4" maxlength="1" class="otp" required disabled>
-                <input type="text" id="otpInput5" maxlength="1" class="otp" required disabled>
-                <input type="text" id="otpInput6" maxlength="1" class="otp" required disabled>
-            </div>
-            <div style="text-align: right;">
-                <button id="resendBtn" disabled>Resend OTP (10s)</button>
-            </div>
-            <br>
-            <button class="continue-btn" onclick="moveNext()" id="continue-btn-otp" disabled>Continue</button>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="footer-columns">
-            <div class="column">
-                <h3>Our Offerings</h3>
-                <ul>
-                    <li><a href="#">Prepaid</a></li>
-                    <li><a href="#">5G Network</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h3>Our Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">TechLife</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h3>Connect with Us</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com"><img class="prof" src="../Images/facebook.png" width="34px"></a>
-                    <a href="https://www.twitter.com"><img class="prof" src="../Images/twitter.png" width="33px"></a>
-                    <a href="https://www.instagram.com"><img class="prof" src="../Images/instagram.png" width="35px"></a>
-                    <a href="https://www.linkedin.com"><img class="prof" src="../Images/linkedin.png" width="35px"></a>
-                    <a href="https://www.youtube.com"><img class="prof" src="../Images/youtube.png" width="35px"></a>
-                </div>
-            </div>
-        </div>
-        <p class="copyright">&copy; 2010-2025 My Tech. All rights reserved.</p>
-    </footer>
-
-    <script>
-document.getElementById('hamburger-menu').addEventListener('click', function() {
-    document.getElementById('nav-menu').classList.toggle('active');
-
-    const spans = this.querySelectorAll('span');
-    spans.forEach(span => {
-        span.classList.toggle('active');
-    });
-});
-
-document.addEventListener('click', function(event) {
-    const nav = document.getElementById('nav-menu');
-    const hamburger = document.getElementById('hamburger-menu');
-
-    if (!nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
-        nav.classList.remove('active');
+  <style>
+    /* Dropdown Styling */
+    .dropdown {
+        position: relative;
+        display: inline-block;
     }
-});
+    
+    .dropdown-button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 200px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    /* Show the dropdown */
+    .show {
+        display: block;
+    }
+    
+    </style>
+   
 
-function moveNext() {
-    window.location.href = "page2.html?status=true";
-}
+      
+    
+          <div class="dropdown">
+            <button class="dropdown-button" onclick="toggleDropdown()">Select Category</button>
+            <div class="dropdown-content tab-buttons"></div>
+        </div>
+        
+        
+        <script>
 
-async function changeContent() {
-    document.getElementById("notexists").textContent = "";
-
-    let phoneNumber = document.querySelector(".mobile-input").value;
-
-    try {
-        let isValid = false;
-        let response = await fetch(`http://localhost:8080/Subscribers/phonenumbers/${phoneNumber}`);
-        isValid = await response.json();
-
-        if (isValid) {
-            document.getElementById('recharge-box').style.display = 'none';
-            document.getElementById('otp-container').style.display = 'block';
-            startOtpTimer();
-            insertPhoneNumber();
-        } else {
-            document.getElementById("notexists").textContent = "Invalid Mobicomm Number";
+          document.addEventListener("DOMContentLoaded" , fetchCategory)
+        async function fetchCategory() {
+            let categoryContainer = document.getElementsByClassName("tab-buttons")[0];
+            categoryContainer.innerHTML = ""; // Clear previous data
+        
+            try {
+                const response = await fetch("http://localhost:8080/api/Category/getCategory");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch categories");
+                }
+        
+                const data = await response.json();
+                data.forEach(categoryItem => {
+                    let option = `<a href="#" onclick="openTab(event, '${categoryItem.categoryName}')">
+                                    ${categoryItem.categoryDisplayName}
+                                  </a>`;
+                    categoryContainer.innerHTML += option;
+                });
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
         }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-function changeContents() {
-    clearOtp();
-    document.getElementById('otp-container').style.display = 'none';
-    document.getElementById('recharge-box').style.display = 'block';
-    document.getElementById('resendBtn').disabled = true;
-    stopOtpTimer();
-}
-
-function startOtpTimer() {
-    let seconds = 10;
-    const resendBtn = document.getElementById('resendBtn');
-
-    resendBtn.disabled = true;
-    resendBtn.style.cursor = 'no-drop';
-
-    otpTimer = setInterval(() => {
-        resendBtn.textContent = `Resend OTP (${--seconds}s)`;
-
-        if (seconds <= 0) {
-            clearInterval(otpTimer);
-            resendBtn.textContent = 'Resend OTP';
-            resendBtn.disabled = false;
-            resendBtn.style.cursor = 'pointer';
+        
+        // Toggle dropdown visibility
+        function toggleDropdown() {
+            document.querySelector(".dropdown-content").classList.toggle("show");
         }
-    }, 1000);
-}
-
-document.getElementById('resendBtn').addEventListener('click', changeContent);
-
-function stopOtpTimer() {
-    clearInterval(otpTimer);
-}
-
-const mbnum = document.getElementsByClassName("mobile-input")[0];
-
-mbnum.addEventListener('input', () => {
-    if (mbnum.value.length === 10) {
-        document.getElementById('generate-otp').disabled = false;
-        document.getElementById('generate-otp').style.opacity = 1;
-        document.getElementById('generate-otp').style.cursor = 'pointer';
-    } else {
-        document.getElementById('generate-otp').disabled = true;
-        document.getElementById('generate-otp').style.opacity = 0.5;
-        document.getElementById('generate-otp').style.cursor = 'no-drop';
-    }
-});
-
-// Add this function to handle OTP input fields
-document.getElementById('otpInput1').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('otpInput2').disabled = false;
-        document.getElementById('otpInput2').focus();
-    }
-});
-
-document.getElementById('otpInput2').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('otpInput3').disabled = false;
-        document.getElementById('otpInput3').focus();
-    }
-});
-
-document.getElementById('otpInput3').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('otpInput4').disabled = false;
-        document.getElementById('otpInput4').focus();
-    }
-});
-
-document.getElementById('otpInput4').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('otpInput5').disabled = false;
-        document.getElementById('otpInput5').focus();
-    }
-});
-
-document.getElementById('otpInput5').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('otpInput6').disabled = false;
-        document.getElementById('otpInput6').focus();
-    }
-});
-
-// Enable continue button when all OTP fields are filled
-document.getElementById('otpInput6').addEventListener('input', function() {
-    if (this.value.length === 1) {
-        document.getElementById('continue-btn-otp').disabled = false;
-        document.getElementById('continue-btn-otp').style.opacity = 1;
-        document.getElementById('continue-btn-otp').style.cursor = 'pointer';
-    }
-});
-
-    </script>
-</body>
+        
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-button')) {
+                document.querySelector(".dropdown-content").classList.remove("show");
+            }
+        }
+        </script>
+        </body>
 </html>
